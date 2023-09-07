@@ -1,45 +1,43 @@
 /**
- * Title of Project
- * Author Name
+ * Drawing experiments
+ * Maria Barba
  * 
- * This is a template. You must fill in the title, author, 
- * and this description to match your project!
+ * Experimenting with p5
  */
 
 "use strict";
 
-/**
- * Description of preload
-*/
+// preload()
+//
+// Does nothing.
 function preload() {
 
 }
 
 
-/**
- * Description of setup
-*/
+// setup()
+//
+// Draws a face on the canvas.
 function setup() {
     createCanvas (500, 500);
+    //Set the background to mint
     background (191, 255, 199);
-    ellipseMode (CORNER);
-    noStroke();
-    fill(127, 0, 200, 100);
-    ellipse (250, 250, 100, 100);
-    fill(137, 0, 210, 100);
-    ellipse (250, 250, 80, 80);
-    fill(147, 0, 220, 100);
-    ellipse (250, 250, 60, 60);
-    fill(157, 0, 230, 100);
-    ellipse (250, 250, 40, 40);
-    fill(167, 0, 240, 100);
-    ellipse (250, 250, 20, 20);
+    //Draw a flesh-colored head
+    fill(250,200,200);
+    ellipse (250, 250, 200, 200);
+    //Draw the eyes 
+    fill(0);
+    ellipse (200, 250, 30, 30);
+    ellipse (300, 250, 30, 30);
+    // Draw the mouth
+    strokeWeight (10);
+    line (200, 300, 300, 300);
 }
 
 
-/**
- * Description of draw()
-*/
+// draw()
+// 
+// Does nothing.
 function draw() {
 
 }
