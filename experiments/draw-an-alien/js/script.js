@@ -51,6 +51,17 @@ function setup() {
     circle(310,305,5);
     //Draw the right nostril
     circle(340,305,5);
+
+    //Draw alien mouth
+    //Set the mouth stroke color to red
+    stroke(100,0,0);
+    //Set a bigger thickness for the lines
+    strokeWeight(5);
+    //Set the drawing mode to the centre
+    rectMode();
+    //Draw the mouth
+    rect(300,350,50,10);
+
 }
 
 // draw()
