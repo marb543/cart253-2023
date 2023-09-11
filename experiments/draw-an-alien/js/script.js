@@ -1,32 +1,32 @@
 /**
  * Title of Project
- * Author Name
+ * Maria Barba
  * 
- * This is a template. You must fill in the title, author, 
- * and this description to match your project!
+ * Draw an alien acitivity.
+ * 
  */
 
 "use strict";
 
-/**
- * Description of preload
-*/
+// setup()
+//
+// Does nothing.
 function preload() {
 
 }
 
 
-/**
- * Description of setup
-*/
+// setup()
+//
+// Draws a face on the canvas.
 function setup() {
 
 }
 
 
-/**
- * Description of draw()
-*/
+// draw()
+//
+// Does nothing.
 function draw() {
 
 }
