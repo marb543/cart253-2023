@@ -31,8 +31,27 @@ function setup() {
     fill(211,211,211);
     //Draw an ellipse at the half-off bottom of the canvas
     ellipse(320,480,400,200);
-}
 
+    //Draw a head of an alien
+    //Set the color of the head
+    fill(192,192,192);
+    //Draw the head
+    ellipse(320,300,200,300);
+
+    //Draw the eyes of the alien
+    //Set the eye color to black
+    fill(0,0,0);
+    //Draw the first left eye
+    ellipse(280,270,30,10);
+    //Draw the second right eye
+    ellipse(365,270,30,10);
+
+    //Draw the nostrils
+    //Draw the left nostril
+    circle(310,305,5);
+    //Draw the right nostril
+    circle(340,305,5);
+}
 
 // draw()
 //
