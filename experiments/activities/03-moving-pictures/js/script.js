@@ -62,7 +62,7 @@ function draw() {
     //Background
     background(bg.red,bg.green, bg.blue);
     //Make the background redder
-    bg.red=map(circle1.size,100,width,0,255);
+    bg.red=map(circle1.size,100,width,100,255);
     //Circle 1
     circle1.x+=1;
     circle1.x=constrain(circle1.x , 0 , width/2);
