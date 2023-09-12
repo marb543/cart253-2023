@@ -1,32 +1,30 @@
 /**
- * Title of Project
- * Author Name
+ * Exercise: I like to move it!
+ * Maria Barba
  * 
- * This is a template. You must fill in the title, author, 
- * and this description to match your project!
  */
 
 "use strict";
 
-/**
- * Description of preload
-*/
+// setup()
+//
+// Does nothing.
 function preload() {
 
 }
 
 
-/**
- * Description of setup
-*/
+// setup()
+//
+// Sets up the canvas and the default color
 function setup() {
 
 }
 
 
-/**
- * Description of draw()
-*/
+// draw()
+//
+// Creates three shapes, and animates them
 function draw() {
 
 }
