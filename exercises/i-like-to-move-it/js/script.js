@@ -90,13 +90,10 @@ function draw() {
     rect(rectangle2.x, rectangle2.y , rectangle2.rectWidth , rectangle2.rectHeight);
     //Circle1
     //Color circle
-     fill(circle1.red, circle1.blue,circle1.green);
-     //Make circle move within bounds of (0-500,0-500)
-     circle1.y=constrain(circle1.y , 0 , 500);
-     circle1.x=constrain(circle1.x , 0 , 500);
-     //Make circle grow
-     circle1.size= circle1.size + circle1.growthRatio;
-     circle1.size=constrain(circle1.size,0,200);
-     //Draw circle
-     ellipse(mouseX, mouseY , circle1.size , circle1.size);
+    fill(circle1.red, circle1.blue,circle1.green);
+    //Make circle grow
+    circle1.size= circle1.size + circle1.growthRatio;
+    circle1.size=constrain(circle1.size,0,200);
+    //Draw circle
+    ellipse(mouseX, mouseY , circle1.size , circle1.size);
 }
