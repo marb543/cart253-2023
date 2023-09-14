@@ -2,6 +2,7 @@
  * Exercise: I like to move it!
  * Maria Barba
  * 
+ * Creates two rectangles , and one circlee shape.
  */
 
 "use strict";
@@ -18,17 +19,17 @@ let bg = {
     red:0,
     green:255,
     blue:255
-}
+}  
 //Create rectange1 object
 let rectangle1 = {
     x : 250,
     y: 50,
     rectWidth : 80 ,
     rectHeight :200,
-    fill : 0 ,
-    alpha : 200,
+    red : 114,
+    green: 213,
+    blue : 224,
     speed : 2 ,
-    growthRatio : 1
 }
 //Create rectange2 object
 let rectangle2 = {
@@ -36,21 +37,19 @@ let rectangle2 = {
     y: 10,
     rectWidth : 50 ,
     rectHeight :50,
-    fill : 0 ,
-    alpha : 200,
+    red : 255,
+    green: 0,
+    blue : 255,
     speed : 1 ,
-    growthRatio : 1
 
 }
-//Create triangle1 object
+//Create circle1 object
 let circle1 = {
-    x : 0,
-    y: 500/2,
     size : 100,
-    fill : 255 ,
-    alpha : 200,
-    speed : 0.75 ,
-    growthRatio : 1
+    red : 114,
+    green: 213,
+    blue : 224,
+    growthRatio : 0.5
 }
 
 // setup()
@@ -66,31 +65,32 @@ function setup() {
 //
 // Creates three shapes, and animates them
 function draw() {
+    //Set background color
     background(bg.red,bg.green,bg.blue);
-
-    //Make the background multicolor
-    //bg.red=map(rectangle1.size,100,width,100,255);
-
+    //Map red,geen,and blue of background to shapes
+    bg.red=map(rectangle1.x,0,width,0,162);
+    bg.green=map(rectangle2.y,0,height,0,50);
+    bg.blue=map(circle1.size,0,width,0,168);
     //Rectangle1
     rectangle1.y+=rectangle1.speed;
     rectangle1.y=constrain(rectangle1.y , 10 , 350);
     rectMode(CENTER);
-    fill(rectangle1.fill, [rectangle1.alpha]);
+    fill(rectangle1.red, rectangle1.blue,rectangle1.green);
     rect(rectangle1.x, rectangle1.y , rectangle1.rectWidth , rectangle1.rectHeight);
 
     //Rectangle2
     rectangle2.y+=rectangle2.speed;
     rectangle2.y=constrain(rectangle2.y , 50 , 180);
-    rectMode(CENTER);
-    fill(rectangle2.fill, [rectangle2.alpha]);
+    fill(rectangle2.red, rectangle2.blue,rectangle2.green);
     rect(rectangle2.x, rectangle2.y , rectangle2.rectWidth , rectangle2.rectHeight);
 
-    //Circle1
-    circle1.x+=circle1.speed;
-    circle1.y+=circle1.speed;
-    circle1.y=constrain(circle1.x , 0 , 180);
-    circle1.x=constrain(circle1.y , 50 , 180);
-    fill(circle1.fill, [circle1.alpha]);
-    ellipse(circle1.x, circle1.y , circle1.size , circle1.size);
+     //Circle1
+     fill(circle1.red, circle1.blue,circle1.green);
+     circle1.y=constrain(circle1.y , 0 , 500);
+     circle1.x=constrain(circle1.x , 0 , 500);
+     circle1.size= circle1.size + circle1.growthRatio;
+     circle1.size=constrain(circle1.size,0,200);
+     ellipse(mouseX, mouseY , circle1.size , circle1.size);
+
 
 }
