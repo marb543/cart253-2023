@@ -72,25 +72,31 @@ function draw() {
     bg.green=map(rectangle2.y,0,height,0,50);
     bg.blue=map(circle1.size,0,width,0,168);
     //Rectangle1
+    //Make first rectangle move downwards
     rectangle1.y+=rectangle1.speed;
     rectangle1.y=constrain(rectangle1.y , 10 , 350);
     rectMode(CENTER);
+    //Change color of first rectangle
     fill(rectangle1.red, rectangle1.blue,rectangle1.green);
+    //Draw rectangle
     rect(rectangle1.x, rectangle1.y , rectangle1.rectWidth , rectangle1.rectHeight);
-
     //Rectangle2
+    //Move second rectangle downwards
     rectangle2.y+=rectangle2.speed;
     rectangle2.y=constrain(rectangle2.y , 50 , 180);
+    //Color second rectangle
     fill(rectangle2.red, rectangle2.blue,rectangle2.green);
+    //Draw second rectangle
     rect(rectangle2.x, rectangle2.y , rectangle2.rectWidth , rectangle2.rectHeight);
-
-     //Circle1
+    //Circle1
+    //Color circle
      fill(circle1.red, circle1.blue,circle1.green);
+     //Make circle move within bounds of (0-500,0-500)
      circle1.y=constrain(circle1.y , 0 , 500);
      circle1.x=constrain(circle1.x , 0 , 500);
+     //Make circle grow
      circle1.size= circle1.size + circle1.growthRatio;
      circle1.size=constrain(circle1.size,0,200);
+     //Draw circle
      ellipse(mouseX, mouseY , circle1.size , circle1.size);
-
-
 }
