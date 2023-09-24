@@ -1,11 +1,16 @@
 /**
- * Activity 4 : Dodging covid
+ * Exerice 2 : Dodge-em
+ * 
  * Maria Barba
  * 
- * 
+ * In this exercise, I have two objects, a cat and a mouse. In the case of this exercice the user's mouse is the cat which is trying to catch a mouse which
+ * is moving randomly in the room.
  */
 
 "use strict";
+
+//Generates a variable which will be the image of the room
+let roomImg;
 
 let covid19 = {
     x: 0,
@@ -27,7 +32,15 @@ let user = {
     size: 100,
     fill: 255
 }
+/**
+ * preload()
+ * 
+ * The preload function loads the images that will be used in the case of this simulation. Which is 
+ * an image of a room, an image of a cat ,and the image of a mouse.
+*/
+function preload() {
 
+}
 /**
  * setup()
  * 
