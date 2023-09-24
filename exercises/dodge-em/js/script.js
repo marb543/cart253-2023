@@ -96,7 +96,7 @@ function draw() {
     if (catchCounter.uncaughtMouse) { //Display mouse image as a living mouse if it hasn't been caught
         push();
         imageMode(CENTER);
-        image(aliveMouse, mouse.x, mouse.y, cat.w, cat.h);
+        image(aliveMouse, mouse.x, mouse.y, mouse.w, mouse.h);
         pop();
         //Mouse movement
         mouse.x = mouse.x + mouse.vx;
@@ -110,7 +110,6 @@ function draw() {
     if (mouse.x > width) {
         mouse.x = 0;
         mouse.y = random(0, height);
-
     }
     //Display cat image if it has not caught a mouse
     if (catchCounter.uncaughtMouse) {
@@ -119,8 +118,24 @@ function draw() {
         image(plottingCat, cat.x, cat.y, cat.w, cat.h);
         pop();
         //Cat movement
-        cat.x = mouseX;
-        cat.y = mouseY;
+        let mvmt = createVector(0, 0);
+        if (keyIsPressed) {
+            if (key === 'a') {
+                mvmt.x -= 1;
+            }
+            if (key === 'd') {
+                mvmt.x += 1;
+            }
+            if (key === 'w') {
+                mvmt.y -= 1;
+            }
+            if (key === 's') {
+                mvmt.y += 1;
+            }
+            mvmt.setMag(cat.speed);
+            cat.x += mvmt.x;
+            cat.y += mvmt.y;
+        }
     } else {
         push();
         imageMode(CENTER);
@@ -130,7 +145,7 @@ function draw() {
 
     //Check if cat caught mouse
     let d = dist(cat.x, cat.y, mouse.x, mouse.y);
-    if (d < cat.x / 2 + mouse.x / 2) {
+    if (d <= mouse.w && d <= mouse.h) {
         //noLoop();
         //Record the position at which the cat caught the mouse
         cat.catchPos.x = cat.x;
@@ -143,6 +158,7 @@ function draw() {
         //re-draw canvas with deadMouse image and happyCat image
         loop();
     }
+
 
 
 }
