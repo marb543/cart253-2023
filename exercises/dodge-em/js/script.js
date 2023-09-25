@@ -19,12 +19,12 @@ let relaxedCat
 let aliveMouse;
 //Generates a tombstone image representative of a dead mouse
 let deadMouse;
-
+//This variable keeps track if the mouse has been caught by the cat
 let catchCounter = {
     uncaughtMouse: true
 
 }
-
+//Creates a cat object
 let cat = {
     x: 300,
     y: 250,
@@ -38,7 +38,7 @@ let cat = {
         y: 0,
     }
 }
-
+//Creates a mouse object
 let mouse = {
     x: 0,
     y: 250,
@@ -53,34 +53,34 @@ let mouse = {
         y: 0,
     }
 }
-
 /**
  * preload()
  * 
  * The preload function loads the images that will be used in the case of this simulation. Which is 
- * an image of a room, an image of a cat ,and the image of a mouse.
+ * an image of a room, an image of a cat ,and the image of a mouse.All images are from Adobe Stock, and use the Concordia University license.
 */
 function preload() {
-
     roomImg = loadImage('./assets/images/room.jpeg');
     relaxedCat = loadImage('./assets/images/relaxedCat.png');
     plottingCat = loadImage('./assets/images/plottingCat.png');
     aliveMouse = loadImage('./assets/images/mouse.png');
     deadMouse = loadImage('./assets/images/tombstone.png');
-
 }
 /**
  * setup()
  * 
- * Setup canvas and set no stroke
+ * Setup canvas creates canvad , sets cat and mouse velocity , and adds a drop shadow
 */
 function setup() {
     createCanvas(windowWidth, windowHeight);
+    //Set random y-coordinate of the mouse
     mouse.y = random(0, height);
+    //Set mouse velocity
     mouse.vx = mouse.speed;
+    //Set cat velocity
     cat.vx = cat.speed;
     cat.vy = cat.speed;
-    //Add shadow
+    //Add drop-shadow
     drawingContext.shadowOffsetX = 2;
     drawingContext.shadowOffsetY = -2;
     drawingContext.shadowBlur = 8;
@@ -91,7 +91,8 @@ function setup() {
 /**
  * draw()
  * 
- * 
+ * The draw method executes the main work of this exercise, it draws the cat, mouse images, makes tem move , and changes images , as well as draws text that explains the 
+ * user instructions. 
 */
 function draw() {
     //Display room image
@@ -108,7 +109,6 @@ function draw() {
     text('Help the cat catch the mouse ! Use ← ↑ → ↓ keys to control the cat .', windowWidth * 0.20, 20, windowWidth, 100);
     pop();
 
-
     if (catchCounter.uncaughtMouse) { //Display mouse image as a living mouse if it hasn't been caught
         push();
         imageMode(CENTER);
@@ -123,12 +123,13 @@ function draw() {
         image(deadMouse, mouse.catchPos.x, mouse.catchPos.y, mouse.w, mouse.h + 100);
         pop();
     }
-    if (mouse.x > width) {
+
+    if (mouse.x > width) { // if mouse goes outside the width of the screen , set x-coordinate to 0
         mouse.x = 0;
         mouse.y = random(0, height);
     }
-    //Display cat image if it has not caught a mouse
-    if (catchCounter.uncaughtMouse) {
+
+    if (catchCounter.uncaughtMouse) { //Display cat image if it has not caught a mouse
         push();
         imageMode(CENTER);
         image(plottingCat, cat.x, cat.y, cat.w, cat.h);
@@ -139,7 +140,7 @@ function draw() {
             cat.x = 150;
             cat.y = 100;
         }
-
+        //Add key controls on cat object
         if (keyIsDown(LEFT_ARROW)) {
             cat.x = cat.x - 1 * cat.vx;
         }
@@ -153,7 +154,7 @@ function draw() {
             cat.y = cat.y + 1 * cat.vy;
         }
 
-    } else {
+    } else {  //Display cat image if it has caught a mouse
         push();
         imageMode(CENTER);
         image(relaxedCat, cat.catchPos.x, cat.catchPos.y, cat.w, cat.h);
@@ -163,7 +164,6 @@ function draw() {
     //Check if cat caught mouse
     let d = dist(cat.x, cat.y, mouse.x, mouse.y);
     if (d <= mouse.w && d <= mouse.h) {
-        //noLoop();
         //Record the position at which the cat caught the mouse
         cat.catchPos.x = cat.x;
         cat.catchPos.y = cat.y;
@@ -172,10 +172,7 @@ function draw() {
         mouse.catchPos.y = mouse.y;
         //Change the catchCounter
         catchCounter.uncaughtMouse = false;
-        //re-draw canvas with deadMouse image and happyCat image
+        //re-draw canvas with new mouse image and new cat image
         loop();
     }
-
-
-
 }
