@@ -78,6 +78,13 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     mouse.y = random(0, height);
     mouse.vx = mouse.speed;
+    cat.vx = cat.speed;
+    cat.vy = cat.speed;
+    //Add shadow
+    drawingContext.shadowOffsetX = 2;
+    drawingContext.shadowOffsetY = -2;
+    drawingContext.shadowBlur = 8;
+    drawingContext.shadowColor = 'black';
 }
 
 
@@ -90,6 +97,15 @@ function draw() {
     //Display room image
     push();
     image(roomImg, 0, 0, windowWidth, windowHeight);
+    pop();
+    //Draw text instructions on top of the game
+    push();
+    fill(252, 127, 3);
+    stroke(255);
+    strokeWeight(4);
+    textFont("Impact");
+    textSize(32);
+    text('Help the cat catch the mouse ! Use ← ↑ → ↓ keys to control the cat .', windowWidth * 0.20, 20, windowWidth, 100);
     pop();
 
 
@@ -118,24 +134,25 @@ function draw() {
         image(plottingCat, cat.x, cat.y, cat.w, cat.h);
         pop();
         //Cat movement
-        let mvmt = createVector(0, 0);
-        if (keyIsPressed) {
-            if (key === 'a') {
-                mvmt.x -= 1;
-            }
-            if (key === 'd') {
-                mvmt.x += 1;
-            }
-            if (key === 'w') {
-                mvmt.y -= 1;
-            }
-            if (key === 's') {
-                mvmt.y += 1;
-            }
-            mvmt.setMag(cat.speed);
-            cat.x += mvmt.x;
-            cat.y += mvmt.y;
+        //Constrain cat's movement within window width,height
+        if (cat.x > windowWidth || cat.y > windowHeight || cat.x < 0 || cat.y < 0) {
+            cat.x = 150;
+            cat.y = 100;
         }
+
+        if (keyIsDown(LEFT_ARROW)) {
+            cat.x = cat.x - 1 * cat.vx;
+        }
+        if (keyIsDown(RIGHT_ARROW)) {
+            cat.x = cat.x + 1 * cat.vx;
+        }
+        if (keyIsDown(UP_ARROW)) {
+            cat.y = cat.y - 1 * cat.vy;
+        }
+        if (keyIsDown(DOWN_ARROW)) {
+            cat.y = cat.y + 1 * cat.vy;
+        }
+
     } else {
         push();
         imageMode(CENTER);
