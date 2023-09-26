@@ -1,32 +1,29 @@
 /**
- * Activity 4 : Dodging covid
+ * Activity 5 : Looking for love
  * Maria Barba
  * 
  * 
  */
 
 "use strict";
-
-let covid19 = {
-    x: 0,
+let circle1 = {
+    x: undefined,
     y: 250,
     size: 100,
     vx: 0,
     vy: 0,
-    speed: 5,
-    fill: {
-        r: 255,
-        g: 0,
-        b: 0
-    }
+    speed: 3
 }
-
-let user = {
-    x: 250,
+let circle2 = {
+    x: undefined,
     y: 250,
     size: 100,
-    fill: 255
+    vx: 0,
+    vy: 0,
+    speed: 3
 }
+
+let state = `title`; // Can be title,love,simulation , love , sadness
 
 /**
  * setup()
@@ -34,11 +31,9 @@ let user = {
  * Setup canvas and set no stroke
 */
 function setup() {
-    createCanvas(windowWidth, windowHeight);
-    covid19.y = random(0, height);
-    covid19.vx = covid19.speed;
+    createCanvas(500, 500);
+    setupCircles();
 }
-
 
 /**
  * draw()
@@ -47,40 +42,94 @@ function setup() {
 */
 function draw() {
     background(0);
-    //Display static
-    for (let i = 0; i < 1000; i++) {
-        let x = random(0, width);
-        let y = random(0, height);
-        stroke(255);
-        point(x, y);
+    if (state == `title`) {
+        title();
+    } else if (state == `simulation`) {
+        simulation();
+    }
+    else if (state == `love`) {
+        love();
+    }
+    else if (state == `sadness`) {
+        sadness();
     }
 
-
-
-    covid19.x = covid19.x + covid19.vx;
-    covid19.y = covid19.y + covid19.vy;
-
-    if (covid19.x > width) {
-        covid19.x = 0;
-        covid19.y = random(0, height);
+}
+function move() {
+    //Move circles
+    circle1.x = circle1.x + circle1.vx;
+    circle1.y = circle1.y + circle1.vy;
+    circle2.x = circle2.x + circle2.vx;
+    circle2.y = circle2.y + circle2.vy;
+}
+function checkOffscreen() {
+    if (isOffscreen(circle1) || isOffscreen(circle2)) {
+        state = `sadness`;
     }
-    //User movement
-    user.x = mouseX;
-    user.y = mouseY;
-
-    //Display user
-    fill(user.fill);
-    ellipse(user.x, user.y, user.size);
-
-    //Check for covid19
-    let d = dist(user.x, user.y, covid19.x, covid19.y);
-    if (d < covid19.size / 2 + user.size / 2) {
-        noLoop();
+}
+function isOffscreen(circle) {
+    if (circle.x < 0 || circle.x > width || circle.y < 0 || circle.y > height) {
+        return true;
     }
+    else {
+        return false;
+    }
+}
+function checkOverlap() {
+    //Check if the circles overlap 
+    let d = dist(circle1.x, circle1.y, circle2.x, circle2.y);
+    if (d < circle1.size / 2 + circle2.size / 2) {
+        state = `love`;
+    }
+}
+function setupCircles() {
+    //Position circles separated from one another
+    circle1.x = width / 3;
+    circle2.x = 2 * width / 3;
+    //Circles velocity
+    circle1.vx = random(-circle1.speed, circle1.speed);
+    circle1.vy = random(-circle1.speed, circle1.speed);
+    circle2.vx = random(-circle1.speed, circle2.speed);
+    circle2.vy = random(-circle1.speed, circle2.speed);
+}
 
-    fill(covid19.fill.r, covid19.fill.g, covid19.fill.b);
-    ellipse(covid19.x, covid19.y, covid19.size);
-
-
-
+function display() {
+    //Display circles
+    ellipse(circle1.x, circle1.y, circle1.size);
+    ellipse(circle2.x, circle2.y, circle2.size);
+}
+function simulation() {
+    move();
+    checkOffscreen();
+    checkOverlap();
+    display();
+}
+function love() {
+    push();
+    textSize(64);
+    fill(255, 150, 150);
+    textAlign(CENTER, CENTER);
+    text(`LOVE!`, width / 2, height / 2);
+    pop();
+}
+function sadness() {
+    push();
+    textSize(64);
+    fill(150, 150, 255);
+    textAlign(CENTER, CENTER);
+    text(`D:`, width / 2, height / 2);
+    pop();
+}
+function title() {
+    push();
+    textSize(64);
+    fill(200, 100, 100);
+    textAlign(CENTER, CENTER);
+    text("LOVE ? ", width / 2, height / 2);
+    pop();
+}
+function mousePressed() {
+    if (state == `title`) {
+        state = `simulation`;
+    }
 }
