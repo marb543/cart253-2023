@@ -18,7 +18,8 @@ let bubblegumFont;
 let dog = {
     x: undefined,
     y: 250,
-    size: 100,
+    width: 130,
+    height: 200,
     vx: 0,
     vy: 0,
     speed: 3,
@@ -28,12 +29,15 @@ let dog = {
 let ball = {
     x: undefined,
     y: 250,
-    size: 100,
+    width: 100,
+    height: 200,
     vx: 0,
     vy: 0,
     speed: 3,
     imageLink: "./assets/images/ball.png",
-    image: null
+    image: null,
+    tx: 0,
+    ty: 10,
 }
 
 let state = `title`; // Can be title,love,simulation , love , sadness
@@ -81,8 +85,10 @@ function draw() {
 }
 function move() {
     //Move circles
+
     dog.x = dog.x + dog.vx;
     dog.y = dog.y + dog.vy;
+
     ball.x = ball.x + ball.vx;
     ball.y = ball.y + ball.vy;
 }
@@ -110,6 +116,8 @@ function setupCircles() {
     //Position circles separated from one another
     dog.x = width / 3;
     ball.x = 2 * width / 3;
+    ball.tx = circle.tx + 0.025;
+    ball.ty = circle.ty + 0.025;
     //Circles velocity
     dog.vx = random(-dog.speed, dog.speed);
     dog.vy = random(-dog.speed, dog.speed);
@@ -119,8 +127,8 @@ function setupCircles() {
 
 function display() {
     //Display circles
-    ellipse(dog.x, dog.y, dog.size);
-    ellipse(ball.x, ball.y, ball.size);
+    image(dog.image, dog.x, dog.y, dog.width, dog.height);
+    image(ball.image, ball.x, ball.y, ball.width, ball.width);
 }
 function simulation() {
     move();
