@@ -6,7 +6,8 @@
  * All images are from Adobe Stock :
  * Ball image : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=ball+png&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=ball+png&get_facets=0&asset_id=623949235
  * Dog image : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=dog+png&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=dog+png&get_facets=0&asset_id=622226646
- *
+ * Park image : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=park+background&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=park+background&get_facets=0&asset_id=158627533
+ * 
  * The font used for this exercise is from Google fonts :
  * https://fonts.google.com/specimen/Bubblegum+Sans?query=bubb
  */
@@ -14,6 +15,7 @@
 "use strict";
 
 let bubblegumFont;
+let parkImage;
 
 let dog = {
     x: undefined,
@@ -49,6 +51,7 @@ let state = `title`; // Can be title,love,simulation , love , sadness
 function preload() {
     dog.image = loadImage(dog.imageLink);
     ball.image = loadImage(ball.imageLink);
+    parkImage = loadImage(`./assets/images/park.jpeg`);
     bubblegumFont = loadFont(`./assets/fonts/BubblegumSans-Regular.ttf`);
 }
 /**
@@ -63,11 +66,11 @@ function setup() {
 
 /**
  * draw()
- * 
+ * s
  * 
 */
 function draw() {
-    background(0);
+    background(parkImage);
     if (state == `title`) {
         title();
     } else if (state == `simulation`) {
@@ -81,14 +84,19 @@ function draw() {
     } else if (state == `unrequirtedLove`) {
 
     }
-
 }
-function move() {
-    //Move circles
 
+function moveDog() {
     dog.x = dog.x + dog.vx;
     dog.y = dog.y + dog.vy;
-
+}
+function moveBall() {
+    ball.tx = ball.tx + 0.025;
+    ball.ty = ball.ty + 0.025;
+    let noiseX = noise(ball.tx);
+    let noiseY = noise(ball.ty);
+    circle.vx = map(noiseX, 0, 1, -ball.speed, ball.speed);
+    circle.vy = map(noiseY, 0, 1, -ball.speed, ball.speed);
     ball.x = ball.x + ball.vx;
     ball.y = ball.y + ball.vy;
 }
@@ -115,14 +123,13 @@ function checkOverlap() {
 function setupCircles() {
     //Position circles separated from one another
     dog.x = width / 3;
-    ball.x = 2 * width / 3;
-    ball.tx = circle.tx + 0.025;
-    ball.ty = circle.ty + 0.025;
+    ball.x = random(0, width);
+    ball.y = random(0, height);
     //Circles velocity
     dog.vx = random(-dog.speed, dog.speed);
     dog.vy = random(-dog.speed, dog.speed);
-    ball.vx = random(-dog.speed, ball.speed);
-    ball.vy = random(-dog.speed, ball.speed);
+    ball.vx = random(-dog.speed / 2, ball.speed / 2);
+    ball.vy = random(-dog.speed / 2, ball.speed / 2);
 }
 
 function display() {
@@ -131,7 +138,8 @@ function display() {
     image(ball.image, ball.x, ball.y, ball.width, ball.width);
 }
 function simulation() {
-    move();
+    moveDog();
+    moveBall();
     checkOffscreen();
     checkOverlap();
     display();
