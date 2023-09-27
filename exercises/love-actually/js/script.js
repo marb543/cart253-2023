@@ -72,18 +72,18 @@ function setup() {
 */
 function draw() {
     background(parkImage);
-    //ball.image.mouseOver(infiniteLove);
+
     if (state == `title`) {
         title();
     } else if (state == `simulation`) {
         simulation();
     }
-    else if (state == `love`) {
+    else if (state == `happiness`) {
         happyDog();
     }
     else if (state == `sadness`) {
         sadDog();
-    } else if (state == `infiniteLove`) {
+    } else if (state == `superHappy`) {
         extremelyHappyDog();
     }
 }
@@ -132,11 +132,8 @@ function checkOverlap() {
     //Check if the circles overlap 
     let d = dist(dog.x, dog.y, ball.x, ball.y);
     if (d < dog.size / 2 + ball.size / 2) {
-        state = `love`;
+        state = `happiness`;
     }
-}
-function checkForSelectedBall() {
-    state = `infiniteLove`;
 }
 function setupCircles() {
     //Position of dog and ball are generated randomly
@@ -152,7 +149,7 @@ function setupCircles() {
 }
 
 function display() {
-    //Display circles
+    //Display dog and ball
     image(dog.image, dog.x, dog.y, dog.width, dog.height);
     image(ball.image, ball.x, ball.y, ball.width, ball.width);
 }
@@ -187,10 +184,10 @@ function sadDog() {
 }
 function extremelyHappyDog() {
     push();
-    textSize(50);
+    textSize(45);
     strokeWeight(4);
     stroke(250);
-    fill(255, 255, 153);
+    fill(252, 202, 3);
     textFont(bubblegumFont);
     textAlign(CENTER, CENTER);
     text(`You caught the ball for Jack !`, width / 2, height / 2);
@@ -211,10 +208,11 @@ function mousePressed() {
     if (state == `title`) {
         state = `simulation`;
     }
-
 }
 function mouseClicked() {
-    if ((mouseX == ball.x) && (mouseY == ball.y)) {
-        state = `infiniteLove`;
+    console.log("Click");
+    let d = dist(mouseX, mouseY, ball.x, ball.y);
+    if (d < 60) {
+        state = `superHappy`;
     }
 }
