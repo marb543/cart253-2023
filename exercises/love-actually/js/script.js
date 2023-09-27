@@ -16,6 +16,7 @@
 
 let bubblegumFont;
 let parkImage;
+let mouseCoord;
 
 let dog = {
     x: undefined,
@@ -71,32 +72,46 @@ function setup() {
 */
 function draw() {
     background(parkImage);
+    //ball.image.mouseOver(infiniteLove);
     if (state == `title`) {
         title();
     } else if (state == `simulation`) {
         simulation();
     }
     else if (state == `love`) {
-        love();
+        happyDog();
     }
     else if (state == `sadness`) {
-        sadness();
-    } else if (state == `unrequirtedLove`) {
-
+        sadDog();
+    } else if (state == `infiniteLove`) {
+        extremelyHappyDog();
     }
 }
-
 function moveDog() {
-    dog.x = dog.x + dog.vx;
-    dog.y = dog.y + dog.vy;
+    if (keyIsPressed) {
+        switch (key) {
+            case 'a' || 'A':
+                dog.x = dog.x - 1 * dog.vx;
+                break;
+            case 'd' || 'D':
+                dog.x = dog.x + 1 * dog.vx;
+                break;
+            case 'w' || 'W':
+                dog.y = dog.y - 1 * dog.vy;
+                break;
+            case 's' || 'S':
+                dog.y = dog.y + 1 * dog.vy;
+                break;
+        }
+    }
 }
 function moveBall() {
     ball.tx = ball.tx + 0.025;
     ball.ty = ball.ty + 0.025;
     let noiseX = noise(ball.tx);
     let noiseY = noise(ball.ty);
-    circle.vx = map(noiseX, 0, 1, -ball.speed, ball.speed);
-    circle.vy = map(noiseY, 0, 1, -ball.speed, ball.speed);
+    ball.vx = map(noiseX, 0, 1, -ball.speed, ball.speed);
+    ball.vy = map(noiseY, 0, 1, -ball.speed, ball.speed);
     ball.x = ball.x + ball.vx;
     ball.y = ball.y + ball.vy;
 }
@@ -120,14 +135,18 @@ function checkOverlap() {
         state = `love`;
     }
 }
+function checkForSelectedBall() {
+    state = `infiniteLove`;
+}
 function setupCircles() {
-    //Position circles separated from one another
-    dog.x = width / 3;
-    ball.x = random(0, width);
-    ball.y = random(0, height);
-    //Circles velocity
-    dog.vx = random(-dog.speed, dog.speed);
-    dog.vy = random(-dog.speed, dog.speed);
+    //Position of dog and ball are generated randomly
+    dog.x = random(0, width - 100);
+    dog.y = random(0, height - 100);
+    ball.x = random(0, width - 100);
+    ball.y = random(0, height - 100);
+    //Dog and ball velocity
+    dog.vx = dog.speed;
+    dog.vy = dog.speed;
     ball.vx = random(-dog.speed / 2, ball.speed / 2);
     ball.vy = random(-dog.speed / 2, ball.speed / 2);
 }
@@ -144,35 +163,58 @@ function simulation() {
     checkOverlap();
     display();
 }
-function love() {
+function happyDog() {
     push();
-    textSize(64);
+    textSize(50);
+    strokeWeight(4);
+    stroke(250);
     fill(255, 150, 150);
     textFont(bubblegumFont);
     textAlign(CENTER, CENTER);
-    text(`LOVE!`, width / 2, height / 2);
+    text(`Jack is a happy dog now !`, width / 2, height / 2);
     pop();
 }
-function sadness() {
+function sadDog() {
     push();
-    textSize(64);
+    textSize(50);
+    strokeWeight(4);
+    stroke(250);
     fill(150, 150, 255);
     textFont(bubblegumFont);
     textAlign(CENTER, CENTER);
-    text(`D:`, width / 2, height / 2);
+    text(`No ! Jack !`, width / 2, height / 2);
+    pop();
+}
+function extremelyHappyDog() {
+    push();
+    textSize(50);
+    strokeWeight(4);
+    stroke(250);
+    fill(255, 255, 153);
+    textFont(bubblegumFont);
+    textAlign(CENTER, CENTER);
+    text(`You caught the ball for Jack !`, width / 2, height / 2);
     pop();
 }
 function title() {
     push();
-    textSize(64);
+    textSize(50);
+    strokeWeight(4);
+    stroke(250);
     fill(200, 100, 100);
     textFont(bubblegumFont);
     textAlign(CENTER, CENTER);
-    text("LOVE ? ", width / 2, height / 2);
+    text("Will Jack catch the ball ? ", width / 2, height / 2);
     pop();
 }
 function mousePressed() {
     if (state == `title`) {
         state = `simulation`;
+    }
+
+}
+function mouseClicked() {
+    if ((mouseX == ball.x) && (mouseY == ball.y)) {
+        state = `infiniteLove`;
     }
 }
