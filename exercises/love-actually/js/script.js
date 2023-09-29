@@ -68,7 +68,7 @@ function preload() {
  * Setup canvas and tcalls the setupObjects function
 */
 function setup() {
-    createCanvas(500, 500);
+    createCanvas(800, 800);
     setupObjects();
 }
 
@@ -167,7 +167,7 @@ function isOffscreen(obj) {
 function checkOverlap() {
     //Check if the circles overlap 
     let d = dist(dog.x, dog.y, ball.x, ball.y);
-    if (d < dog.size / 2 + ball.size / 2) {
+    if (d < (dog.width + ball.width) / 2) {
         state = `happiness`;
     }
 }
@@ -178,10 +178,10 @@ function checkOverlap() {
  */
 function setupObjects() {
     //Position of dog and ball are generated randomly
-    dog.x = random(0, width - 100);
-    dog.y = random(0, height - 100);
-    ball.x = random(0, width - 100);
-    ball.y = random(0, height - 100);
+    dog.x = random(0, width - 200);
+    dog.y = random(0, height - 200);
+    ball.x = random(0, width - 200);
+    ball.y = random(0, height - 200);
     //Dog and ball velocity
     dog.vx = dog.speed;
     dog.vy = dog.speed;
@@ -291,7 +291,7 @@ function mousePressed() {
  */
 function mouseClicked() {
     let d = dist(mouseX, mouseY, ball.x, ball.y);
-    if (d < 60) {
+    if (d < ball.width) {
         state = `superHappy`;
     }
 }
