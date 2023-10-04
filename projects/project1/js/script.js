@@ -12,6 +12,7 @@
  * Fertilizer Icon : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+garden+fertilizer&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+garden+fertilizer&get_facets=0&asset_id=297270529
  * Red Tulip : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+tulip+png&order=relevance&safe_search=1&limit=100&search_page=2&search_type=pagination&acp=&aco=cartoon+tulip+png&get_facets=0&asset_id=536612704
  * Watering can : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=gardening+cartoon+png&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=gardening+cartoon+png&get_facets=0&asset_id=619860562
+ * Flower pot : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&order=relevance&safe_search=1&limit=100&search_page=1&search_type=see-more&acp=&aco=+cartoon+garden&serie_id=509395505&get_facets=0&asset_id=564351833
  * 
  * Sounds that are from mixKit :
  * 
@@ -40,7 +41,26 @@ let fonts = {
 }
 let images = {
     mainBackgroundImg: null,
-    wateringCan: null
+    wateringCan: null,
+    mainPageDog: null,
+    mainPageFlowerBed: null,
+    mainPage: null,
+    mainPageRadio: null,
+    pottedPlant: null
+}
+let dog = {
+    x: 500,
+    y: 450,
+    width: 220,
+    height: 150,
+    vx: 0,
+    vy: 0,
+}
+let flowerBed = {
+    x: 340,
+    y: 350,
+    width: 180,
+    height: 150
 }
 let mainMenuChoices = {
     play: {
@@ -71,6 +91,9 @@ let mainMenuChoices = {
 function preload() {
     images.mainBackgroundImg = loadImage(`./assets/images/mainGarden.jpeg`);
     images.wateringCan = loadImage(`./assets/images/wateringCan.png`);
+    images.mainPageDog = loadImage(`./assets/images/sleepingDog.png`);
+    images.pottedPlant = loadImage(`./assets/images/pottedSoil.png`);
+    images.mainPageRadio = loadImage(`./assets/images/wateringCan.png`);
     fonts.mainMenuFont = loadFont(`./assets/fonts/bBasicGardening.ttf`);
 }
 /**
@@ -93,7 +116,19 @@ function draw() {
     }
     else if (state == `play`) {
         loop();
-
+        displayMainGame();
+    }
+    else if (state == `playWithDog`) {
+        loop();
+        displayPlayDog();
+    }
+    else if (state == `plantFlowers`) {
+        loop();
+        displayPlantFlowers();
+    }
+    else if (state == `listenRadio`) {
+        loop();
+        listenRadio();
     }
     else if (state == `tutorial`) {
         loop();
@@ -248,4 +283,43 @@ function mouseClicked() {
     checkPlayChoice();
     checkTutorialChoice();
     checkExitChoice();
+}
+/**
+ * displayMainGame()
+ * 
+ * This function displays elments which begins the gardening simulator
+ */
+function displayMainGame() {
+    //Display dog image
+    image(images.mainPageDog, dog.x, dog.y, dog.width, dog.height);
+    //Display potted plant
+    image(images.pottedPlant, flowerBed.x, flowerBed.y, flowerBed.width, flowerBed.height);
+    //Display Radio
+}
+/**
+ * displayPlayDog()
+ * 
+ * This function displays all the interactions with the dog
+ */
+function displayPlayDog() {
+
+
+}
+/**
+ * displayPlantFlowers()
+ * 
+ * This function displays all the interactions to plant flowers in the garden
+ */
+function displayPlantFlowers() {
+
+
+}
+/**
+ * listenRadio()
+ * 
+ * This function displays all the interactions to listen to the radio
+ */
+function listenRadio() {
+
+
 }
