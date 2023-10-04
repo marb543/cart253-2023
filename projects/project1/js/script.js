@@ -169,7 +169,7 @@ function displayMenuBoxes() {
  */
 function checkPlayChoice() {
     if (mouseX >= mainMenuChoices.play.x && mouseX <= mainMenuChoices.play.x + mainMenuChoices.play.w && mouseY >= mainMenuChoices.play.y && mouseY <= mainMenuChoices.play.y + mainMenuChoices.play.h) {
-        state = `title`;
+        state = `play`;
     }
 }
 /**
@@ -188,7 +188,7 @@ function checkTutorialChoice() {
  * This function checks if the user has selected the "Exit" main menu option
  */
 function checkExitChoice() {
-    if (mouseX >= mainMenuChoices.tutorial.x && mouseX <= mainMenuChoices.tutorial.x + mainMenuChoices.tutorial.w && mouseY >= mainMenuChoices.tutorial.y && mouseY <= mainMenuChoices.tutorial.y + mainMenuChoices.tutorial.h) {
+    if (mouseX >= mainMenuChoices.exit.x && mouseX <= mainMenuChoices.exit.x + mainMenuChoices.exit.w && mouseY >= mainMenuChoices.exit.y && mouseY <= mainMenuChoices.exit.y + mainMenuChoices.exit.h) {
         state = `exit`;
     }
 }
