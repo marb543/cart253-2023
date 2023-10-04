@@ -91,8 +91,17 @@ function draw() {
     if (state == `title`) {
         displayMainMenu();
     }
-    if (state == `exit`) {
+    else if (state == `play`) {
         loop();
+
+    }
+    else if (state == `tutorial`) {
+        loop();
+
+    }
+    else if (state == `exit`) {
+        loop();
+        displayExitText();
     }
 }
 /**
@@ -193,7 +202,7 @@ function checkExitChoice() {
     }
 }
 /**
- * mousClicked()
+ * mouseClicked()
  * 
  * This function checks what choices were chosen by the user from the main menu
  */
@@ -203,4 +212,40 @@ function mouseClicked() {
     checkTutorialChoice();
     checkExitChoice();
     console.log(state);
+}
+/**
+ * displayExitText()
+ * 
+ * This function displays the text that the user will see when the "Exit" option is chosen in the main menu
+ */
+function displayExitText() {
+    //Blur background image
+    filter(BLUR, 2);
+    push();
+    //Set shadow behind the text
+    drawingContext.shadowOffsetX = 2;
+    drawingContext.shadowOffsetY = -2;
+    drawingContext.shadowBlur = 8;
+    drawingContext.shadowColor = 'black';
+    textSize(80);
+    strokeWeight(4);
+    stroke(34, 78, 5);
+    //Set color
+    fill(130, 210, 76);
+    //Set text font using the saved font
+    textFont(fonts.mainMenuFont);
+    textAlign(CENTER, CENTER);
+    text(`Thank you for playing .  \n   Come back again !`, width / 2, height / 2);
+    pop();
+}
+/**
+ * mouseClicked()
+ * 
+ * This function checks which choice of menu was selected by the player
+ */
+function mouseClicked() {
+    //Check which choice was selected by the user from the main menu and set that choice in the state
+    checkPlayChoice();
+    checkTutorialChoice();
+    checkExitChoice();
 }
