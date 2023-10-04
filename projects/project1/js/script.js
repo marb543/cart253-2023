@@ -42,6 +42,26 @@ let images = {
     mainBackgroundImg: null,
     wateringCan: null
 }
+let mainMenuChoices = {
+    play: {
+        x: 330,
+        y: 350,
+        w: 470,
+        h: 50
+    },
+    tutorial: {
+        x: 330,
+        y: 420,
+        w: 470,
+        h: 50
+    },
+    exit: {
+        x: 330,
+        y: 490,
+        w: 470,
+        h: 50
+    }
+}
 
 /**
  * preload()
@@ -70,6 +90,9 @@ function draw() {
     background(images.mainBackgroundImg);
     if (state == `title`) {
         displayMainMenu();
+    }
+    if (state == `exit`) {
+        loop();
     }
 }
 /**
@@ -121,9 +144,9 @@ function displayMenuBoxes() {
     noStroke();
     stroke(34, 78, 5);
     fill(194, 242, 163);
-    rect(330, 350, width / 2 - 80, 50);
-    rect(330, 420, width / 2 - 80, 50);
-    rect(330, 490, width / 2 - 80, 50);
+    rect(mainMenuChoices.play.x, mainMenuChoices.play.y, mainMenuChoices.play.w, mainMenuChoices.play.h);
+    rect(mainMenuChoices.tutorial.x, mainMenuChoices.tutorial.y, mainMenuChoices.tutorial.w, mainMenuChoices.tutorial.h);
+    rect(mainMenuChoices.exit.x, mainMenuChoices.exit.y, mainMenuChoices.exit.w, mainMenuChoices.exit.h);
     pop();
     push();
     textSize(30);
@@ -138,4 +161,46 @@ function displayMenuBoxes() {
     text(`Tutorial`, width / 2, 440);
     text(`Exit`, width / 2, 510);
     pop();
+}
+/**
+ * checkPlayChoice()
+ * 
+ * This function checks if the user has selected the "Play" main menu option
+ */
+function checkPlayChoice() {
+    if (mouseX >= mainMenuChoices.play.x && mouseX <= mainMenuChoices.play.x + mainMenuChoices.play.w && mouseY >= mainMenuChoices.play.y && mouseY <= mainMenuChoices.play.y + mainMenuChoices.play.h) {
+        state = `title`;
+    }
+}
+/**
+ * checkTutorialChoice()
+ * 
+ * This function checks if the user has selected the "Tutorial main menu option
+ */
+function checkTutorialChoice() {
+    if (mouseX >= mainMenuChoices.tutorial.x && mouseX <= mainMenuChoices.tutorial.x + mainMenuChoices.tutorial.w && mouseY >= mainMenuChoices.tutorial.y && mouseY <= mainMenuChoices.tutorial.y + mainMenuChoices.tutorial.h) {
+        state = `tutorial`;
+    }
+}
+/**
+ * checkExitChoice()
+ * 
+ * This function checks if the user has selected the "Exit" main menu option
+ */
+function checkExitChoice() {
+    if (mouseX >= mainMenuChoices.tutorial.x && mouseX <= mainMenuChoices.tutorial.x + mainMenuChoices.tutorial.w && mouseY >= mainMenuChoices.tutorial.y && mouseY <= mainMenuChoices.tutorial.y + mainMenuChoices.tutorial.h) {
+        state = `exit`;
+    }
+}
+/**
+ * mousClicked()
+ * 
+ * This function checks what choices were chosen by the user from the main menu
+ */
+function mouseClicked() {
+    //Check which choice was selected by the user from the main menu and set that choice in the state
+    checkPlayChoice();
+    checkTutorialChoice();
+    checkExitChoice();
+    console.log(state);
 }
