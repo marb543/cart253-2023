@@ -132,6 +132,10 @@ function draw() {
     else if (state == `play`) {
         displayMainGame();
         playBirdsChirping();
+        if (mouseIsPressed) {
+            verifyIfDogSelected();
+            verifyIfFlowerPotSelected();
+        }
     }
     else if (state == `playWithDog`) {
         displayPlayDog();
@@ -298,6 +302,27 @@ function displayMainGame() {
     //Display potted plant
     image(images.pottedPlant, flowerBed.x, flowerBed.y, flowerBed.width, flowerBed.height);
     //Display Radio
+}
+/**
+ * verifyIfDogSelected()
+ * 
+ * This function checks if the user has clicked on the dog in order to change to playWithDog scenario
+ */
+function verifyIfDogSelected() {
+    if (mouseX >= dog.x && mouseX <= dog.x + dog.width && mouseY >= dog.y && mouseY <= dog.y + dog.height) {
+        state = `playWithDog`;
+    }
+}
+/**
+ * verifyIfFlowerPotSelected()
+ * 
+ * This function checks if the user has clicked on the flower pot in order to change to the plantFlowers scenario
+ */
+function verifyIfFlowerPotSelected() {
+    if (mouseX >= flowerBed.x && mouseX <= flowerBed.x + flowerBed.width && mouseY >= flowerBed.y && mouseY <= flowerBed.y + flowerBed.height) {
+        state = `plantFlowers`;
+    }
+
 }
 /**
  * displayPlayDog()
