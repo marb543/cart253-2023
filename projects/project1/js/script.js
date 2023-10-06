@@ -15,6 +15,7 @@
  * Flower pot : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&order=relevance&safe_search=1&limit=100&search_page=1&search_type=see-more&acp=&aco=+cartoon+garden&serie_id=509395505&get_facets=0&asset_id=564351833
  * Main page radio : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+png+radio+drawing&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+png+radio+drawing&get_facets=0&asset_id=569479088
  * 
+ * 
  * Sounds that are from mixKit :
  * 
  * Dog sniffing sound : https://mixkit.co/free-sound-effects/dog/
@@ -55,7 +56,7 @@ let images = {
     mainPage: null,
     mainPageRadio: null,
     pottedPlant: null,
-    mainPageRadio: null
+    mainPageRadio: null,
 }
 let sounds = {
     birdsChirping: null,
@@ -152,6 +153,7 @@ function preload() {
     images.mainPageDog = loadImage(`./assets/images/sleepingDog.png`);
     images.pottedPlant = loadImage(`./assets/images/pottedSoil.png`);
     images.mainPageRadio = loadImage(`./assets/images/radio.png`);
+    images.musicNote = loadImage(`./assets/images/musicNote.png`);
     fonts.mainMenuFont = loadFont(`./assets/fonts/bBasicGardening.ttf`);
     fonts.instructionsFont = loadFont(`./assets/fonts/KGRedHands.ttf`);
     sounds.birdsChirping = loadSound(`./assets/sounds/birds.wav`);
@@ -464,11 +466,11 @@ function displayPlantFlowers() {
  * This function displays all the interactions to listen to the radio
  */
 function listenRadio() {
+
     //Draw background of the radio page
     drawRadioPageBackground();
     //Check which music option the player selected
     verifyRadioMusicChoice();
-
 }
 /**
  * verifyRadioMusicChoice()
@@ -533,7 +535,8 @@ function drawRadioPageBackground() {
     fill(255, 153, 204);
     rect(radioPageChoices.goBack.x, radioPageChoices.goBack.y, radioPageChoices.goBack.w, radioPageChoices.goBack.h, 30);
     pop();
-    //Add top text
+    //Display Radio image
+    image(images.mainPageRadio, 270, 160, 550, 340);
     //Display top page text 
     push();
     //Set shadow behind the text
