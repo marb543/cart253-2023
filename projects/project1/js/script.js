@@ -44,6 +44,8 @@
 
 //Create a variable which will keep track of the state for which the user is currently is in
 let state = `title`;
+//Create a variable to keep track of plant state
+let plantState = null;
 //Create a fonts object to keep track of used fonts
 let fonts = {
     mainMenuFont: null,
@@ -69,6 +71,13 @@ let sounds = {
     classicMusic: null,
     countryMusic: null,
     randomMusic: null
+}
+let plantPosition = {
+    x: null,
+    y: null,
+    w: 10,
+    h: 10,
+    currentImg: null
 }
 let dog = {
     x: 500,
@@ -224,17 +233,16 @@ function draw() {
     }
     else if (state == `plantFlowers`) {
         displayPlantFlowers();
+        verifyShovelSelected();
+        verifySeedSelected();
+        verifyShovelSelected();
     }
     else if (state == `listenRadio`) {
-
         listenRadio();
     }
     else if (state == `tutorial`) {
-
-
     }
     else if (state == `exit`) {
-
         displayExitText();
     }
 }
@@ -477,6 +485,23 @@ function displayPlayDog() {
  * This function displays all the interactions to plant flowers in the garden
  */
 function displayPlantFlowers() {
+    displayPlantFlowersPage();
+    if (plantState = 1) {
+
+    }
+    else if (plantState = 2) {
+
+    }
+    else if (plantState = 3) {
+
+    }
+}
+/**
+ * displayPlantFlowersPage()
+ * 
+ * This function displays the background, text , and menu to the user who wishes to plant flowers
+ */
+function displayPlantFlowersPage() {
     image(images.gardenSoil, 0, 0, width, height);
     push();
     textSize(17);
@@ -522,7 +547,6 @@ function displayPlantFlowers() {
     text(`Plant seed. `, 70, 340);
     text(`Water seed. `, 70, 390,);
     pop();
-
 }
 /**
  * listenRadio()
@@ -562,6 +586,43 @@ function verifyRadioMusicChoice() {
                 break;
         }
     }
+}
+/**
+ * verifyShovelSelected()
+ * 
+ * Checks if the user has selected the shovel option in the plant flower scenario
+ * 
+ */
+function verifyShovelSelected() {
+    if (mouseX >= radio.x && mouseX <= radio.x + radio.width && mouseY >= radio.y && mouseY <= radio.y + radio.height) {
+        plantState = 1;
+    }
+}
+/**
+ * verifySeedSelected()
+ * 
+ * Checks if the user has selected the seed option in the plant flower scenario
+ * 
+ */
+function verifySeedSelected() {
+    if (mouseX >= radio.x && mouseX <= radio.x + radio.width && mouseY >= radio.y && mouseY <= radio.y + radio.height) {
+        plantState = 2;
+    }
+
+}
+/**
+ * verifyWaterSelected()
+ * 
+ * Checks if the user has selected the water option in the plant flower scenario
+ * 
+ * @returns boolean : depending if the choice is selected or not
+ */
+function verifyWaterSelected() {
+    if (mouseX >= radio.x && mouseX <= radio.x + radio.width && mouseY >= radio.y && mouseY <= radio.y + radio.height) {
+        plantState = 3;
+    }
+
+
 }
 /**
  * drawRadioPageBackground()
