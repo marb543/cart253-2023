@@ -98,6 +98,38 @@ let mainMenuChoices = {
         h: 50
     }
 }
+let radioPageChoices = {
+    popMusic: {
+        x: 80,
+        y: 530,
+        w: 150,
+        h: 30
+    },
+    classicMusic: {
+        x: 280,
+        y: 530,
+        w: 150,
+        h: 30
+    },
+    countryMusic: {
+        x: 480,
+        y: 530,
+        w: 150,
+        h: 30
+    },
+    randomMusic: {
+        x: 680,
+        y: 530,
+        w: 150,
+        h: 30
+    },
+    goBack: {
+        x: 880,
+        y: 530,
+        w: 150,
+        h: 30
+    }
+}
 
 /**
  * preload()
@@ -146,6 +178,7 @@ function draw() {
         if (mouseIsPressed) {
             verifyIfDogSelected();
             verifyIfFlowerPotSelected();
+            verifyIfRadioSelected();
         }
     }
     else if (state == `playWithDog`) {
@@ -213,7 +246,6 @@ function displayMenuText() {
 function displayMenuBoxes() {
     //Create the menu boxes
     push();
-    noStroke();
     stroke(34, 78, 5);
     fill(194, 242, 163);
     rect(mainMenuChoices.play.x, mainMenuChoices.play.y, mainMenuChoices.play.w, mainMenuChoices.play.h);
@@ -325,8 +357,6 @@ function displayMainGame() {
     image(images.pottedPlant, flowerPot.x, flowerPot.y, flowerPot.width, flowerPot.height);
     pop();
     //Display Radio image with shadow effect
-    pop();
-    //Display potted plant image with shadow effect
     push();
     drawingContext.shadowOffsetX = 2;
     drawingContext.shadowOffsetY = -2;
@@ -386,6 +416,16 @@ function verifyIfFlowerPotSelected() {
     }
 }
 /**
+ * verifyIfRadioSelected()
+ * 
+ * This function checks if the user has clicked on the the radio in order to chnage to the radio scenario
+ */
+function verifyIfRadioSelected() {
+    if (mouseX >= radio.x && mouseX <= radio.x + radio.width && mouseY >= radio.y && mouseY <= radio.y + radio.height) {
+        state = `listenRadio`;
+    }
+}
+/**
  * displayPlayDog()
  * 
  * This function displays all the interactions with the dog
@@ -409,7 +449,67 @@ function displayPlantFlowers() {
  * This function displays all the interactions to listen to the radio
  */
 function listenRadio() {
+    //Draw background of the radio page
+    drawRadioPageBackground();
+    //Check which music option the player selected
 
+
+}
+/**
+ * verifyRadioMusicChoice()
+ * 
+ * This function verifies which choice the user selected
+ */
+function verifyRadioMusicChoice() {
+
+}
+/**
+ * drawRadioPageBackground()
+ * 
+ * This function draws the background and elements of the radio page
+ */
+function drawRadioPageBackground() {
+    push();
+    //Draw gradient background
+    let greenBlueGradient = drawingContext.createLinearGradient(50, 50, 350, 400);
+    greenBlueGradient.addColorStop(0, 'turquoise');
+    greenBlueGradient.addColorStop(.7, 'purple');
+    drawingContext.fillStyle = greenBlueGradient;
+    drawingContext.rect(0, 0, width, height);
+    drawingContext.fill();
+    //Create radio buttons to change radio station
+    //Pop station
+    stroke(255, 255, 255);
+    fill(255, 204, 0);
+    rect(radioPageChoices.popMusic.x, radioPageChoices.popMusic.y, radioPageChoices.popMusic.w, radioPageChoices.popMusic.h);
+    //Classic music station 
+    fill(153, 204, 0);
+    rect(radioPageChoices.classicMusic.x, radioPageChoices.classicMusic.y, radioPageChoices.classicMusic.w, radioPageChoices.classicMusic.h);
+    //Country music station
+    fill(255, 51, 0);
+    rect(radioPageChoices.countryMusic.x, radioPageChoices.countryMusic.y, radioPageChoices.countryMusic.w, radioPageChoices.countryMusic.h);
+    //Random music
+    fill(51, 204, 255);
+    rect(radioPageChoices.randomMusic.x, radioPageChoices.randomMusic.y, radioPageChoices.randomMusic.w, radioPageChoices.randomMusic.h);
+    //Go back
+    fill(255, 153, 204);
+    rect(radioPageChoices.goBack.x, radioPageChoices.goBack.y, radioPageChoices.goBack.w, radioPageChoices.goBack.h);
+    pop();
+
+    //Add text on top of text boxes
+    push();
+    fill(255);
+    //Set text font using the saved font
+    textFont(fonts.instructionsFont);
+    stroke(0);
+    strokeWeight(3);
+    textSize(10);
+    text(`Pop Music Station - 1`, radioPageChoices.popMusic.x + 5, radioPageChoices.popMusic.y + 15);
+    text(`Classical Music Station - 2`, radioPageChoices.classicMusic.x + 5, radioPageChoices.classicMusic.y + 15);
+    text(`Country Music Station - 3`, radioPageChoices.countryMusic.x + 5, radioPageChoices.countryMusic.y + 15);
+    text(`Random Music Station - 4`, radioPageChoices.randomMusic.x + 5, radioPageChoices.randomMusic.y + 15);
+    text(`Go Back - 5`, radioPageChoices.goBack.x + 5, radioPageChoices.goBack.y + 15);
+    pop();
 
 }
 /**
