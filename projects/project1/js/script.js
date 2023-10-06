@@ -13,6 +13,7 @@
  * Red Tulip : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+tulip+png&order=relevance&safe_search=1&limit=100&search_page=2&search_type=pagination&acp=&aco=cartoon+tulip+png&get_facets=0&asset_id=536612704
  * Watering can : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=gardening+cartoon+png&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=gardening+cartoon+png&get_facets=0&asset_id=619860562
  * Flower pot : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&order=relevance&safe_search=1&limit=100&search_page=1&search_type=see-more&acp=&aco=+cartoon+garden&serie_id=509395505&get_facets=0&asset_id=564351833
+ * Main page radio : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+png+radio+drawing&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+png+radio+drawing&get_facets=0&asset_id=569479088
  * 
  * Sounds that are from mixKit :
  * 
@@ -28,6 +29,7 @@
  * Fonts from daFont: 
  * 
  * https://www.dafont.com/b-basic-gardening.font
+ * https://www.dafont.com/kg-red-hands.font
  * 
  */
 
@@ -37,16 +39,17 @@
 let state = `title`;
 //Create a fonts object to keep track of used fonts
 let fonts = {
-    mainMenuFont: null
+    mainMenuFont: null,
+    instructionsFont: null,
 }
 let images = {
     mainBackgroundImg: null,
     wateringCan: null,
     mainPageDog: null,
-    mainPageFlowerBed: null,
     mainPage: null,
     mainPageRadio: null,
-    pottedPlant: null
+    pottedPlant: null,
+    mainPageRadio: null
 }
 let sounds = {
     birdsChirping: null,
@@ -63,11 +66,17 @@ let dog = {
     vx: 0,
     vy: 0,
 }
-let flowerBed = {
+let flowerPot = {
     x: 340,
     y: 350,
     width: 180,
     height: 150
+}
+let radio = {
+    x: 100,
+    y: 260,
+    width: 150,
+    height: 100
 }
 let mainMenuChoices = {
     play: {
@@ -100,8 +109,9 @@ function preload() {
     images.wateringCan = loadImage(`./assets/images/wateringCan.png`);
     images.mainPageDog = loadImage(`./assets/images/sleepingDog.png`);
     images.pottedPlant = loadImage(`./assets/images/pottedSoil.png`);
-    images.mainPageRadio = loadImage(`./assets/images/wateringCan.png`);
+    images.mainPageRadio = loadImage(`./assets/images/radio.png`);
     fonts.mainMenuFont = loadFont(`./assets/fonts/bBasicGardening.ttf`);
+    fonts.instructionsFont = loadFont(`./assets/fonts/KGRedHands.ttf`);
     sounds.birdsChirping = loadSound(`./assets/sounds/birds.wav`);
     sounds.dogBark = loadSound(`./assets/sounds/bark.wav`);
     sounds.dogSniffing = loadSound(`./assets/sounds/dog-sniffing-the-ground.wav`);
@@ -132,6 +142,7 @@ function draw() {
     else if (state == `play`) {
         displayMainGame();
         playBirdsChirping();
+        displayMainGameText();
         if (mouseIsPressed) {
             verifyIfDogSelected();
             verifyIfFlowerPotSelected();
@@ -297,12 +308,63 @@ function displayExitText() {
  * This function displays elments which begins the gardening simulator
  */
 function displayMainGame() {
-    //Display dog image
+    //Display dog image with shadow effect
+    push();
+    drawingContext.shadowOffsetX = 2;
+    drawingContext.shadowOffsetY = -2;
+    drawingContext.shadowBlur = 8;
+    drawingContext.shadowColor = 'red';
     image(images.mainPageDog, dog.x, dog.y, dog.width, dog.height);
-    //Display potted plant
-    image(images.pottedPlant, flowerBed.x, flowerBed.y, flowerBed.width, flowerBed.height);
-    //Display Radio
+    pop();
+    //Display potted plant image with shadow effect
+    push();
+    drawingContext.shadowOffsetX = 2;
+    drawingContext.shadowOffsetY = -2;
+    drawingContext.shadowBlur = 8;
+    drawingContext.shadowColor = 'green';
+    image(images.pottedPlant, flowerPot.x, flowerPot.y, flowerPot.width, flowerPot.height);
+    pop();
+    //Display Radio image with shadow effect
+    pop();
+    //Display potted plant image with shadow effect
+    push();
+    drawingContext.shadowOffsetX = 2;
+    drawingContext.shadowOffsetY = -2;
+    drawingContext.shadowBlur = 8;
+    drawingContext.shadowColor = 'blue';
+    image(images.mainPageRadio, radio.x, radio.y, radio.width, radio.height);
+    pop();
+
 }
+/**
+ * displayMainGameText()
+ * 
+ * This function displays the text in the main game which explains to the user where to click on to play the game.
+ * 
+ */
+function displayMainGameText() {
+    push();
+    textSize(17);
+    strokeWeight(4);
+    noStroke();
+    //Create rectangle behind the text
+    fill(0, 153, 255);
+    // Draw a rectangle 
+    rect(50, 50, width - 80, 200, 30);
+    //Set color
+    stroke(34, 78, 5);
+    fill(255, 255, 255);
+    //Set text font using the saved font
+    textFont(fonts.instructionsFont);
+    textAlign(CENTER, CENTER);
+    text(`Choose your activity ! You can play with the dog, plant flowers or listen to the radio ! `, width / 2, 100,);
+    textAlign(RIGHT);
+    text(` 1. To play with the dog, click on the sleeping dog in the garden. `, 795, 130);
+    text(`2. To plant flowers, click on the blue flower pot near the gardening bed. `, 890, 160);
+    text(`3. To play radio, click on the radio in the garden. `, 665, 190);
+    pop();
+}
+
 /**
  * verifyIfDogSelected()
  * 
@@ -319,10 +381,9 @@ function verifyIfDogSelected() {
  * This function checks if the user has clicked on the flower pot in order to change to the plantFlowers scenario
  */
 function verifyIfFlowerPotSelected() {
-    if (mouseX >= flowerBed.x && mouseX <= flowerBed.x + flowerBed.width && mouseY >= flowerBed.y && mouseY <= flowerBed.y + flowerBed.height) {
+    if (mouseX >= flowerPot.x && mouseX <= flowerPot.x + flowerPot.width && mouseY >= flowerPot.y && mouseY <= flowerPot.y + flowerPot.height) {
         state = `plantFlowers`;
     }
-
 }
 /**
  * displayPlayDog()
