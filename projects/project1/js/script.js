@@ -26,6 +26,12 @@
  * Digging in a bag of soil : https://freesound.org/people/dhallcomposer/sounds/696531/
  * Singing birds : https://freesound.org/people/MATRIXXX_/sounds/519120/
  * 
+ * Music from the Radio Page :
+ * Pop Music : https://pixabay.com/music/beats-whip-110235/
+ * Classical Music : https://pixabay.com/music/modern-classical-simple-piano-melody-9834/
+ * Country Music : https://pixabay.com/music/modern-country-upbeat-country-blues-113997/
+ * Random Music : https://pixabay.com/music/upbeat-energetic-indie-rock-jump-112179/
+ * 
  * Fonts from daFont: 
  * 
  * https://www.dafont.com/b-basic-gardening.font
@@ -56,7 +62,11 @@ let sounds = {
     dogBark: null,
     dogSniffing: null,
     gardenShovel: null,
-    plantsWatering: null
+    plantsWatering: null,
+    popMusic: null,
+    classicMusic: null,
+    countryMusic: null,
+    randomMusic: null
 }
 let dog = {
     x: 500,
@@ -149,6 +159,10 @@ function preload() {
     sounds.dogSniffing = loadSound(`./assets/sounds/dog-sniffing-the-ground.wav`);
     sounds.gardenShovel = loadSound(`./assets/sounds/garden-shovel.wav`);
     sounds.wateringCan = loadSound(`./assets/sounds/watering-plants.wav`);
+    sounds.popMusic = loadSound(`./assets/sounds/pop.mp3`);
+    sounds.classicMusic = loadSound(`./assets/sounds/classic.mp3`);
+    sounds.countryMusic = loadSound(`./assets/sounds/country.mp3`);
+    sounds.randomMusic = loadSound(`./assets/sounds/random.mp3`);
 }
 /**
  * setup()
@@ -176,6 +190,7 @@ function draw() {
         playBirdsChirping();
         displayMainGameText();
         if (mouseIsPressed) {
+            sounds.birdsChirping.stop();
             verifyIfDogSelected();
             verifyIfFlowerPotSelected();
             verifyIfRadioSelected();
@@ -452,7 +467,7 @@ function listenRadio() {
     //Draw background of the radio page
     drawRadioPageBackground();
     //Check which music option the player selected
-
+    verifyRadioMusicChoice();
 
 }
 /**
@@ -461,7 +476,26 @@ function listenRadio() {
  * This function verifies which choice the user selected
  */
 function verifyRadioMusicChoice() {
-
+    if (keyIsPressed) {
+        stopAllSounds();
+        switch (key) {
+            case '1':
+                playPopMusic();
+                break;
+            case '2':
+                playClassicMusic();
+                break;
+            case '3':
+                playCountryMusic();
+                break;
+            case '4':
+                playRandomMusic();
+                break;
+            case '5':
+                state = `play`;
+                break;
+        }
+    }
 }
 /**
  * drawRadioPageBackground()
@@ -470,6 +504,10 @@ function verifyRadioMusicChoice() {
  */
 function drawRadioPageBackground() {
     push();
+    drawingContext.shadowOffsetX = 2;
+    drawingContext.shadowOffsetY = -2;
+    drawingContext.shadowBlur = 8;
+    drawingContext.shadowColor = 'black';
     //Draw gradient background
     let greenBlueGradient = drawingContext.createLinearGradient(50, 50, 350, 400);
     greenBlueGradient.addColorStop(0, 'turquoise');
@@ -479,21 +517,40 @@ function drawRadioPageBackground() {
     drawingContext.fill();
     //Create radio buttons to change radio station
     //Pop station
-    stroke(255, 255, 255);
+    noStroke();
     fill(255, 204, 0);
-    rect(radioPageChoices.popMusic.x, radioPageChoices.popMusic.y, radioPageChoices.popMusic.w, radioPageChoices.popMusic.h);
+    rect(radioPageChoices.popMusic.x, radioPageChoices.popMusic.y, radioPageChoices.popMusic.w, radioPageChoices.popMusic.h, 10);
     //Classic music station 
     fill(153, 204, 0);
-    rect(radioPageChoices.classicMusic.x, radioPageChoices.classicMusic.y, radioPageChoices.classicMusic.w, radioPageChoices.classicMusic.h);
+    rect(radioPageChoices.classicMusic.x, radioPageChoices.classicMusic.y, radioPageChoices.classicMusic.w, radioPageChoices.classicMusic.h, 10);
     //Country music station
     fill(255, 51, 0);
-    rect(radioPageChoices.countryMusic.x, radioPageChoices.countryMusic.y, radioPageChoices.countryMusic.w, radioPageChoices.countryMusic.h);
+    rect(radioPageChoices.countryMusic.x, radioPageChoices.countryMusic.y, radioPageChoices.countryMusic.w, radioPageChoices.countryMusic.h, 10);
     //Random music
     fill(51, 204, 255);
-    rect(radioPageChoices.randomMusic.x, radioPageChoices.randomMusic.y, radioPageChoices.randomMusic.w, radioPageChoices.randomMusic.h);
+    rect(radioPageChoices.randomMusic.x, radioPageChoices.randomMusic.y, radioPageChoices.randomMusic.w, radioPageChoices.randomMusic.h, 10);
     //Go back
     fill(255, 153, 204);
-    rect(radioPageChoices.goBack.x, radioPageChoices.goBack.y, radioPageChoices.goBack.w, radioPageChoices.goBack.h);
+    rect(radioPageChoices.goBack.x, radioPageChoices.goBack.y, radioPageChoices.goBack.w, radioPageChoices.goBack.h, 30);
+    pop();
+    //Add top text
+    //Display top page text 
+    push();
+    //Set shadow behind the text
+    drawingContext.shadowOffsetX = 2;
+    drawingContext.shadowOffsetY = -2;
+    drawingContext.shadowBlur = 8;
+    drawingContext.shadowColor = 'black';
+    //Sets text size, strokeWeight, stroke
+    textSize(20);
+    strokeWeight(4);
+    stroke(0);
+    //Set color
+    fill(255);
+    //Set text font using the saved font
+    textFont(fonts.instructionsFont);
+    textAlign(CENTER, CENTER);
+    text(`Choose a radio station to listen to some music using keyboard keys ! `, width / 2, 30);
     pop();
 
     //Add text on top of text boxes
@@ -561,4 +618,59 @@ function playGardenWatering() {
     if (!sounds.wateringCan.isPlaying()) {
         sounds.wateringCan.loop();
     }
+}
+/**
+ * playPopMusic()
+ * 
+ * This function plays pop music when this option is selcted in teh radio page
+ */
+function playPopMusic() {
+    if (!sounds.popMusic.isPlaying()) {
+        sounds.popMusic.loop();
+    }
+
+}
+/**
+ * playClassicMusic()
+ * 
+ * This function plays classical music when this option is selected from the radio page
+ */
+function playClassicMusic() {
+    if (!sounds.classicMusic.isPlaying()) {
+        sounds.classicMusic.loop();
+    }
+
+}
+/**
+ * playCountryMusic()
+ * 
+ * This function plays country music when this option is selected from the country music page
+ */
+function playCountryMusic() {
+    if (!sounds.countryMusic.isPlaying()) {
+        sounds.countryMusic.loop();
+    }
+
+}
+/**
+ * playRandomMusic()
+ * 
+ * This function plays random music when this option is seelcted from the radio page
+ */
+function playRandomMusic() {
+    if (!sounds.randomMusic.isPlaying()) {
+        sounds.randomMusic.loop();
+    }
+
+}
+/**
+ * stopAllSounds()
+ * 
+ * This function stops all the currently playing music in the radio page
+ */
+function stopAllSounds() {
+    sounds.popMusic.stop();
+    sounds.classicMusic.stop();
+    sounds.countryMusic.stop();
+    sounds.randomMusic.stop();
 }
