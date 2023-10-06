@@ -48,6 +48,13 @@ let images = {
     mainPageRadio: null,
     pottedPlant: null
 }
+let sounds = {
+    birdsChirping: null,
+    dogBark: null,
+    dogSniffing: null,
+    gardenShovel: null,
+    plantsWatering: null
+}
 let dog = {
     x: 500,
     y: 450,
@@ -95,6 +102,11 @@ function preload() {
     images.pottedPlant = loadImage(`./assets/images/pottedSoil.png`);
     images.mainPageRadio = loadImage(`./assets/images/wateringCan.png`);
     fonts.mainMenuFont = loadFont(`./assets/fonts/bBasicGardening.ttf`);
+    sounds.birdsChirping = loadSound(`./assets/sounds/birds.wav`);
+    sounds.dogBark = loadSound(`./assets/sounds/bark.wav`);
+    sounds.dogSniffing = loadSound(`./assets/sounds/dog-sniffing-the-ground.wav`);
+    sounds.gardenShovel = loadSound(`./assets/sounds/garden-shovel.wav`);
+    sounds.wateringCan = loadSound(`./assets/sounds/watering-plants.wav`);
 }
 /**
  * setup()
@@ -117,6 +129,7 @@ function draw() {
     else if (state == `play`) {
         loop();
         displayMainGame();
+        playBirdsChirping();
     }
     else if (state == `playWithDog`) {
         loop();
@@ -147,7 +160,7 @@ function draw() {
 */
 function displayMainMenu() {
     displayMenuText();
-    displayMenuBoxes()
+    displayMenuBoxes();
 }
 /**
  * displayMenuText()
@@ -322,4 +335,54 @@ function displayPlantFlowers() {
 function listenRadio() {
 
 
+}
+/**
+ * playBirdsChirping()
+ * 
+ * This function plays the birds sound in a loop in play mode
+ */
+function playBirdsChirping() {
+    if (!sounds.birdsChirping.isPlaying()) {
+        sounds.birdsChirping.loop();
+    }
+}
+/**
+ * playDogBark()
+ * 
+ * This function plays the dog barking in loop mode
+ */
+function playDogBarking() {
+    if (!sounds.dogBark.isPlaying()) {
+        sounds.dogBark.loop();
+    }
+}
+/**
+ * playDogSniffing()
+ * 
+ * This function plays the dog sniffing in loop mode
+ */
+function playDogSniffing() {
+    if (!sounds.dogSniffing.isPlaying()) {
+        sounds.dogSniffing.loop();
+    }
+}
+/**
+ * playGardenShovel()
+ * 
+ * This function plays the garden shoveling in loop mode
+ */
+function playGardenShovel() {
+    if (!sounds.gardenShovel.isPlaying()) {
+        sounds.gardenShovel.loop();
+    }
+}
+/**
+ * playGardenWatering()
+ * 
+ * This function plays the sound of the garden being watered
+ */
+function playGardenWatering() {
+    if (!sounds.wateringCan.isPlaying()) {
+        sounds.wateringCan.loop();
+    }
 }
