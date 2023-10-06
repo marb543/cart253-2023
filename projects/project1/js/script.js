@@ -14,7 +14,7 @@
  * Watering can : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=gardening+cartoon+png&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=gardening+cartoon+png&get_facets=0&asset_id=619860562
  * Flower pot : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&order=relevance&safe_search=1&limit=100&search_page=1&search_type=see-more&acp=&aco=+cartoon+garden&serie_id=509395505&get_facets=0&asset_id=564351833
  * Main page radio : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+png+radio+drawing&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+png+radio+drawing&get_facets=0&asset_id=569479088
- * 
+ * Soil : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bcontent_type%3Aaudio%5D=0&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&filters%5Bis_editorial%5D=0&order=relevance&safe_search=1&serie_id=521975769&search_page=1&search_type=see-more&get_facets=0&asset_id=430197019
  * 
  * Sounds that are from mixKit :
  * 
@@ -57,6 +57,7 @@ let images = {
     mainPageRadio: null,
     pottedPlant: null,
     mainPageRadio: null,
+    gardenSoil: null
 }
 let sounds = {
     birdsChirping: null,
@@ -141,6 +142,26 @@ let radioPageChoices = {
         h: 30
     }
 }
+let gardeningChoices = {
+    shovel: {
+        x: 50,
+        y: 270,
+        w: 150,
+        h: 40
+    },
+    seed: {
+        x: 50,
+        y: 320,
+        w: 150,
+        h: 40
+    },
+    water: {
+        x: 50,
+        y: 370,
+        w: 150,
+        h: 40
+    }
+}
 
 /**
  * preload()
@@ -153,7 +174,7 @@ function preload() {
     images.mainPageDog = loadImage(`./assets/images/sleepingDog.png`);
     images.pottedPlant = loadImage(`./assets/images/pottedSoil.png`);
     images.mainPageRadio = loadImage(`./assets/images/radio.png`);
-    images.musicNote = loadImage(`./assets/images/musicNote.png`);
+    images.gardenSoil = loadImage(`./assets/images/gardenSoil.jpeg`);
     fonts.mainMenuFont = loadFont(`./assets/fonts/bBasicGardening.ttf`);
     fonts.instructionsFont = loadFont(`./assets/fonts/KGRedHands.ttf`);
     sounds.birdsChirping = loadSound(`./assets/sounds/birds.wav`);
@@ -393,7 +414,6 @@ function displayMainGameText() {
     push();
     textSize(17);
     strokeWeight(4);
-    noStroke();
     //Create rectangle behind the text
     fill(0, 153, 255);
     // Draw a rectangle 
@@ -457,7 +477,51 @@ function displayPlayDog() {
  * This function displays all the interactions to plant flowers in the garden
  */
 function displayPlantFlowers() {
-
+    image(images.gardenSoil, 0, 0, width, height);
+    push();
+    textSize(17);
+    strokeWeight(4);
+    noStroke();
+    //Create rectangle behind the text
+    fill(0, 153, 255);
+    // Draw a rectangle 
+    rect(50, 50, width - 80, 200, 30);
+    //Set color
+    stroke(34, 78, 5);
+    fill(255, 255, 255);
+    //Set text font using the saved font
+    textFont(fonts.instructionsFont);
+    textAlign(CENTER, CENTER);
+    text(`Plant a flower and watch it grow ! `, width / 2, 100,);
+    textAlign(RIGHT);
+    text(` 1. Use a shovel to make a hole in the soil. `, 795, 130);
+    text(`2. Put the seed in the soil. `, 795 - 140, 160);
+    text(`3. Water the seed. `, 730 - 140, 190);
+    pop();
+    //Draw the rectangle options for gardening
+    push();
+    drawingContext.shadowOffsetX = 2;
+    drawingContext.shadowOffsetY = -2;
+    drawingContext.shadowBlur = 8;
+    drawingContext.shadowColor = 'black';
+    fill(51, 204, 51);
+    rect(gardeningChoices.shovel.x, gardeningChoices.shovel.y, gardeningChoices.shovel.w, gardeningChoices.shovel.h, 30);
+    fill(255, 153, 51);
+    rect(gardeningChoices.seed.x, gardeningChoices.seed.y, gardeningChoices.seed.w, gardeningChoices.seed.h, 30);
+    fill(153, 51, 255);
+    rect(gardeningChoices.water.x, gardeningChoices.water.y, gardeningChoices.water.w, gardeningChoices.water.h, 30);
+    pop();
+    //Draw the text options for gardening
+    push();
+    textSize(17);
+    strokeWeight(4);
+    stroke(0);
+    fill(255);
+    textFont(fonts.instructionsFont);
+    text(`Use shovel. `, 70, 290);
+    text(`Plant seed. `, 70, 340);
+    text(`Water seed. `, 70, 390,);
+    pop();
 
 }
 /**
