@@ -125,30 +125,30 @@ function draw() {
     background(images.mainBackgroundImg);
     if (state == `title`) {
         displayMainMenu();
+        if (mouseIsPressed) {
+            verifyMenuChoice();
+        }
     }
     else if (state == `play`) {
-        loop();
         displayMainGame();
         playBirdsChirping();
     }
     else if (state == `playWithDog`) {
-        loop();
         displayPlayDog();
     }
     else if (state == `plantFlowers`) {
-        loop();
         displayPlantFlowers();
     }
     else if (state == `listenRadio`) {
-        loop();
+
         listenRadio();
     }
     else if (state == `tutorial`) {
-        loop();
+
 
     }
     else if (state == `exit`) {
-        loop();
+
         displayExitText();
     }
 }
@@ -228,6 +228,7 @@ function checkPlayChoice() {
     if (mouseX >= mainMenuChoices.play.x && mouseX <= mainMenuChoices.play.x + mainMenuChoices.play.w && mouseY >= mainMenuChoices.play.y && mouseY <= mainMenuChoices.play.y + mainMenuChoices.play.h) {
         state = `play`;
     }
+
 }
 /**
  * checkTutorialChoice()
@@ -254,12 +255,11 @@ function checkExitChoice() {
  * 
  * This function checks what choices were chosen by the user from the main menu
  */
-function mouseClicked() {
+function verifyMenuChoice() {
     //Check which choice was selected by the user from the main menu and set that choice in the state
     checkPlayChoice();
     checkTutorialChoice();
     checkExitChoice();
-    console.log(state);
 }
 /**
  * displayExitText()
@@ -286,17 +286,7 @@ function displayExitText() {
     text(`Thank you for playing .  \n   Come back again !`, width / 2, height / 2);
     pop();
 }
-/**
- * mouseClicked()
- * 
- * This function checks which choice of menu was selected by the player
- */
-function mouseClicked() {
-    //Check which choice was selected by the user from the main menu and set that choice in the state
-    checkPlayChoice();
-    checkTutorialChoice();
-    checkExitChoice();
-}
+
 /**
  * displayMainGame()
  * 
