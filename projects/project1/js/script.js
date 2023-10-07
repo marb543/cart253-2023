@@ -1,16 +1,16 @@
 /**
- * Project 1
+ * Project 1 : Gardening simulator
  * 
  * Maria Barba
  * 
- * All images are from Adobe Stock : 
+ * In this project I create a gardening simulator. When the user first starts the gardening simulator, a menu is displayed with the options to "Play" or to "Exit" the game. When the
+ * user selects the "Play" option , he then has a choice to either listen to the radio , grow a plant , or to play with the dog sleeping in the garden. 
  * 
+ * All images are from Adobe Stock : 
+ * --------------------------------
  * Garden Background : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+garden&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+garden&get_facets=0&asset_id=423188914
- * Garden Vegtables : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+garden&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+garden&get_facets=0&asset_id=437675086
  * Growing Plant : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+garden&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+garden&get_facets=0&asset_id=437681195
  * Cartoon Dog : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+dog&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+dog&get_facets=0&asset_id=238060500
- * Fertilizer Icon : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+garden+fertilizer&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+garden+fertilizer&get_facets=0&asset_id=297270529
- * Red Tulip : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+tulip+png&order=relevance&safe_search=1&limit=100&search_page=2&search_type=pagination&acp=&aco=cartoon+tulip+png&get_facets=0&asset_id=536612704
  * Watering can : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=gardening+cartoon+png&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=gardening+cartoon+png&get_facets=0&asset_id=619860562
  * Flower pot : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&order=relevance&safe_search=1&limit=100&search_page=1&search_type=see-more&acp=&aco=+cartoon+garden&serie_id=509395505&get_facets=0&asset_id=564351833
  * Main page radio : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+png+radio+drawing&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+png+radio+drawing&get_facets=0&asset_id=569479088
@@ -24,24 +24,25 @@
  * 
  * 
  * Sounds that are from mixKit :
- * 
+ * ----------------------------
  * Dog sniffing sound : https://mixkit.co/free-sound-effects/dog/
  * 
  * Sounds that are from freesound :
- * 
+ * --------------------------------
  * Watering plants sound : https://freesound.org/people/Angellu16/sounds/533838/
  * Gardening shovel : https://freesound.org/people/Roulaine/sounds/267974/
  * Digging in a bag of soil : https://freesound.org/people/dhallcomposer/sounds/696531/
  * Singing birds : https://freesound.org/people/MATRIXXX_/sounds/519120/
  * 
  * Music from the Radio Page :
+ * --------------------------
  * Pop Music : https://pixabay.com/music/beats-whip-110235/
  * Classical Music : https://pixabay.com/music/modern-classical-simple-piano-melody-9834/
  * Country Music : https://pixabay.com/music/modern-country-upbeat-country-blues-113997/
  * Random Music : https://pixabay.com/music/upbeat-energetic-indie-rock-jump-112179/
  * 
  * Fonts from daFont: 
- * 
+ * -----------------
  * https://www.dafont.com/b-basic-gardening.font
  * https://www.dafont.com/kg-red-hands.font
  * 
@@ -49,15 +50,16 @@
 
 "use strict";
 
-//Create a variable which will keep track of the state for which the user is currently is in
+//Create a variable which will keep track of the state of the game
 let state = `title`;
-//Create a variable to keep track of plant state
+//Create a variable to keep track of plant state (used in the plant page)
 let plantState = 0;
 //Create a fonts object to keep track of used fonts
 let fonts = {
     mainMenuFont: null,
     instructionsFont: null,
 }
+//Create an images object to keep track of the images used in the simulation 
 let images = {
     mainBackgroundImg: null,
     wateringCan: null,
@@ -75,6 +77,7 @@ let images = {
     grownPlant: null,
     redTomato: null
 }
+//Create a sounds object to keep track of the sounds used in the simulation
 let sounds = {
     birdsChirping: null,
     dogBark: null,
@@ -86,13 +89,7 @@ let sounds = {
     countryMusic: null,
     randomMusic: null
 }
-let plantPosition = {
-    x: null,
-    y: null,
-    w: 10,
-    h: 10,
-    currentImg: null
-}
+//Create an object to keep track of the dog displayed in the "play" state of the game
 let dog = {
     x: 500,
     y: 450,
@@ -101,18 +98,21 @@ let dog = {
     vx: 0,
     vy: 0,
 }
+//Create a flowerPot object to keep track of the pot object displayed in the "play" state of the game
 let flowerPot = {
     x: 340,
     y: 350,
     width: 180,
     height: 150
 }
+//Create a radio object to keep track of the pot object displayed in the "play" state of the game
 let radio = {
     x: 100,
     y: 260,
     width: 150,
     height: 100
 }
+//Create a mainMenuChoices object to keep track of the choice selected by the user from the main menu
 let mainMenuChoices = {
     play: {
         x: 330,
@@ -133,6 +133,7 @@ let mainMenuChoices = {
         h: 50
     }
 }
+//Create a radioPageChoices object to keep track of the choice selected by the user from the radio menu
 let radioPageChoices = {
     popMusic: {
         x: 80,
@@ -165,6 +166,7 @@ let radioPageChoices = {
         h: 30
     }
 }
+//Create a gardeningChoices object that keeps track of the choices of the user in the gardening page
 let gardeningChoices = {
     shovel: {
         x: 50,
@@ -185,13 +187,13 @@ let gardeningChoices = {
         h: 40
     }
 }
-
 /**
  * preload()
  * 
- *This function preloads the images , and the font used 
+ *This function preloads the images ,fonts , and sounds used by the user
 */
 function preload() {
+    //Load images used for the simulation
     images.mainBackgroundImg = loadImage(`./assets/images/mainGarden.jpeg`);
     images.wateringCan = loadImage(`./assets/images/wateringCan.png`);
     images.mainPageDog = loadImage(`./assets/images/sleepingDog.png`);
@@ -204,10 +206,10 @@ function preload() {
     images.dirt = loadImage(`./assets/images/soil.png`);
     images.babyPlant = loadImage(`./assets/images/babyPlant.png`);
     images.redTomato = loadImage(`./assets/images/redTomato.png`);
-
+    //Load fonts used for the simulation
     fonts.mainMenuFont = loadFont(`./assets/fonts/bBasicGardening.ttf`);
     fonts.instructionsFont = loadFont(`./assets/fonts/KGRedHands.ttf`);
-
+    //Load sounds used for the simulation
     sounds.birdsChirping = loadSound(`./assets/sounds/birds.wav`);
     sounds.dogBark = loadSound(`./assets/sounds/bark.wav`);
     sounds.dogSniffing = loadSound(`./assets/sounds/dog-sniffing-the-ground.wav`);
@@ -221,15 +223,15 @@ function preload() {
 /**
  * setup()
  * 
- * Setup canvas and tcalls the setupObjects function
+ * The setup function sets up the canvas 
 */
 function setup() {
     createCanvas(1100, 600);
 }
-
 /**
  * draw()
  * 
+ * The draw function keeps track of the current state of the simulation,and calls the appropriate functions
 */
 function draw() {
     background(images.mainBackgroundImg);
@@ -268,7 +270,7 @@ function draw() {
 /**
  * displayMainMenu()
  * 
- * displayMainMenu function displays the main menu text
+ * displayMainMenu function displays the main menu text, and main menu box choices
  * 
 */
 function displayMainMenu() {
@@ -321,7 +323,6 @@ function displayMenuBoxes() {
     textSize(30);
     strokeWeight(4);
     stroke(0);
-    //Create a color gradient
     fill(255);
     //Set text font using the saved font
     textFont(fonts.mainMenuFont);
@@ -340,7 +341,6 @@ function checkPlayChoice() {
     if (mouseX >= mainMenuChoices.play.x && mouseX <= mainMenuChoices.play.x + mainMenuChoices.play.w && mouseY >= mainMenuChoices.play.y && mouseY <= mainMenuChoices.play.y + mainMenuChoices.play.h) {
         state = `play`;
     }
-
 }
 /**
  * checkTutorialChoice()
@@ -434,7 +434,7 @@ function displayMainGame() {
 /**
  * displayMainGameText()
  * 
- * This function displays the text in the main game which explains to the user where to click on to play the game.
+ * This function displays the text in the main game which explains to the user where to click in order to play the game.
  * 
  */
 function displayMainGameText() {
@@ -504,14 +504,17 @@ function displayPlayDog() {
  * This function displays all the interactions to plant flowers in the garden
  */
 function displayPlantFlowers() {
+    //display background,text ,and menu for the plant flowers scenario
     displayPlantFlowersPage();
+    //Verify what choice was made by the user in the garden scenario
     verifyGardenChoice();
+    //Display the appropriate plant image according to chosen element of the menu by the user
     loadPlant();
 }
 /**
  * loadShovel()
  * 
- * This function loads the shovel image which follows the mouse
+ * This function loads the shovel image which follows the mouse in the plantFlowers state
  */
 function loadShovel() {
     image(images.shovel, mouseX - 100 / 2, mouseY - 200 / 2, 130, 200);
@@ -521,7 +524,7 @@ function loadShovel() {
 /**
  * loadSeeds()
  * 
- * This function loads the seeds image which follows the mouse
+ * This function loads the seeds bag image which follows the mouse in the plantFlowers state
  */
 function loadSeeds() {
     image(images.seed, mouseX - 100 / 2, mouseY - 200 / 2, 130, 200);
@@ -530,7 +533,7 @@ function loadSeeds() {
 /**
  * loadWaterCan()
  * 
- * This function loads the water can which foolows the mouse
+ * This function loads the water can which foolows the mouse in the plantFlowers state
  */
 function loadWaterCan() {
     playGardenWatering();
@@ -543,10 +546,13 @@ function loadWaterCan() {
  * This function loads the plant according to the current plant state
  */
 function loadPlant() {
+    //If user selects the "shovel" option from the gardening menu
     if (plantState == 1) {
         image(images.dirt, width / 2 - 100, 850 / 2, 200, 140);
+        //If the user selects the "seed" option from the gardening menu
     } else if (plantState == 2) {
         image(images.babyPlant, width / 2 - 60, 370, 140, 200);
+        //If the user selects the "waterCan" oprion from the gardening menu
     } else if (plantState == 3) {
         image(images.redTomato, 480, 360, 140, 200);
     }
@@ -618,7 +624,7 @@ function listenRadio() {
 /**
  * verifyRadioMusicChoice()
  * 
- * This function verifies which choice the user selected
+ * This function verifies which choice the user selected when he is in the radio page
  */
 function verifyRadioMusicChoice() {
     if (keyIsPressed) {
@@ -642,6 +648,11 @@ function verifyRadioMusicChoice() {
         }
     }
 }
+/**
+ * verifyGardenChoice()
+ * 
+ * This function checks for the choice that the user has made from the gardening page,and loads the appropriate image
+ */
 function verifyGardenChoice() {
     if (keyIsPressed) {
         stopAllSounds();
@@ -714,7 +725,6 @@ function drawRadioPageBackground() {
     textAlign(CENTER, CENTER);
     text(`Choose a radio station to listen to some music using keyboard keys ! `, width / 2, 30);
     pop();
-
     //Add text on top of text boxes
     push();
     fill(255);
@@ -836,5 +846,5 @@ function stopAllSounds() {
     sounds.countryMusic.stop();
     sounds.randomMusic.stop();
     sounds.gardenShovel.stop();
-    sounds.plantsWatering.stop();
+    sounds.wateringCan.stop();
 }
