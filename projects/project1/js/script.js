@@ -15,6 +15,13 @@
  * Flower pot : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&order=relevance&safe_search=1&limit=100&search_page=1&search_type=see-more&acp=&aco=+cartoon+garden&serie_id=509395505&get_facets=0&asset_id=564351833
  * Main page radio : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+png+radio+drawing&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+png+radio+drawing&get_facets=0&asset_id=569479088
  * Soil : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bcontent_type%3Aaudio%5D=0&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&filters%5Bis_editorial%5D=0&order=relevance&safe_search=1&serie_id=521975769&search_page=1&search_type=see-more&get_facets=0&asset_id=430197019
+ * Shovel : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+shovel&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+shovel&get_facets=0&asset_id=409206325
+ * Seed bag : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+seed+bag&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+seed+bag&get_facets=0&asset_id=491955135
+ * Water Can : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+water+can&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+water+can&get_facets=0&asset_id=131185020
+ * Pile of soil :https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+soil&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+soil&get_facets=0&asset_id=566163287
+ * Baby plant : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&filters%5Bcontent_type%3Aaudio%5D=0&filters%5Bis_editorial%5D=0&k=gardening+cartoon+png+soil+seed&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=gardening+cartoon+png+soil+seed&get_facets=0&asset_id=613303451
+ * Red tomato : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&filters%5Bcontent_type%3Aaudio%5D=0&filters%5Bis_editorial%5D=0&k=gardening+cartoon+png+soil+seed&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=gardening+cartoon+png+soil+seed&get_facets=0&asset_id=614582304
+ * 
  * 
  * Sounds that are from mixKit :
  * 
@@ -45,7 +52,7 @@
 //Create a variable which will keep track of the state for which the user is currently is in
 let state = `title`;
 //Create a variable to keep track of plant state
-let plantState = null;
+let plantState = 0;
 //Create a fonts object to keep track of used fonts
 let fonts = {
     mainMenuFont: null,
@@ -59,7 +66,14 @@ let images = {
     mainPageRadio: null,
     pottedPlant: null,
     mainPageRadio: null,
-    gardenSoil: null
+    gardenSoil: null,
+    dirt: null,
+    shovel: null,
+    waterCan: null,
+    seed: null,
+    babyPlant: null,
+    grownPlant: null,
+    redTomato: null
 }
 let sounds = {
     birdsChirping: null,
@@ -184,8 +198,16 @@ function preload() {
     images.pottedPlant = loadImage(`./assets/images/pottedSoil.png`);
     images.mainPageRadio = loadImage(`./assets/images/radio.png`);
     images.gardenSoil = loadImage(`./assets/images/gardenSoil.jpeg`);
+    images.shovel = loadImage(`./assets/images/shovel.png`);
+    images.seed = loadImage(`./assets/images/seeds.png`);
+    images.waterCan = loadImage(`./assets/images/greenWateringCan.png`);
+    images.dirt = loadImage(`./assets/images/soil.png`);
+    images.babyPlant = loadImage(`./assets/images/babyPlant.png`);
+    images.redTomato = loadImage(`./assets/images/redTomato.png`);
+
     fonts.mainMenuFont = loadFont(`./assets/fonts/bBasicGardening.ttf`);
     fonts.instructionsFont = loadFont(`./assets/fonts/KGRedHands.ttf`);
+
     sounds.birdsChirping = loadSound(`./assets/sounds/birds.wav`);
     sounds.dogBark = loadSound(`./assets/sounds/bark.wav`);
     sounds.dogSniffing = loadSound(`./assets/sounds/dog-sniffing-the-ground.wav`);
@@ -233,9 +255,6 @@ function draw() {
     }
     else if (state == `plantFlowers`) {
         displayPlantFlowers();
-        verifyShovelSelected();
-        verifySeedSelected();
-        verifyShovelSelected();
     }
     else if (state == `listenRadio`) {
         listenRadio();
@@ -486,14 +505,50 @@ function displayPlayDog() {
  */
 function displayPlantFlowers() {
     displayPlantFlowersPage();
-    if (plantState = 1) {
-
-    }
-    else if (plantState = 2) {
-
-    }
-    else if (plantState = 3) {
-
+    verifyGardenChoice();
+    loadPlant();
+}
+/**
+ * loadShovel()
+ * 
+ * This function loads the shovel image which follows the mouse
+ */
+function loadShovel() {
+    image(images.shovel, mouseX - 100 / 2, mouseY - 200 / 2, 130, 200);
+    playGardenShovel();
+    plantState = 1;
+}
+/**
+ * loadSeeds()
+ * 
+ * This function loads the seeds image which follows the mouse
+ */
+function loadSeeds() {
+    image(images.seed, mouseX - 100 / 2, mouseY - 200 / 2, 130, 200);
+    plantState = 2;
+}
+/**
+ * loadWaterCan()
+ * 
+ * This function loads the water can which foolows the mouse
+ */
+function loadWaterCan() {
+    playGardenWatering();
+    image(images.waterCan, mouseX - 100 / 2, mouseY - 200 / 2, 140, 200);
+    plantState = 3;
+}
+/**
+ * loadPlant()
+ * 
+ * This function loads the plant according to the current plant state
+ */
+function loadPlant() {
+    if (plantState == 1) {
+        image(images.dirt, width / 2 - 100, 850 / 2, 200, 140);
+    } else if (plantState == 2) {
+        image(images.babyPlant, width / 2 - 60, 370, 140, 200);
+    } else if (plantState == 3) {
+        image(images.redTomato, 480, 360, 140, 200);
     }
 }
 /**
@@ -543,9 +598,9 @@ function displayPlantFlowersPage() {
     stroke(0);
     fill(255);
     textFont(fonts.instructionsFont);
-    text(`Use shovel. `, 70, 290);
-    text(`Plant seed. `, 70, 340);
-    text(`Water seed. `, 70, 390,);
+    text(`1. Use shovel. `, 60, 290);
+    text(`2. Plant seed. `, 60, 340);
+    text(`3. Water seed. `, 60, 390,);
     pop();
 }
 /**
@@ -587,42 +642,21 @@ function verifyRadioMusicChoice() {
         }
     }
 }
-/**
- * verifyShovelSelected()
- * 
- * Checks if the user has selected the shovel option in the plant flower scenario
- * 
- */
-function verifyShovelSelected() {
-    if (mouseX >= radio.x && mouseX <= radio.x + radio.width && mouseY >= radio.y && mouseY <= radio.y + radio.height) {
-        plantState = 1;
+function verifyGardenChoice() {
+    if (keyIsPressed) {
+        stopAllSounds();
+        switch (key) {
+            case '1':
+                loadShovel();
+                break;
+            case '2':
+                loadSeeds();
+                break;
+            case '3':
+                loadWaterCan();
+                break;
+        }
     }
-}
-/**
- * verifySeedSelected()
- * 
- * Checks if the user has selected the seed option in the plant flower scenario
- * 
- */
-function verifySeedSelected() {
-    if (mouseX >= radio.x && mouseX <= radio.x + radio.width && mouseY >= radio.y && mouseY <= radio.y + radio.height) {
-        plantState = 2;
-    }
-
-}
-/**
- * verifyWaterSelected()
- * 
- * Checks if the user has selected the water option in the plant flower scenario
- * 
- * @returns boolean : depending if the choice is selected or not
- */
-function verifyWaterSelected() {
-    if (mouseX >= radio.x && mouseX <= radio.x + radio.width && mouseY >= radio.y && mouseY <= radio.y + radio.height) {
-        plantState = 3;
-    }
-
-
 }
 /**
  * drawRadioPageBackground()
@@ -801,4 +835,6 @@ function stopAllSounds() {
     sounds.classicMusic.stop();
     sounds.countryMusic.stop();
     sounds.randomMusic.stop();
+    sounds.gardenShovel.stop();
+    sounds.plantsWatering.stop();
 }
