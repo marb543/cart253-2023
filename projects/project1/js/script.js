@@ -75,7 +75,8 @@ let images = {
     seed: null,
     babyPlant: null,
     grownPlant: null,
-    redTomato: null
+    redTomato: null,
+    sittingDog: null
 }
 //Create a sounds object to keep track of the sounds used in the simulation
 let sounds = {
@@ -206,6 +207,7 @@ function preload() {
     images.dirt = loadImage(`./assets/images/soil.png`);
     images.babyPlant = loadImage(`./assets/images/babyPlant.png`);
     images.redTomato = loadImage(`./assets/images/redTomato.png`);
+    images.sittingDog = loadImage(`./assets/images/sittingDog.png`);
     //Load fonts used for the simulation
     fonts.mainMenuFont = loadFont(`./assets/fonts/bBasicGardening.ttf`);
     fonts.instructionsFont = loadFont(`./assets/fonts/KGRedHands.ttf`);
@@ -495,8 +497,49 @@ function verifyIfRadioSelected() {
  * This function displays all the interactions with the dog
  */
 function displayPlayDog() {
+    displayDogPage();
 
 
+}
+function displayDogPage() {
+    image(images.sittingDog, dog.x, dog.y - 100, dog.width, dog.height + 100);
+    push();
+    textSize(17);
+    strokeWeight(4);
+    noStroke();
+    //Create rectangle behind the text
+    fill(0, 153, 255);
+    // Draw a rectangle 
+    rect(50, 50, width - 80, 110, 30);
+    //Set color
+    stroke(34, 78, 5);
+    fill(255, 255, 255);
+    //Set text font using the saved font
+    textFont(fonts.instructionsFont);
+    textAlign(CENTER, CENTER);
+    text(`Play with Charlie ! You can give Charlie a bone , or throw a ball !`, width / 2, 100,);
+    pop();
+    //Draw the rectangle options for gardening
+    push();
+    drawingContext.shadowOffsetX = 2;
+    drawingContext.shadowOffsetY = -2;
+    drawingContext.shadowBlur = 8;
+    drawingContext.shadowColor = 'black';
+    fill(204, 102, 255);
+    rect(320, 520, gardeningChoices.shovel.w, gardeningChoices.shovel.h, 30);
+    fill(204, 0, 0);
+    rect(720, 520, gardeningChoices.seed.w, gardeningChoices.seed.h, 30);
+    pop();
+    //Draw the text options for gardening
+    push();
+    textSize(17);
+    strokeWeight(4);
+    stroke(0);
+    fill(255);
+    textFont(fonts.instructionsFont);
+    text(`Give bone `, width / 2 - 200, 550);
+    text(`Throw ball `, width / 2 + 200, 550);
+    pop();
 }
 /**
  * displayPlantFlowers()
@@ -758,7 +801,7 @@ function playBirdsChirping() {
  */
 function playDogBarking() {
     if (!sounds.dogBark.isPlaying()) {
-        sounds.dogBark.loop();
+        sounds.dogBark.play();
     }
 }
 /**
