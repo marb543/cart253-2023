@@ -222,19 +222,21 @@ let playWithDogChoices = {
 let ball = {
     x: 100,
     y: 350,
-    size: 100,
+    size: 50,
     vx: 0,
     vy: 0,
-    speed: 5
+    speed: 5,
+    changeFrequency: 0.02,
 }
 //Create an object to keep track of the playful dog when the user decides to play with the dog Charlie
 let playfulDog = {
-    x: 400,
-    y: 250,
-    w: 220,
-    h: 150,
+    x: 100,
+    y: 100,
+    w: 350,
+    h: 200,
     vx: 1,
-    vy: 1
+    vy: 1,
+    speed: 2
 }
 /**
  * preload()
@@ -289,35 +291,63 @@ function setup() {
 function draw() {
     background(images.mainBackgroundImg);
     if (state == `title`) {
+        //Display main menu choiced
         displayMainMenu();
-        if (mouseIsPressed) {
-            verifyMenuChoice();
-        }
     }
     else if (state == `play`) {
+        //Display main game page
         displayMainGame();
+        //Play birds chirping sound
         playBirdsChirping();
+        //Display the text of the main game
         displayMainGameText();
-        if (mouseIsPressed) {
-            sounds.birdsChirping.stop();
-            verifyIfDogSelected();
-            verifyIfFlowerPotSelected();
-            verifyIfRadioSelected();
-        }
     }
     else if (state == `playWithDog`) {
-        displayPlayDog();
+        //Dsiplay the text, options , and instructions of the play with dog page
+        displayDogPage();
+        //Check which choices the user has selected for the dog choice
+        keepTrackOfDogChoices();
+        //Check if the user has selected to give the dog a treat
+        isHappyDog();
+        //Check if the user has selected to play with the dog
+        isPlayfulDog();
+        playBallCatch();
     }
     else if (state == `plantFlowers`) {
-        displayPlantFlowers();
+        //display background,text ,and menu for the plant flowers scenario
+        displayPlantFlowersPage();
+        //Verify what choice was made by the user in the garden scenario
+        verifyGardenChoice();
+        //Display the appropriate plant image according to chosen element of the menu by the user
+        loadPlant();
     }
     else if (state == `listenRadio`) {
-        listenRadio();
+        //Draw background of the radio page
+        drawRadioPageBackground();
+        //Check which music option the player selected
+        verifyRadioMusicChoice();
     }
     else if (state == `tutorial`) {
     }
     else if (state == `exit`) {
         displayExitText();
+    }
+}
+/**
+ * mousePressed()
+ * 
+ * This function keeps track of the the mouse clicks on the main menu , and main game
+ */
+function mousePressed() {
+    //Check which option the user has chosen from the menu
+    if (state == `title`) {
+        verifyMenuChoice();
+        //Check which option the user has chosen in the main game
+    } else if (state == `play`) {
+        sounds.birdsChirping.stop();
+        verifyIfDogSelected();
+        verifyIfFlowerPotSelected();
+        verifyIfRadioSelected();
     }
 }
 /**
@@ -543,19 +573,6 @@ function verifyIfRadioSelected() {
     }
 }
 /**
- * displayPlayDog()
- * 
- * This function displays all the interactions with the dog
- */
-function displayPlayDog() {
-    displayDogPage();
-    keepTrackOfDogChoices();
-    isHappyDog();
-    isPlayfulDog();
-    playBallCatch();
-
-}
-/**
  * keepTrackOfDogChoices()
  * 
  * This function keeps track of the choices make by the user in the play with dog scenario , and calls the 
@@ -626,7 +643,9 @@ function playBallCatch() {
         playDogToy();
         //Stop squeak sound after 5 seconds
         setTimeout(stopAllSounds, 5000);
+        //Make the ball move
         setUpBallMovement();
+        //Make the dog move
         setUpDogMovement();
     }
 
@@ -634,20 +653,21 @@ function playBallCatch() {
 /**
  * setUpBallMovement()
  * 
- * This function makes the ball move randomly
+ * This function makes the ball move randomly on the screen
  */
 function setUpBallMovement() {
-    let change = random(); // Generate a random number between 0 and 1
-    // Change direction 1% of the time
-    if (change < 0.01) {
-        // Choose random velocities within the "speed limit"
+    // Change direction based on the defined frequency
+    if (random(1) < ball.changeFrequency) {
         ball.vx = random(-ball.speed, ball.speed);
         ball.vy = random(-ball.speed, ball.speed);
     }
+    // Update ball position
+    ball.x += ball.vx;
+    ball.y += ball.vy;
+    // Constrain the ball within the canvas
     ball.x = constrain(ball.x, 100, width - 100);
     ball.y = constrain(ball.y, 100, height - 100);
-    ball.x = ball.x + ball.vx;
-    ball.y = ball.y + ball.vy;
+    // Make the ball appear
     noStroke();
     fill(255, 20, 147);
     ellipse(ball.x, ball.y, ball.size);
@@ -655,38 +675,31 @@ function setUpBallMovement() {
 /**
  * setUpDogMovement()
  * 
- * This function makes the dog move randomly, chasing the ball
+ * This function makes the dog move after the ball
  */
 function setUpDogMovement() {
-    let dx = circle.x - mouseX; // Distance between the circle and the mouse horizontally
-    let dy = circle.y - mouseY; // Distance between the circle and the mouse vertically
-
-    if (dx < 0) { // If dx is negative, the mouse is to the right
-        // So move right
-        circle.vx = circle.speed;
-    }
-    else if (dx > 0) { // If dx is positive, the mouse is to the left
-        // So move left
-        circle.vx = -circle.speed;
-    }
-
-    // Same again for the y axis
-    if (dy < 0) {
-        circle.vy = circle.speed;
-    }
-    else if (dy > 0) {
-        circle.vy = -circle.speed;
-    }
-
-    circle.x = circle.x + circle.vx;
-    circle.y = circle.y + circle.vy;
-
-    ellipse(circle.x, circle.y, circle.size);
-
+    //Determine the distance between the ball and mouse
+    let dx = playfulDog.x - ball.x;
+    let dy = playfulDog.y - ball.y;
+    // Define a smoothing factor (lower values make the movement smoother)
+    let smoothing = 0.1;
+    // Calculate the desired velocity using linear interpolation
+    let desiredVX = -dx * smoothing;
+    let desiredVY = -dy * smoothing;
+    // Apply a gradual change in velocity using the smoothing factor
+    playfulDog.vx += (desiredVX - playfulDog.vx) * smoothing;
+    playfulDog.vy += (desiredVY - playfulDog.vy) * smoothing;
+    // Update the dog's position according to constrain of canvas, and update velocity
+    playfulDog.x = constrain(playfulDog.x, 50, width - 200);
+    playfulDog.y = constrain(playfulDog.y, 50, height - 200);
+    playfulDog.x += playfulDog.vx;
+    playfulDog.y += playfulDog.vy;
+    image(images.playfulDog, playfulDog.x, playfulDog.y, playfulDog.w, playfulDog.h);
 }
 /**
+ * displayDogPage()
  * 
- * 
+ * This function displays the page where all the options to play with the dog are listed
  */
 function displayDogPage() {
     //Display sitting dog image
@@ -729,19 +742,6 @@ function displayDogPage() {
     text(`1. Give treat `, width / 2 - 200, 550);
     text(`2. Throw ball `, width / 2 + 200, 550);
     pop();
-}
-/**
- * displayPlantFlowers()
- * 
- * This function displays all the interactions to plant flowers in the garden
- */
-function displayPlantFlowers() {
-    //display background,text ,and menu for the plant flowers scenario
-    displayPlantFlowersPage();
-    //Verify what choice was made by the user in the garden scenario
-    verifyGardenChoice();
-    //Display the appropriate plant image according to chosen element of the menu by the user
-    loadPlant();
 }
 /**
  * loadShovel()
@@ -840,18 +840,6 @@ function displayPlantFlowersPage() {
     text(`2. Plant seed. `, 60, 340);
     text(`3. Water seed. `, 60, 390,);
     pop();
-}
-/**
- * listenRadio()
- * 
- * This function displays all the interactions to listen to the radio
- */
-function listenRadio() {
-
-    //Draw background of the radio page
-    drawRadioPageBackground();
-    //Check which music option the player selected
-    verifyRadioMusicChoice();
 }
 /**
  * verifyRadioMusicChoice()
@@ -955,7 +943,7 @@ function drawRadioPageBackground() {
     //Set text font using the saved font
     textFont(fonts.instructionsFont);
     textAlign(CENTER, CENTER);
-    text(`Choose a radio station to listen to some music using keyboard keys !  /n  (Hold down key 1 , 2 , 3 , 4 or 5 on your keyboard )`, width / 2, 30);
+    text(`Choose a radio station to listen to some music using keyboard keys !  \n  (Hold down key 1 , 2 , 3 , 4 or 5 on your keyboard )`, width / 2, 30);
     pop();
     //Add text on top of text boxes
     push();
@@ -965,11 +953,11 @@ function drawRadioPageBackground() {
     stroke(0);
     strokeWeight(3);
     textSize(10);
-    text(`Pop Music Station - 1`, radioPageChoices.popMusic.x + 5, radioPageChoices.popMusic.y + 15);
-    text(`Classical Music Station - 2`, radioPageChoices.classicMusic.x + 5, radioPageChoices.classicMusic.y + 15);
-    text(`Country Music Station - 3`, radioPageChoices.countryMusic.x + 5, radioPageChoices.countryMusic.y + 15);
-    text(`Random Music Station - 4`, radioPageChoices.randomMusic.x + 5, radioPageChoices.randomMusic.y + 15);
-    text(`Go Back - 5`, radioPageChoices.goBack.x + 5, radioPageChoices.goBack.y + 15);
+    text(`1. Pop Music Station `, radioPageChoices.popMusic.x + 5, radioPageChoices.popMusic.y + 15);
+    text(`2. Classical Music Station `, radioPageChoices.classicMusic.x + 5, radioPageChoices.classicMusic.y + 15);
+    text(`3. Country Music Station `, radioPageChoices.countryMusic.x + 5, radioPageChoices.countryMusic.y + 15);
+    text(`4. Random Music Station`, radioPageChoices.randomMusic.x + 5, radioPageChoices.randomMusic.y + 15);
+    text(`5.Go Back`, radioPageChoices.goBack.x + 5, radioPageChoices.goBack.y + 15);
     pop();
 
 }
