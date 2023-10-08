@@ -47,6 +47,9 @@
  * https://www.dafont.com/b-basic-gardening.font
  * https://www.dafont.com/kg-red-hands.font
  * 
+ * Dog sounds :
+ * https://pixabay.com/sound-effects/munchin-95618/
+ * https://pixabay.com/sound-effects/dog-toy-5987/
  */
 
 "use strict";
@@ -79,7 +82,7 @@ let images = {
     redTomato: null,
     sittingDog: null,
     dogTreat: null,
-    dogBall: null,
+    squeakToy: null,
 }
 //Create a sounds object to keep track of the sounds used in the simulation
 let sounds = {
@@ -91,7 +94,8 @@ let sounds = {
     popMusic: null,
     classicMusic: null,
     countryMusic: null,
-    randomMusic: null
+    randomMusic: null,
+    dogCrunch: null
 }
 //Create an object to keep track of the dog displayed in the "play" state of the game
 let dog = {
@@ -99,6 +103,13 @@ let dog = {
     y: 450,
     width: 220,
     height: 150,
+}
+//Create an object to keep track of the dog when it's in the sitting position 
+let sittingDog = {
+    x: 500,
+    y: 350,
+    width: 220,
+    height: 250,
     vx: 0,
     vy: 0,
 }
@@ -241,6 +252,8 @@ function preload() {
     sounds.classicMusic = loadSound(`./assets/sounds/classic.mp3`);
     sounds.countryMusic = loadSound(`./assets/sounds/country.mp3`);
     sounds.randomMusic = loadSound(`./assets/sounds/random.mp3`);
+    sounds.dogCrunch = loadSound(`./assets/sounds/munchin.mp3`);
+    sounds.squeakToy = loadSound(`./assets/sounds/dogToy.mp3`);
 }
 /**
  * setup()
@@ -519,6 +532,8 @@ function verifyIfRadioSelected() {
 function displayPlayDog() {
     displayDogPage();
     keepTrackOfDogChoices();
+    isHappyDog();
+    isPlayfulDog();
 
 }
 /**
@@ -558,11 +573,37 @@ function showBallImage() {
     image(images.dogBall, mouseX - 100 / 2, mouseY - 100 / 2, 100, 100);
 }
 /**
+ * isHappyDog()
+ * 
+ * This function checks if the dog is happy because it has eaten it's treat or not .
+ * If the mouse cursor aligns with Charlie then, the dog recieved the treat. 
+ */
+function isHappyDog() {
+    //Calculate the distance between Charlie and the mouse cursor
+    if (keyIsPressed && key == '1' && (mouseX >= sittingDog.x && mouseX <= sittingDog.x + sittingDog.width && mouseY >= sittingDog.y && mouseY <= sittingDog.y + sittingDog.height)) {
+        playDogMunchin();
+    }
+}
+/**
+ * isPlayfulDog()
+ * 
+ * This function checks if the dog is playful because it has recieved the ball.
+ * If the mouse cursor aligns with Charlie then the dog recieved the ball.
+ */
+function isPlayfulDog() {
+    //Calculate distance between Charlie and the mouse cursor
+    if (keyIsPressed && key == '2' && (mouseX >= sittingDog.x && mouseX <= sittingDog.x + sittingDog.width && mouseY >= sittingDog.y && mouseY <= sittingDog.y + sittingDog.height)) {
+        playDogToy();
+    }
+}
+/**
  * 
  * 
  */
 function displayDogPage() {
-    image(images.sittingDog, dog.x, dog.y - 100, dog.width, dog.height + 100);
+    //Display sitting dog image
+    image(images.sittingDog, sittingDog.x, sittingDog.y, sittingDog.width, sittingDog.height);
+    //Display dog page and options
     push();
     textSize(17);
     strokeWeight(4);
@@ -864,6 +905,26 @@ function playDogBarking() {
         sounds.dogBark.play();
     }
 }
+/**
+ * playDogMunchin()
+ * 
+ * This function plays the dog munchin sound when the dog is given a treat
+ */
+function playDogMunchin() {
+    if (!sounds.dogCrunch.isPlaying()) {
+        sounds.dogCrunch.loop();
+    }
+}
+/**
+ * playDogToy()
+ * 
+ * This function plays the dog toy squeak sound when the dog is given a ball
+ */
+function playDogToy() {
+    if (!sounds.squeakToy.isPlaying()) {
+        sounds.squeakToy.loop();
+    }
+}
 
 /**
  * playGardenShovel()
@@ -941,4 +1002,6 @@ function stopAllSounds() {
     sounds.randomMusic.stop();
     sounds.gardenShovel.stop();
     sounds.wateringCan.stop();
+    sounds.dogCrunch.stop();
+    sounds.squeakToy.stop();
 }
