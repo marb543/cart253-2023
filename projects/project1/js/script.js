@@ -85,7 +85,7 @@ let images = {
     sittingDog: null,
     dogTreat: null,
     squeakToy: null,
-    playfulDog: null;
+    playfulDog: null
 }
 //Create a sounds object to keep track of the sounds used in the simulation
 let sounds = {
@@ -220,19 +220,19 @@ let playWithDogChoices = {
 }
 //Create an object to keeep track of the moving ball  when the user decides to play with the dog Charlie
 let ball = {
-    x: 500,
+    x: 100,
     y: 350,
-    width: 220,
-    height: 250,
-    vx: 1,
-    vy: 1
+    size: 100,
+    vx: 0,
+    vy: 0,
+    speed: 5
 }
 //Create an object to keep track of the playful dog when the user decides to play with the dog Charlie
 let playfulDog = {
     x: 400,
     y: 250,
-    width: 220,
-    height: 150,
+    w: 220,
+    h: 150,
     vx: 1,
     vy: 1
 }
@@ -264,8 +264,6 @@ function preload() {
     fonts.instructionsFont = loadFont(`./assets/fonts/KGRedHands.ttf`);
     //Load sounds used for the simulation
     sounds.birdsChirping = loadSound(`./assets/sounds/birds.wav`);
-    sounds.dogBark = loadSound(`./assets/sounds/bark.wav`);
-    sounds.dogSniffing = loadSound(`./assets/sounds/dog-sniffing-the-ground.wav`);
     sounds.gardenShovel = loadSound(`./assets/sounds/garden-shovel.wav`);
     sounds.wateringCan = loadSound(`./assets/sounds/watering-plants.wav`);
     sounds.popMusic = loadSound(`./assets/sounds/pop.mp3`);
@@ -620,7 +618,7 @@ function isPlayfulDog() {
 /**
  * playBallCatch()
  * 
- * This function makes the ball move 
+ * This function makes the ball move , and the dog move
  */
 function playBallCatch() {
     if (playCatch) {
@@ -628,7 +626,62 @@ function playBallCatch() {
         playDogToy();
         //Stop squeak sound after 5 seconds
         setTimeout(stopAllSounds, 5000);
+        setUpBallMovement();
+        setUpDogMovement();
     }
+
+}
+/**
+ * setUpBallMovement()
+ * 
+ * This function makes the ball move randomly
+ */
+function setUpBallMovement() {
+    let change = random(); // Generate a random number between 0 and 1
+    // Change direction 1% of the time
+    if (change < 0.01) {
+        // Choose random velocities within the "speed limit"
+        ball.vx = random(-ball.speed, ball.speed);
+        ball.vy = random(-ball.speed, ball.speed);
+    }
+    ball.x = constrain(ball.x, 100, width - 100);
+    ball.y = constrain(ball.y, 100, height - 100);
+    ball.x = ball.x + ball.vx;
+    ball.y = ball.y + ball.vy;
+    noStroke();
+    fill(255, 20, 147);
+    ellipse(ball.x, ball.y, ball.size);
+}
+/**
+ * setUpDogMovement()
+ * 
+ * This function makes the dog move randomly, chasing the ball
+ */
+function setUpDogMovement() {
+    let dx = circle.x - mouseX; // Distance between the circle and the mouse horizontally
+    let dy = circle.y - mouseY; // Distance between the circle and the mouse vertically
+
+    if (dx < 0) { // If dx is negative, the mouse is to the right
+        // So move right
+        circle.vx = circle.speed;
+    }
+    else if (dx > 0) { // If dx is positive, the mouse is to the left
+        // So move left
+        circle.vx = -circle.speed;
+    }
+
+    // Same again for the y axis
+    if (dy < 0) {
+        circle.vy = circle.speed;
+    }
+    else if (dy > 0) {
+        circle.vy = -circle.speed;
+    }
+
+    circle.x = circle.x + circle.vx;
+    circle.y = circle.y + circle.vy;
+
+    ellipse(circle.x, circle.y, circle.size);
 
 }
 /**
