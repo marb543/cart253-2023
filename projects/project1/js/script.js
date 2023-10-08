@@ -21,7 +21,8 @@
  * Pile of soil :https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+soil&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+soil&get_facets=0&asset_id=566163287
  * Baby plant : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&filters%5Bcontent_type%3Aaudio%5D=0&filters%5Bis_editorial%5D=0&k=gardening+cartoon+png+soil+seed&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=gardening+cartoon+png+soil+seed&get_facets=0&asset_id=613303451
  * Red tomato : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&filters%5Bcontent_type%3Aaudio%5D=0&filters%5Bis_editorial%5D=0&k=gardening+cartoon+png+soil+seed&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=gardening+cartoon+png+soil+seed&get_facets=0&asset_id=614582304
- * 
+ * Dog treat : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=png+cartoon+dog+treat&order=relevance&safe_search=1&search_page=1&search_type=usertyped&acp=&aco=png+cartoon+dog+treat&get_facets=0&asset_id=562544008
+ * Ball : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=png+cartoon+dog+ball&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=png+cartoon+dog+ball&get_facets=0&asset_id=647880119
  * 
  * Sounds that are from mixKit :
  * ----------------------------
@@ -76,7 +77,9 @@ let images = {
     babyPlant: null,
     grownPlant: null,
     redTomato: null,
-    sittingDog: null
+    sittingDog: null,
+    dogTreat: null,
+    dogBall: null,
 }
 //Create a sounds object to keep track of the sounds used in the simulation
 let sounds = {
@@ -188,6 +191,21 @@ let gardeningChoices = {
         h: 40
     }
 }
+//Create a playDogChoice object that keeps track of the choices of the user on the play with dog page
+let playWithDogChoices = {
+    treat: {
+        x: 320,
+        y: 520,
+        w: 150,
+        h: 40
+    },
+    catch: {
+        x: 720,
+        y: 520,
+        w: 150,
+        h: 40
+    }
+}
 /**
  * preload()
  * 
@@ -208,6 +226,8 @@ function preload() {
     images.babyPlant = loadImage(`./assets/images/babyPlant.png`);
     images.redTomato = loadImage(`./assets/images/redTomato.png`);
     images.sittingDog = loadImage(`./assets/images/sittingDog.png`);
+    images.dogTreat = loadImage(`./assets/images/treat.png`);
+    images.dogBall = loadImage(`./assets/images/ball.png`);
     //Load fonts used for the simulation
     fonts.mainMenuFont = loadFont(`./assets/fonts/bBasicGardening.ttf`);
     fonts.instructionsFont = loadFont(`./assets/fonts/KGRedHands.ttf`);
@@ -498,9 +518,49 @@ function verifyIfRadioSelected() {
  */
 function displayPlayDog() {
     displayDogPage();
-
+    keepTrackOfDogChoices();
 
 }
+/**
+ * keepTrackOfDogChoices()
+ * 
+ * This function keeps track of the choices make by the user in the play with dog scenario , and calls the 
+ * appropriare function according to user choice
+ */
+function keepTrackOfDogChoices() {
+    if (keyIsPressed) {
+        stopAllSounds();
+        switch (key) {
+            case '1':
+                showTreatImage();
+                break;
+            case '2':
+                showBallImage();
+                break;
+        }
+    }
+}
+/**
+ * showTreatImage()
+ * 
+ * This function displays the dog treat image when the user chooses the "Give treat" option in the play with dog scenario
+ */
+function showTreatImage() {
+    image(images.dogTreat, mouseX - 100 / 2, mouseY - 50 / 2, 100, 50);
+
+}
+/**
+ * showBallImage()
+ * 
+ * This function displays the ball image when the user chooses the "Throw ball" option in the play with dog scenario
+ */
+function showBallImage() {
+    image(images.dogBall, mouseX - 100 / 2, mouseY - 100 / 2, 100, 100);
+}
+/**
+ * 
+ * 
+ */
 function displayDogPage() {
     image(images.sittingDog, dog.x, dog.y - 100, dog.width, dog.height + 100);
     push();
@@ -517,7 +577,7 @@ function displayDogPage() {
     //Set text font using the saved font
     textFont(fonts.instructionsFont);
     textAlign(CENTER, CENTER);
-    text(`Play with Charlie ! You can give Charlie a bone , or throw a ball !`, width / 2, 100,);
+    text(`Play with Charlie ! You can give Charlie a bone , or throw a ball !  \n  (Hold down key 1 or 2 on your keyboard , and align your cursor with Charlie)`, width / 2, 100,);
     pop();
     //Draw the rectangle options for gardening
     push();
@@ -526,19 +586,19 @@ function displayDogPage() {
     drawingContext.shadowBlur = 8;
     drawingContext.shadowColor = 'black';
     fill(204, 102, 255);
-    rect(320, 520, gardeningChoices.shovel.w, gardeningChoices.shovel.h, 30);
+    rect(playWithDogChoices.treat.x, playWithDogChoices.treat.y, playWithDogChoices.treat.w, playWithDogChoices.treat.h, 30);
     fill(204, 0, 0);
-    rect(720, 520, gardeningChoices.seed.w, gardeningChoices.seed.h, 30);
+    rect(playWithDogChoices.catch.x, playWithDogChoices.catch.y, playWithDogChoices.catch.w, playWithDogChoices.catch.h, 30);
     pop();
     //Draw the text options for gardening
     push();
-    textSize(17);
+    textSize(15);
     strokeWeight(4);
     stroke(0);
     fill(255);
     textFont(fonts.instructionsFont);
-    text(`Give bone `, width / 2 - 200, 550);
-    text(`Throw ball `, width / 2 + 200, 550);
+    text(`1. Give treat `, width / 2 - 200, 550);
+    text(`2. Throw ball `, width / 2 + 200, 550);
     pop();
 }
 /**
@@ -621,7 +681,7 @@ function displayPlantFlowersPage() {
     //Set text font using the saved font
     textFont(fonts.instructionsFont);
     textAlign(CENTER, CENTER);
-    text(`Plant a flower and watch it grow ! `, width / 2, 100,);
+    text(`Plant a flower and watch it grow !  /n  (Hold down key 1 , 2 or 3 on your keyboard )`, width / 2, 100,);
     textAlign(RIGHT);
     text(` 1. Use a shovel to make a hole in the soil. `, 795, 130);
     text(`2. Put the seed in the soil. `, 795 - 140, 160);
@@ -766,7 +826,7 @@ function drawRadioPageBackground() {
     //Set text font using the saved font
     textFont(fonts.instructionsFont);
     textAlign(CENTER, CENTER);
-    text(`Choose a radio station to listen to some music using keyboard keys ! `, width / 2, 30);
+    text(`Choose a radio station to listen to some music using keyboard keys !  /n  (Hold down key 1 , 2 , 3 , 4 or 5 on your keyboard )`, width / 2, 30);
     pop();
     //Add text on top of text boxes
     push();
@@ -804,16 +864,7 @@ function playDogBarking() {
         sounds.dogBark.play();
     }
 }
-/**
- * playDogSniffing()
- * 
- * This function plays the dog sniffing in loop mode
- */
-function playDogSniffing() {
-    if (!sounds.dogSniffing.isPlaying()) {
-        sounds.dogSniffing.loop();
-    }
-}
+
 /**
  * playGardenShovel()
  * 
