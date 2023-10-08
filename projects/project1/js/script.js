@@ -58,6 +58,8 @@
 let state = `title`;
 //Create a variable to keep track of plant state (used in the plant page)
 let plantState = 0;
+//Create a variable to keep track if the dog is currently playing catch 
+let playCatch = false;
 //Create a fonts object to keep track of used fonts
 let fonts = {
     mainMenuFont: null,
@@ -83,6 +85,7 @@ let images = {
     sittingDog: null,
     dogTreat: null,
     squeakToy: null,
+    playfulDog: null;
 }
 //Create a sounds object to keep track of the sounds used in the simulation
 let sounds = {
@@ -110,8 +113,6 @@ let sittingDog = {
     y: 350,
     width: 220,
     height: 250,
-    vx: 0,
-    vy: 0,
 }
 //Create a flowerPot object to keep track of the pot object displayed in the "play" state of the game
 let flowerPot = {
@@ -217,6 +218,24 @@ let playWithDogChoices = {
         h: 40
     }
 }
+//Create an object to keeep track of the moving ball  when the user decides to play with the dog Charlie
+let ball = {
+    x: 500,
+    y: 350,
+    width: 220,
+    height: 250,
+    vx: 1,
+    vy: 1
+}
+//Create an object to keep track of the playful dog when the user decides to play with the dog Charlie
+let playfulDog = {
+    x: 400,
+    y: 250,
+    width: 220,
+    height: 150,
+    vx: 1,
+    vy: 1
+}
 /**
  * preload()
  * 
@@ -239,6 +258,7 @@ function preload() {
     images.sittingDog = loadImage(`./assets/images/sittingDog.png`);
     images.dogTreat = loadImage(`./assets/images/treat.png`);
     images.dogBall = loadImage(`./assets/images/ball.png`);
+    images.playfulDog = loadImage(`./assets/images/playfulDog.png`);
     //Load fonts used for the simulation
     fonts.mainMenuFont = loadFont(`./assets/fonts/bBasicGardening.ttf`);
     fonts.instructionsFont = loadFont(`./assets/fonts/KGRedHands.ttf`);
@@ -534,6 +554,7 @@ function displayPlayDog() {
     keepTrackOfDogChoices();
     isHappyDog();
     isPlayfulDog();
+    playBallCatch();
 
 }
 /**
@@ -593,8 +614,22 @@ function isHappyDog() {
 function isPlayfulDog() {
     //Calculate distance between Charlie and the mouse cursor
     if (keyIsPressed && key == '2' && (mouseX >= sittingDog.x && mouseX <= sittingDog.x + sittingDog.width && mouseY >= sittingDog.y && mouseY <= sittingDog.y + sittingDog.height)) {
-        playDogToy();
+        playCatch = true;
     }
+}
+/**
+ * playBallCatch()
+ * 
+ * This function makes the ball move 
+ */
+function playBallCatch() {
+    if (playCatch) {
+        background(images.mainBackgroundImg);
+        playDogToy();
+        //Stop squeak sound after 5 seconds
+        setTimeout(stopAllSounds, 5000);
+    }
+
 }
 /**
  * 
