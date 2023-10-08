@@ -201,6 +201,12 @@ let gardeningChoices = {
         y: 370,
         w: 150,
         h: 40
+    },
+    goBack: {
+        x: 50,
+        y: 420,
+        w: 150,
+        h: 40
     }
 }
 //Create a playDogChoice object that keeps track of the choices of the user on the play with dog page
@@ -213,6 +219,12 @@ let playWithDogChoices = {
     },
     catch: {
         x: 720,
+        y: 520,
+        w: 150,
+        h: 40
+    },
+    goBack: {
+        x: 520,
         y: 520,
         w: 150,
         h: 40
@@ -386,6 +398,9 @@ function displayMenuText() {
     textFont(fonts.mainMenuFont);
     textAlign(CENTER, CENTER);
     text(`    Gardening \n               Simulator`, width / 2 - 80, 150);
+    textSize(30);
+    fill(255);
+    text(`By Maria Barba`, width - 90, height - 30);
     pop();
 }
 /**
@@ -588,6 +603,9 @@ function keepTrackOfDogChoices() {
             case '2':
                 showBallImage();
                 break;
+            case '3':
+                state = `play`;
+                break;
         }
     }
 }
@@ -719,7 +737,7 @@ function displayDogPage() {
     //Set text font using the saved font
     textFont(fonts.instructionsFont);
     textAlign(CENTER, CENTER);
-    text(`Play with Charlie ! You can give Charlie a bone , or throw a ball !  \n  (Hold down key 1 or 2 on your keyboard , and align your cursor with Charlie)`, width / 2, 100,);
+    text(`Play with Charlie ! You can give Charlie a bone , or throw a ball !  \n  (Hold down key 1 , 2 or 3 on your keyboard , and align your cursor with Charlie)`, width / 2, 100,);
     pop();
     //Draw the rectangle options for gardening
     push();
@@ -730,6 +748,8 @@ function displayDogPage() {
     fill(204, 102, 255);
     rect(playWithDogChoices.treat.x, playWithDogChoices.treat.y, playWithDogChoices.treat.w, playWithDogChoices.treat.h, 30);
     fill(204, 0, 0);
+    rect(playWithDogChoices.goBack.x, playWithDogChoices.goBack.y, playWithDogChoices.goBack.w, playWithDogChoices.goBack.h, 30);
+    fill(51, 204, 204);
     rect(playWithDogChoices.catch.x, playWithDogChoices.catch.y, playWithDogChoices.catch.w, playWithDogChoices.catch.h, 30);
     pop();
     //Draw the text options for gardening
@@ -740,7 +760,8 @@ function displayDogPage() {
     fill(255);
     textFont(fonts.instructionsFont);
     text(`1. Give treat `, width / 2 - 200, 550);
-    text(`2. Throw ball `, width / 2 + 200, 550);
+    text(`2. Throw ball `, width / 2, 550);
+    text(`3. Go back `, width / 2 + 200, 550);
     pop();
 }
 /**
@@ -810,7 +831,7 @@ function displayPlantFlowersPage() {
     //Set text font using the saved font
     textFont(fonts.instructionsFont);
     textAlign(CENTER, CENTER);
-    text(`Plant a flower and watch it grow !  /n  (Hold down key 1 , 2 or 3 on your keyboard )`, width / 2, 100,);
+    text(`Plant a flower and watch it grow !  /n  (Hold down key 1 , 2 , 3 or 4 on your keyboard )`, width / 2, 100,);
     textAlign(RIGHT);
     text(` 1. Use a shovel to make a hole in the soil. `, 795, 130);
     text(`2. Put the seed in the soil. `, 795 - 140, 160);
@@ -828,6 +849,8 @@ function displayPlantFlowersPage() {
     rect(gardeningChoices.seed.x, gardeningChoices.seed.y, gardeningChoices.seed.w, gardeningChoices.seed.h, 30);
     fill(153, 51, 255);
     rect(gardeningChoices.water.x, gardeningChoices.water.y, gardeningChoices.water.w, gardeningChoices.water.h, 30);
+    fill(255, 20, 147);
+    rect(gardeningChoices.goBack.x, gardeningChoices.goBack.y, gardeningChoices.goBack.w, gardeningChoices.goBack.h, 30);
     pop();
     //Draw the text options for gardening
     push();
@@ -838,7 +861,8 @@ function displayPlantFlowersPage() {
     textFont(fonts.instructionsFont);
     text(`1. Use shovel. `, 60, 290);
     text(`2. Plant seed. `, 60, 340);
-    text(`3. Water seed. `, 60, 390,);
+    text(`3. Water seed. `, 60, 390);
+    text(`4. Go back. `, 60, 440);
     pop();
 }
 /**
@@ -885,6 +909,9 @@ function verifyGardenChoice() {
                 break;
             case '3':
                 loadWaterCan();
+                break;
+            case '4':
+                state = `play`;
                 break;
         }
     }
@@ -957,7 +984,7 @@ function drawRadioPageBackground() {
     text(`2. Classical Music Station `, radioPageChoices.classicMusic.x + 5, radioPageChoices.classicMusic.y + 15);
     text(`3. Country Music Station `, radioPageChoices.countryMusic.x + 5, radioPageChoices.countryMusic.y + 15);
     text(`4. Random Music Station`, radioPageChoices.randomMusic.x + 5, radioPageChoices.randomMusic.y + 15);
-    text(`5.Go Back`, radioPageChoices.goBack.x + 5, radioPageChoices.goBack.y + 15);
+    text(`5. Go Back`, radioPageChoices.goBack.x + 5, radioPageChoices.goBack.y + 15);
     pop();
 
 }
@@ -969,16 +996,6 @@ function drawRadioPageBackground() {
 function playBirdsChirping() {
     if (!sounds.birdsChirping.isPlaying()) {
         sounds.birdsChirping.loop();
-    }
-}
-/**
- * playDogBark()
- * 
- * This function plays the dog barking in loop mode
- */
-function playDogBarking() {
-    if (!sounds.dogBark.isPlaying()) {
-        sounds.dogBark.play();
     }
 }
 /**
