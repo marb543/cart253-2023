@@ -136,15 +136,9 @@ let mainMenuChoices = {
         w: 470,
         h: 50
     },
-    tutorial: {
-        x: 330,
-        y: 420,
-        w: 470,
-        h: 50
-    },
     exit: {
         x: 330,
-        y: 490,
+        y: 420,
         w: 470,
         h: 50
     }
@@ -339,8 +333,6 @@ function draw() {
         //Check which music option the player selected
         verifyRadioMusicChoice();
     }
-    else if (state == `tutorial`) {
-    }
     else if (state == `exit`) {
         displayExitText();
     }
@@ -414,7 +406,6 @@ function displayMenuBoxes() {
     stroke(34, 78, 5);
     fill(194, 242, 163);
     rect(mainMenuChoices.play.x, mainMenuChoices.play.y, mainMenuChoices.play.w, mainMenuChoices.play.h);
-    rect(mainMenuChoices.tutorial.x, mainMenuChoices.tutorial.y, mainMenuChoices.tutorial.w, mainMenuChoices.tutorial.h);
     rect(mainMenuChoices.exit.x, mainMenuChoices.exit.y, mainMenuChoices.exit.w, mainMenuChoices.exit.h);
     pop();
     push();
@@ -426,8 +417,7 @@ function displayMenuBoxes() {
     textFont(fonts.mainMenuFont);
     textAlign(CENTER, CENTER);
     text(`Play`, width / 2, 370);
-    text(`Tutorial`, width / 2, 440);
-    text(`Exit`, width / 2, 510);
+    text(`Exit`, width / 2, 440);
     pop();
 }
 /**
@@ -438,16 +428,6 @@ function displayMenuBoxes() {
 function checkPlayChoice() {
     if (mouseX >= mainMenuChoices.play.x && mouseX <= mainMenuChoices.play.x + mainMenuChoices.play.w && mouseY >= mainMenuChoices.play.y && mouseY <= mainMenuChoices.play.y + mainMenuChoices.play.h) {
         state = `play`;
-    }
-}
-/**
- * checkTutorialChoice()
- * 
- * This function checks if the user has selected the "Tutorial main menu option
- */
-function checkTutorialChoice() {
-    if (mouseX >= mainMenuChoices.tutorial.x && mouseX <= mainMenuChoices.tutorial.x + mainMenuChoices.tutorial.w && mouseY >= mainMenuChoices.tutorial.y && mouseY <= mainMenuChoices.tutorial.y + mainMenuChoices.tutorial.h) {
-        state = `tutorial`;
     }
 }
 /**
@@ -468,7 +448,6 @@ function checkExitChoice() {
 function verifyMenuChoice() {
     //Check which choice was selected by the user from the main menu and set that choice in the state
     checkPlayChoice();
-    checkTutorialChoice();
     checkExitChoice();
 }
 /**
