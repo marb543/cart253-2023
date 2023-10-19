@@ -14,6 +14,8 @@ let fish1;
 let fish2;
 let fish3;
 let fish4;
+let fishArrayLength = 10;
+let fishesArray = [];
 
 let images = {
     goldFish: null,
@@ -32,10 +34,14 @@ function preload() {
 function setup() {
     createCanvas(600, 600);
     // Create four fish, positioned randomly
-    fish1 = createFish(random(0, width), random(0, height));
-    fish2 = createFish(random(0, width), random(0, height));
-    fish3 = createFish(random(0, width), random(0, height));
-    fish4 = createFish(random(0, width), random(0, height));
+    createMultipleFish();
+}
+
+function createMultipleFish() {
+    for (let i = 0; i < fishArrayLength; i++) {
+        let newFish = createFish(random(0, width), random(0, height));
+        fishesArray.push(newFish);
+    }
 }
 
 // createFish(x,y)
@@ -58,15 +64,10 @@ function createFish(x, y) {
 function draw() {
 
     background(images.aquarium);
-    moveFish(fish1);
-    moveFish(fish2);
-    moveFish(fish3);
-    moveFish(fish4);
-
-    displayFish(fish1);
-    displayFish(fish2);
-    displayFish(fish3);
-    displayFish(fish4);
+    for (let i = 0; i < fishArrayLength; i++) {
+        moveFish(fishesArray[i]);
+        displayFish(fishesArray[i]);
+    }
 }
 
 // moveFish(fish)
