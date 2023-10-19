@@ -31,7 +31,6 @@ function preload() {
 
 function setup() {
     createCanvas(600, 600);
-    background(images.aquarium);
     // Create four fish, positioned randomly
     fish1 = createFish(random(0, width), random(0, height));
     fish2 = createFish(random(0, width), random(0, height));
@@ -58,7 +57,7 @@ function createFish(x, y) {
 // Moves and displays our fish
 function draw() {
 
-
+    background(images.aquarium);
     moveFish(fish1);
     moveFish(fish2);
     moveFish(fish3);
