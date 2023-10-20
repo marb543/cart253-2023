@@ -26,6 +26,11 @@ let images = {
     aquarium: null,
 }
 
+let turtle = {
+    width: 300,
+    height: 200,
+}
+
 function preload() {
     images.goldFish = loadImage(`./assets/images/goldFish.png`);
     images.clownFish = loadImage(`./assets/images/clownFish.png`);
@@ -42,14 +47,14 @@ function setup() {
 
 function createMultipleFish() {
     for (let i = 0; i < initialFishNumh; i++) {
-        let newFish = createFish(random(0, width), random(0, height), images.goldFish);
+        let newFish = createFish(random(0, width), random(0, height), images.goldFish, "GoldFish");
         fishesArray.push(newFish);
     }
 }
 
 // createFish(x,y)
 // Creates a new JavaScript Object describing a fish and returns it
-function createFish(x, y, image) {
+function createFish(x, y, image, name) {
     let fish = {
         x: x,
         y: y,
@@ -59,6 +64,7 @@ function createFish(x, y, image) {
         vy: 0,
         speed: 2,
         img: image,
+        fishType: name,
     };
     return fish;
 }
@@ -73,6 +79,7 @@ function draw() {
         displayFish(fishesArray[i], images.goldFish);
     }
     checkForFishOverpopulation();
+    catchGoldFish();
     checkState();
 }
 
@@ -106,12 +113,13 @@ function displayFish(fish) {
 }
 
 function addClownFish() {
-    let fish = createFish(mouseX, mouseY, images.clownFish); // Create a fish at the mouse position
+    let fish = createFish(mouseX, mouseY, images.clownFish, "ClownFish"); // Create a fish at the mouse position
     fishesArray.push(fish);
 }
 
 function mousePressed() {
     this.addClownFish();
+
 }
 
 function checkForFishOverpopulation() {
@@ -122,7 +130,7 @@ function checkForFishOverpopulation() {
 }
 
 function checkState() {
-    if (state === 'turtleBob') {
+    if (state === 'turtle') {
         displayTurtleBob();
     }
     else if (state === 'fishOverpopulation') {
@@ -131,7 +139,14 @@ function checkState() {
 }
 
 function displayTurtleBob() {
+    image(images.turtle, mouseX - turtle.width / 2, mouseY - turtle.height / 2, turtle.width, turtle.height);
+}
 
+function catchGoldFish() {
+    if (keyIsDown(32)) {
+        fishesArray = fishesArray.filter(fish => fish.fishType !== 'GoldFish');
+        state = 'turtle'
+    }
 }
 
 function displayFishOverpopulationMessage() {
@@ -145,5 +160,4 @@ function displayFishOverpopulationMessage() {
     textFont(messageFont);
     text(`Warning \n Current aquarium fish \n overpopulation is dangerous  `, 130, height / 2);
     pop();
-
 }
