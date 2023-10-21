@@ -11,9 +11,7 @@
  * Aquarium : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bcontent_type%3Aaudio%5D=0&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&filters%5Bis_editorial%5D=0&filters%5Bfree_collection%5D=0&k=aquarium&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=aquarium&get_facets=0&asset_id=76028972
  *
  * Font from DaFont : https://www.dafont.com/fr/gratina.font
- * 
  * */
-
 //Create a variable that keeps track of the state
 let state;
 //Create a variable that keeps track of number of fishes initially created
@@ -34,7 +32,6 @@ let turtle = {
     width: 300,
     height: 200,
 }
-
 // preload()
 // Preloads all images and fonts
 function preload() {
@@ -75,7 +72,6 @@ function createFish(x, y, image, name) {
     };
     return fish;
 }
-
 // draw()
 // Moves and displays our fish
 function draw() {
@@ -177,5 +173,3 @@ function displayFishOverpopulationMessage() {
     text(`Warning ! \n Current aquarium fish \n overpopulation is dangerous  `, 50, height / 2);
     pop();
 }
-
-
