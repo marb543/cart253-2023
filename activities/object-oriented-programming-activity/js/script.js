@@ -24,10 +24,17 @@ function setup() {
         let ball = new Ball(x, y);
         balls.push(ball);
     }
+    for (let i = 0; i < numBoxes; i++) {
+        console.log("b");
+        let x = random(0, width);
+        let y = random(-400, -100);
+        let box = new Box(x, y);
+        boxes.push(box);
+    }
 }
 
 function draw() {
-    background(0);
+    background(255, 190, 20);
 
     //paddle.keyPressed();
     paddle.display();
@@ -43,6 +50,7 @@ function draw() {
 
     for (let i = 0; i < boxes.length; i++) {
         let box = boxes[i];
+        console.log("A");
         if (box.active) {
             box.gravity(gravityForce);
             box.move();
