@@ -7,10 +7,6 @@ class Paddle {
         this.y = height - this.height / 2;
     }
 
-    // move() {
-    //     this.x = mouseX;
-    // }
-
     display() {
         push();
         fill(255);
@@ -20,15 +16,12 @@ class Paddle {
         pop();
     }
 
-    keyPressed() {
-        console.log("Pressed key 2");
-        if (keyCode === LEFT_ARROW) {
-            this.x = this.x - 1;
-            console.log("Pressed key left");
-        } else if (keyCode === RIGHT_ARROW) {
-            this.x = this.x + 1;
-            console.log("Pressed key right");
-        }
+    shiftLeft() {
+        this.x = constrain((this.x - 10), this.width / 2, width - this.width / 2);
+    }
+
+    shiftRight() {
+        this.x = constrain((this.x + 10), this.width / 2, width - this.width / 2);
     }
 
 }
