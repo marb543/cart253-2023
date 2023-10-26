@@ -7,8 +7,8 @@ class Box {
         this.vy = 0;
         this.ax = 0;
         this.ay = 0;
-        this.maxSpeed = 10;
-        this.size = 40;
+        this.maxSpeed = 30;
+        this.size = 80;
         this.active = true;
     }
 
@@ -48,10 +48,9 @@ class Box {
 
     display() {
         push();
-        fill(255, 50, 50);
+        fill(0, 153, 255);
         stroke(0);
-        square(30, 20, 55);
-        ellipse(this.x, this.y, this.size);
+        square(this.x, this.y, this.size);
         pop();
     }
 

@@ -9,7 +9,9 @@ let gravityForce = 0.0025;
 let paddle;
 
 let balls = [];
+let boxes = [];
 let numBalls = 10;
+let numBoxes = 5;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -22,6 +24,13 @@ function setup() {
         let ball = new Ball(x, y);
         balls.push(ball);
     }
+    for (let i = 0; i < numBoxes; i++) {
+        let x = random(0, width);
+        let y = random(-400, -100);
+        let box = new Box(x, y);
+        balls.push(box);
+    }
+
 }
 
 function draw() {
@@ -37,6 +46,15 @@ function draw() {
             ball.move();
             ball.bounce(paddle);
             ball.display();
+        }
+    }
+    for (let i = 0; i < boxes.length; i++) {
+        let box = boxes[i];
+        if (box.active) {
+            box.gravity(gravityForce);
+            box.move();
+            box.bounce(paddle);
+            box.display();
         }
     }
 }
