@@ -9,7 +9,9 @@ let gravityForce = 0.0025;
 let paddle;
 
 let balls = [];
+let boxes = [];
 let numBalls = 10;
+let numBoxes = 5;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -27,9 +29,8 @@ function setup() {
 function draw() {
     background(0);
 
-    paddle.move();
+    //paddle.keyPressed();
     paddle.display();
-
     for (let i = 0; i < balls.length; i++) {
         let ball = balls[i];
         if (ball.active) {
@@ -39,4 +40,20 @@ function draw() {
             ball.display();
         }
     }
+
+    for (let i = 0; i < boxes.length; i++) {
+        let box = boxes[i];
+        if (box.active) {
+            box.gravity(gravityForce);
+            box.move();
+            box.bounce(paddle);
+            box.display();
+        }
+    }
+
+}
+
+function keyPressed() {
+    console.log("Pressed key");
+    paddle.keyPressed();
 }
