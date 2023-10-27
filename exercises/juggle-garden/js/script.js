@@ -11,6 +11,8 @@ let gravityForce = 0.0025;
 let paddle;
 let balls = [];
 let boxes = [];
+let pointCount = 0;
+let pointsIncreasedThisFrame = false;
 let numBalls = 10;
 let numBoxes = 5;
 
@@ -47,9 +49,15 @@ function draw() {
             break;
         case ("game"):
             runGame();
+            if (!pointsIncreasedThisFrame) {
+                increasePoints();
+                pointsIncreasedThisFrame = true;
+            }
+            displayPointsCount();
+            checkIfGameOver();
             break;
         case ("game-over"):
-            gameOver();
+            displayEndMsg();
             break;
     }
 }
@@ -94,6 +102,39 @@ function displayMainMenu() {
     pop();
 }
 
+function displayPointsCount() {
+    push();
+    // Sets text size, strokeWeight, stroke
+    textSize(100);
+    strokeWeight(4);
+    stroke(34, 78, 5);
+    // Set color
+    fill(130, 210, 76);
+    textFont(font);
+    textAlign(CENTER, CENTER);
+    text(`Points: ${pointCount}`, width / 2, 150);
+    textSize(30);
+    fill(255);
+    push();
+}
+
+function displayEndMsg() {
+    push();
+    // Sets text size, strokeWeight, stroke
+    textSize(100);
+    strokeWeight(4);
+    stroke(34, 78, 5);
+    // Set color
+    fill(130, 210, 76);
+    textFont(font);
+    textAlign(CENTER, CENTER);
+    text(`GAME OVER`, width / 2, 250);
+    text(`You scored ${pointCount} points`, width / 2, 450);
+    textSize(30);
+    fill(255);
+    push();
+}
+
 function runGame() {
     movePaddle();
     paddle.display();
@@ -119,6 +160,32 @@ function runGame() {
 }
 
 function waitForMenuSelection() {
+    if (keyIsDown(49)) {
+        state = "game";
+    }
+}
 
+function increasePoints() {
+    for (let i = 0; i < balls.length; i++) {
+        let ball = balls[i];
+        if (ball.touchedPaddle) {
+            console.log("bounce 1");
+            pointCount++;
+        }
+    }
+    for (let i = 0; i < boxes.length; i++) {
+        let box = boxes[i];
+        if (box.active) {
+            console.log("bounce 2");
+            pointCount++;
+        }
+    }
+
+}
+
+function checkIfGameOver() {
+    if (balls.every(ball => !ball.active) && boxes.every(box => !box.active)) {
+        state = "game-over";
+    }
 }
 

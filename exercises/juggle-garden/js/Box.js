@@ -10,6 +10,7 @@ class Box {
         this.maxSpeed = 30;
         this.size = 80;
         this.active = true;
+        this.touchedPaddle = false;
     }
 
     gravity(force) {
@@ -43,6 +44,11 @@ class Box {
 
             this.vy = -this.vy;
             this.ay = 0;
+
+            console.log("bounce");
+
+            //Touched paddle
+            this.touchedPaddle = true;
         }
     }
 
