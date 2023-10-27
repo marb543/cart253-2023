@@ -11,7 +11,7 @@ let gravityForce = 0.0025;
 let paddle;
 let balls = [];
 let boxes = [];
-let pointCount = 0;
+let pointCount;
 let pointsIncreasedThisFrame = false;
 let numBalls = 10;
 let numBoxes = 5;
@@ -35,7 +35,7 @@ function setup() {
         let x = random(0, width);
         let y = random(-400, -100);
         let box = new Box(x, y);
-        balls.push(box);
+        boxes.push(box);
     }
 
 }
@@ -49,10 +49,7 @@ function draw() {
             break;
         case ("game"):
             runGame();
-            if (!pointsIncreasedThisFrame) {
-                increasePoints();
-                pointsIncreasedThisFrame = true;
-            }
+            increasePoints();
             displayPointsCount();
             checkIfGameOver();
             break;
@@ -115,7 +112,7 @@ function displayPointsCount() {
     text(`Points: ${pointCount}`, width / 2, 150);
     textSize(30);
     fill(255);
-    push();
+    pop(); // Balanced push() and pop() functions
 }
 
 function displayEndMsg() {
@@ -132,7 +129,7 @@ function displayEndMsg() {
     text(`You scored ${pointCount} points`, width / 2, 450);
     textSize(30);
     fill(255);
-    push();
+    pop(); // Balanced push() and pop() functions
 }
 
 function runGame() {
@@ -166,22 +163,41 @@ function waitForMenuSelection() {
 }
 
 function increasePoints() {
+    // for (let i = 0; i < balls.length; i++) {
+    //     let ball = balls[i];
+    //     if (ball.touchedPaddle) {
+    //         console.log("bounce 1");
+    //         pointCount++;
+    //     }
+    // }
+    // for (let i = 0; i < boxes.length; i++) {
+    //     let box = boxes[i];
+    //     if (box.active) {
+    //         console.log("bounce 2");
+    //         pointCount++;
+    //     }
+    // }
+    // pointCount = (balls.filter(ball => ball.touchedPaddle === true).length + boxes.filter(box => box.touchedPaddle === true).length);
+    console.log(balls);
+    console.log(boxes);
+    let totalPoints = 0;
+
     for (let i = 0; i < balls.length; i++) {
-        let ball = balls[i];
-        if (ball.touchedPaddle) {
-            console.log("bounce 1");
-            pointCount++;
-        }
-    }
-    for (let i = 0; i < boxes.length; i++) {
-        let box = boxes[i];
-        if (box.active) {
-            console.log("bounce 2");
-            pointCount++;
+        if (balls[i].touchedPaddle) {
+            totalPoints += balls[i].points;
         }
     }
 
+    for (let i = 0; i < boxes.length; i++) {
+        if (boxes[i].touchedPaddle) {
+            totalPoints += boxes[i].points;
+        }
+    }
+
+    pointCount = totalPoints;
+
 }
+
 
 function checkIfGameOver() {
     if (balls.every(ball => !ball.active) && boxes.every(box => !box.active)) {

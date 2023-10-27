@@ -10,6 +10,8 @@ class Ball {
         this.maxSpeed = 10;
         this.size = 40;
         this.active = true;
+        this.touchedPaddle = false;
+        this.points = 0;
     }
 
     gravity(force) {
@@ -43,6 +45,12 @@ class Ball {
 
             this.vy = -this.vy;
             this.ay = 0;
+
+            console.log("bounce 4");
+
+            //Touched paddle
+            this.touchedPaddle = true;
+            this.points++;
         }
     }
 

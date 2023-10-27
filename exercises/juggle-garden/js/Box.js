@@ -11,6 +11,7 @@ class Box {
         this.size = 80;
         this.active = true;
         this.touchedPaddle = false;
+        this.points = 0;
     }
 
     gravity(force) {
@@ -49,6 +50,7 @@ class Box {
 
             //Touched paddle
             this.touchedPaddle = true;
+            this.points++;
         }
     }
 
