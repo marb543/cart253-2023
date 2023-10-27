@@ -2,7 +2,7 @@
  * Activity : Object Oriented Programming
  * Maria Barba
  * 
- * Font from 
+ * Font from DaFont : https://www.dafont.com/gameplay.font
  */
 "use strict";
 let state = "menu";
@@ -15,16 +15,24 @@ let pointCount;
 let pointsIncreasedThisFrame = false;
 let numBalls = 10;
 let numBoxes = 5;
-
+/**
+ * preload()
+ * 
+ * This function loads the font
+ */
 function preload() {
     font = loadFont(`./assets/fonts/Gameplay.ttf`);
 }
-
+/**
+ * setup()
+ * This function sets up the canvas. It creates a paddle
+ * object. It also sets up the boxes array.
+ */
 function setup() {
     createCanvas(windowWidth, windowHeight);
-
+    //Create a paddle object
     paddle = new Paddle(300, 20);
-
+    //Loop through balls, boxes
     for (let i = 0; i < numBalls; i++) {
         let x = random(0, width);
         let y = random(-400, -100);
@@ -39,7 +47,10 @@ function setup() {
     }
 
 }
-
+/**
+ * draw()
+ * This function sets the state of the game.
+ */
 function draw() {
     background(0);
     switch (state) {
@@ -58,7 +69,10 @@ function draw() {
             break;
     }
 }
-
+/**
+ * movePaddle()
+ * This function checks if the player pressed the right or left arrow.
+ */
 function movePaddle() {
     if (keyIsDown(LEFT_ARROW)) {
         paddle.shiftLeft();
@@ -67,7 +81,10 @@ function movePaddle() {
         paddle.shiftRight();
     }
 }
-
+/**
+ * displayMainMenu()
+ * This function displays the main menu text.
+ */
 function displayMainMenu() {
     push();
     // Sets text size, strokeWeight, stroke
@@ -76,7 +93,6 @@ function displayMainMenu() {
     stroke(34, 78, 5);
     // Set color
     fill(130, 210, 76);
-    // Use a web font from Google Fonts
     textFont(font);
     textAlign(CENTER, CENTER);
     text(`    Juggle  \n    Simulator`, width / 2 - 80, 250);
@@ -89,7 +105,6 @@ function displayMainMenu() {
     stroke(34, 78, 5);
     // Set color
     fill(130, 210, 76);
-    // Use a web font from Google Fonts
     textFont(font);
     textAlign(CENTER, CENTER);
     text(`Press 1 To Play`, width / 2 - 80, 550);
@@ -98,7 +113,10 @@ function displayMainMenu() {
     fill(255);
     pop();
 }
-
+/**
+ * displayPointsCount()
+ * This function displays the text with the points count.
+ */
 function displayPointsCount() {
     push();
     // Sets text size, strokeWeight, stroke
@@ -112,9 +130,12 @@ function displayPointsCount() {
     text(`Points: ${pointCount}`, width / 2, 150);
     textSize(30);
     fill(255);
-    pop(); // Balanced push() and pop() functions
+    pop();
 }
-
+/**
+ * displayEndMsg()
+ * This function displays the text for the end message.
+ */
 function displayEndMsg() {
     push();
     // Sets text size, strokeWeight, stroke
@@ -129,9 +150,12 @@ function displayEndMsg() {
     text(`You scored ${pointCount} points`, width / 2, 450);
     textSize(30);
     fill(255);
-    pop(); // Balanced push() and pop() functions
+    pop();
 }
-
+/**
+ * runGame()
+ * This function makes the main game move by moving the paddle , moving the balls , and moving the box.
+ */
 function runGame() {
     movePaddle();
     paddle.display();
@@ -155,31 +179,20 @@ function runGame() {
         }
     }
 }
-
+/**
+ * waitForMenuSelection()
+ * This function checks if the user selected 1 on the keyboard to start the game
+ */
 function waitForMenuSelection() {
     if (keyIsDown(49)) {
         state = "game";
     }
 }
-
+/**
+ * increasePoints()
+ * This function increases the points, and updates the pointCount
+ */
 function increasePoints() {
-    // for (let i = 0; i < balls.length; i++) {
-    //     let ball = balls[i];
-    //     if (ball.touchedPaddle) {
-    //         console.log("bounce 1");
-    //         pointCount++;
-    //     }
-    // }
-    // for (let i = 0; i < boxes.length; i++) {
-    //     let box = boxes[i];
-    //     if (box.active) {
-    //         console.log("bounce 2");
-    //         pointCount++;
-    //     }
-    // }
-    // pointCount = (balls.filter(ball => ball.touchedPaddle === true).length + boxes.filter(box => box.touchedPaddle === true).length);
-    console.log(balls);
-    console.log(boxes);
     let totalPoints = 0;
 
     for (let i = 0; i < balls.length; i++) {
@@ -197,8 +210,10 @@ function increasePoints() {
     pointCount = totalPoints;
 
 }
-
-
+/**
+ * checkIfGameOver()
+ * This function checks if the game is over.
+ */
 function checkIfGameOver() {
     if (balls.every(ball => !ball.active) && boxes.every(box => !box.active)) {
         state = "game-over";
