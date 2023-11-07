@@ -67,7 +67,7 @@ let ChristmasTreeChoices = {
 */
 function preload() {
     room = loadImage(`./assets/images/background.jpeg`);
-    christmasTree.image = loadImage(`./assets/images/ChristmasTree.png`);
+    christmasTree.img = loadImage(`./assets/images/ChristmasTree.png`);
 
     bubblegumFont = loadFont(`./assets/fonts/BubblegumSans-Regular.ttf`);
 }
@@ -131,7 +131,13 @@ function simulation() {
  * This function displays the Christmas tree
  */
 function displayTree() {
-    //image(christmasTree.img, christmasTree.x, christmasTree.y, 100, 200);
+    push();
+    image(christmasTree.img, width / 2 - 150, 10, 300, 600);
+    drawingContext.shadowOffsetX = 2;
+    drawingContext.shadowOffsetY = -2;
+    drawingContext.shadowBlur = 8;
+    drawingContext.shadowColor = 'black';
+    pop();
 }
 /**
  *  displayControls()
@@ -144,20 +150,20 @@ function displayControls() {
     drawingContext.shadowOffsetY = -2;
     drawingContext.shadowBlur = 8;
     drawingContext.shadowColor = 'black';
-    textSize(25);
+    textSize(20);
     strokeWeight(4);
     noStroke();
     //Create rectangle behind the text
     fill(0, 153, 255);
     // Draw a rectangle 
-    rect(50, 50, width - 80, 100, 10);
+    rect(50, 50, 300, 400, 10);
     //Set color
     stroke(0);
     fill(255, 255, 255);
     //Set text font using the saved font
     textFont(bubblegumFont);
     textAlign(CENTER, CENTER);
-    text(`Select the choice of toys you want to decorate the tree with !  \n  (Hold down key 1 , 2 or 3 on your keyboard )`, width / 2, 100,);
+    text(`Select the choice of toys you  \n  want to decorate the tree with !  \n  (Hold down key 1 , 2 or 3 )`, 200, 110,);
     pop();
     //Draw the rectangle options for gardening
     push();
