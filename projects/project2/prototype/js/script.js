@@ -281,7 +281,51 @@ function setupClock() {
     cx = 200;
     cy = 300;
 }
+/**
+ * verifyUserChoice()
+ * 
+ * This function checks for the chosen value from keyboard by the user.
+ * According if the user clicks 1 , 2 or 3 , it will display the according decoration.
+ */
+function verifyUserChoice() {
+    if (keyIsPressed) {
+        switch (key) {
+            case '1':
+                decorateStar();
+                break;
+            case '2':
+                decorateToys();
+                break;
+            case '3':
+                decorateGifts();
+                break;
+        }
+    }
+}
+/**
+ * decorateStar()
+ * 
+ * This function decorates the Christmas tree with a star decoration on top
+ */
+function decorateStar() {
 
+}
+/**
+ * decorateToys()
+ * 
+ * This function decorates the Christmas tree with the toys decorations
+ */
+function decorateToys() {
+
+}
+/**
+ * decorateGifts()
+ * 
+ * This function decorates the Christmas tree  with gifts under the tree
+ */
+function decorateGifts() {
+
+}
 /**
  * title()
  * 
