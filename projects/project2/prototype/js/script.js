@@ -27,6 +27,12 @@ let mouseCoord;
 let state = `title`;
 //Create an array which will store the array of objects, and will be filled with images at the preload function
 let treeDecorations = [];
+//Create an array to store options for tree stars
+let treeStars = [];
+//Create an array to store options for tree toys
+let treeToys = [];
+//Create an array to store options for types of gifts
+let treeGifts = [];
 //Create variables to store the values of the clock
 let cx, cy;
 let secondsRadius;
@@ -71,6 +77,17 @@ function preload() {
     room = loadImage(`./assets/images/background.jpeg`);
     christmasTree.img = loadImage(`./assets/images/ChristmasTree.png`);
     bubblegumFont = loadFont(`./assets/fonts/BubblegumSans-Regular.ttf`);
+    //Preload images for tree stars
+    treeStars[0] = loadImage(`./assets/images/treeStarBlue.png`);
+    treeStars[1] = loadImage(`./assets/images/treeStarRed.png`);
+    //Preload images for gift types
+    treeGifts[0] = loadImage(`./assets/images/giftSet1.png`);
+    treeGifts[1] = loadImage(`./assets/images/giftSet2.png`);
+    treeGifts[2] = loadImage(`./assets/images/giftSet3.png`);
+    //Preload images for tree types
+    treeToys[0] = loadImage(`./assets/images/christmasToyFlower.png`);
+    treeToys[1] = loadImage(`./assets/images/christmasToyRed.png`);
+    treeToys[2] = loadImage(`./assets/images/christmasToyYellow.png`);
 }
 /**
  * setup()
