@@ -1,3 +1,7 @@
-# Template p5 project
+# Project 2 Prototype
 
-This is the README file for the entire project. For more official projects you should write information here about the nature of the project, your name, any special explanations of how the project works, etc.
+This is a prototype of my second project. My project will be based on a Christmas-themed game. My 
+second project will include multiple mini games, and will begin in a Christams-themed room. The player 
+can then click on various objects within the room. Clicking on abjects will activate a separate mini-game. In the case of my mini-game, the user will have to decorate a Christmas tree as quickly 
+as possible.
+
