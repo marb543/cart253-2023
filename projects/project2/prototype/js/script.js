@@ -25,6 +25,12 @@ let mouseCoord;
 let state = `title`;
 //Create an array which will store the array of objects, and will be filled with images at the preload function
 let treeDecorations = [];
+//Create a variable to store the values of the clock
+let cx, cy;
+let secondsRadius;
+let minutesRadius;
+let hoursRadius;
+let clockDiameter;
 //Create a variable which stores a Christmas Tree variable
 let christmasTree = {
     x: 340,
@@ -134,7 +140,6 @@ function displayTree() {
  */
 function displayControls() {
     push();
-
     drawingContext.shadowOffsetX = 2;
     drawingContext.shadowOffsetY = -2;
     drawingContext.shadowBlur = 8;
@@ -188,6 +193,7 @@ function displayTimer() {
 
 }
 
+
 /**
  * title()
  * 
@@ -202,6 +208,38 @@ function title() {
     textFont(bubblegumFont);
     textAlign(CENTER, CENTER);
     text("Decorate the Christmas Tree before the timer runs out ! ", width / 2, height / 2);
+    pop();
+}
+/**
+ * title()
+ * 
+ * This function sets the text for the game over state
+ */
+function gameOver() {
+    push();
+    textSize(50);
+    strokeWeight(4);
+    stroke(250);
+    fill(200, 100, 100);
+    textFont(bubblegumFont);
+    textAlign(CENTER, CENTER);
+    text(" Game Over , you didn't decorate the Christams tree before the timer ran out ! ", width / 2, height / 2);
+    pop();
+}
+/**
+ * title()
+ * 
+ * This function sets the text for the game won state
+ */
+function gameWon() {
+    push();
+    textSize(50);
+    strokeWeight(4);
+    stroke(250);
+    fill(200, 100, 100);
+    textFont(bubblegumFont);
+    textAlign(CENTER, CENTER);
+    text(" You decorated the Christames tree Before the timer ran out !", width / 2, height / 2);
     pop();
 }
 /**
