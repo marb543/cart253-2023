@@ -4,7 +4,8 @@
  * 
  * This is a prototype of a part of my Christmas-themed game for my second project. In this prototype
  * the player can decorate a Christmas tree point-click style. The goal of this mini-game is to decorate 
- * the Christams tree as quickly as possible.
+ * the Christams tree as quickly as possible before the left-hand timer runs out. If the timer runs out
+ * before the player decorates the game, the player wins, otherwise the player loses.
  * 
  * Images from Adobe Stock :
  * ------------------------
@@ -81,6 +82,31 @@ function setup() {
     setupClock();
 }
 /**
+ * createTreeToy()
+ * 
+ * This function allows the user to create a Christmas Tree toy that will decorate the Christams Tree
+ */
+function createTreeToy(x, y, image, name) {
+    let toy = {
+        x: x,
+        y: y,
+        width: 20,
+        height: 20,
+        img: image,
+    };
+    return toy;
+}
+/**
+ * fillChristmasTreeToys()
+ * Creates an array of Christmas Tree Toys
+ */
+function fillChristmasTreeToys(toyType) {
+    for (let i = 0; i < 6; i++) {
+        let newChristmasToy = createTreeToy(random(0, width), random(0, height), toyType);
+        treeDecorations.push(newChristmasToy);
+    }
+}
+/**
  * draw()
  * 
  * The draw function sets the background image , and checks if a certain state has been reached. If a 
@@ -100,19 +126,7 @@ function draw() {
         gameWon();
     }
 }
-/**
- * isOffscreen()
- * 
- * This function stores the logic behind checking when an object is outside the bounds of the screen
- */
-function isOffscreen(obj) {
-    if (obj.x < 0 || obj.x > width || obj.y < 0 || obj.y > height) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
+
 /**
  * simulation()
  * 
