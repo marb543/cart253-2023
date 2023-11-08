@@ -42,7 +42,11 @@ let clockDiameter;
 //Keeps track of number of Chirstmas toys
 let n;
 //Keeps track if the Christmas tree was decorated or not 
-let decoratedTree = false;
+let decoratedTree = {
+    star: false,
+    toys: false,
+    gifts: false
+};
 //Create a variable to keep track of the current minute
 let minuteVar;
 //Create a variable which stores a Christmas Tree variable
@@ -103,6 +107,7 @@ function preload() {
 function setup() {
     createCanvas(1200, 600);
     setupClock();
+    fillChristmasTreeToys(2);
     console.log(width);
     console.log(height);
 }
@@ -126,9 +131,13 @@ function createTreeToy(x, y, image, name) {
  * Creates an array of Christmas Tree Toys
  */
 function fillChristmasTreeToys(toyType) {
+    let treeX = width / 2 - 140; // Left-most X coordinate of the tree
+    let treeY = height / 3;      // Top Y coordinate of the tree
+    let treeWidth = height / 2;  // Width of the tree
+    let treeHeight = width / 3;  // Height of the tree
     treeDecorations = []; // Clear the existing decorations
-    for (let i = 0; i < 6; i++) {
-        let newChristmasToy = createTreeToy(random(0, width), random(0, height), treeToys[toyType]);
+    for (let i = 0; i < 20; i++) {
+        let newChristmasToy = createTreeToy(random(treeX + 80, treeX + 190), random(treeY + 60, treeY + 300), treeToys[toyType]);
         treeDecorations.push(newChristmasToy);
     }
 }
@@ -165,7 +174,10 @@ function simulation() {
     displayControls();
     //Display Timer
     displayTimer();
-    checkUserChoice();
+    //checkUserChoice();
+    checkForStar();
+    checkForGifts();
+    checkForToys();
     checkForTime();
 }
 /**
@@ -206,7 +218,7 @@ function displayControls() {
     //Set text font using the saved font
     textFont(bubblegumFont);
     textAlign(CENTER, CENTER);
-    text(`Select the choice of toys you  \n  want to decorate the tree with !  \n  (Hold down key 1 , 2 or 3 )`, 200, 110,);
+    text(`Select the choice of toys you  \n  want to decorate the tree with !  \n  (Click with mouse)`, 200, 110,);
     pop();
     //Draw the rectangle options for gardening
     push();
@@ -240,9 +252,9 @@ function displayControls() {
     stroke(0);
     fill(255);
     textFont(bubblegumFont);
-    text(`1. Star `, width / 4 - 25, rectY + 30);
-    text(`2. Tree Toys `, width / 2 - 35, rectY + 30);
-    text(`3. Gifts `, width / 4 * 3 - 25, rectY + 30);
+    text(` Star `, width / 4 - 25, rectY + 30);
+    text(` Tree Toys `, width / 2 - 35, rectY + 30);
+    text(` Gifts `, width / 4 * 3 - 25, rectY + 30);
     pop();
 }
 /**
@@ -306,35 +318,34 @@ function setupClock() {
     cx = 200;
     cy = 300;
 }
-/**
- * verifyUserChoice()
- * 
- * This function checks for the chosen value from keyboard by the user.
- * According if the user clicks 1 , 2 or 3 , it will display the according decoration.
- */
-function checkUserChoice() {
-    switch (key) {
-        case '1':
-            if (n === undefined) {
-                n = floor(random(2));
-            }
-            decorateStar(n);
-            break;
-        case '2':
-            if (n === undefined) {
-                n = floor(random(3));
-            }
-            fillChristmasTreeToys(n);
-            decorateToys();
-            break;
-        case '3':
-            if (n === undefined) {
-                n = floor(random(3));
-            }
-            decorateGifts(n);
-            break;
+function checkForStar() {
+    if (true) {
+        if (n === undefined) {
+            n = floor(random(2));
+        }
+        decorateStar(n);
+        decoratedTree.star = true;
     }
 
+
+}
+function checkForToys() {
+    if (true) {
+        if (n === undefined) {
+            n = floor(random(3));
+        }
+        decorateToys();
+    }
+    decoratedTree.toys = true;
+}
+function checkForGifts() {
+    if (true) {
+        if (n === undefined) {
+            n = floor(random(3));
+        }
+        decorateGifts(n);
+    }
+    decoratedTree.gifts = true;
 }
 /**
  * decorateStar()
@@ -346,10 +357,11 @@ function decorateStar(n) {
     drawingContext.shadowOffsetY = -2;
     drawingContext.shadowBlur = 8;
     drawingContext.shadowColor = 'black';
-    image(treeStars[n], width / 2 - 60, height / 3 - 50, 150, 150);
+    image(treeStars[n], width / 2 - 70, height / 3 - 50, 150, 150);
+    //decoratedTree.star = true;
 }
 /**
- * decorateStar()
+ * decorateToys()
  * 
  * This function decorates the Christmas tree with tree toys
  */
@@ -361,10 +373,10 @@ function decorateToys() {
         drawingContext.shadowColor = 'black';
         image(treeDecorations[i].img, treeDecorations[i].x, treeDecorations[i].y, treeDecorations[i].width, treeDecorations[i].height);
     }
-
+    //decoratedTree.toys = true;
 }
 /**
- * decorateStar()
+ * decorateGifts()
  * 
  * This function decorates the Christmas tree with a present on the chair
  */
@@ -429,9 +441,9 @@ function gameWon() {
  * This function checks if the player time has expired (after 1 minute), and if the player was able to decorate the christmas tree before 1 minute
  */
 function checkForTime() {
-    if (timeOver() && !decoratedTree) {
+    if (timeOver() && !(decoratedTree.star && decoratedTree.toys && decoratedTree.gifts)) {
         state = "gameOver";
-    } else if (timeOver() && decoratedTree) {
+    } else if (timeOver() && (decoratedTree.star && decoratedTree.toys && decoratedTree.gifts)) {
         state = "gameWon";
     }
 }
