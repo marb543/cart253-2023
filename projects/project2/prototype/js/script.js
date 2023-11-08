@@ -45,7 +45,7 @@ let decoratedTree = {
     gifts: false
 };
 //Create a variable to keep track of the current minute
-let minuteVar;
+let time;
 //Create a variable which stores a Christmas Tree variable
 let christmasTree = {
     x: 340,
@@ -106,8 +106,10 @@ function setup() {
     createCanvas(1200, 600);
     //Call the setupClock function
     setupClock();
-    //Create an array of Christmas tree toyss
+    //Create an array of Christmas tree toys
     fillChristmasTreeToys(2);
+    //Setup time
+    time = millis();
 }
 /**
  * createTreeToy()
@@ -216,6 +218,8 @@ function displayControls() {
     textFont(bubblegumFont);
     textAlign(CENTER, CENTER);
     text(`Select the choice of toys you  \n  want to decorate the tree with !  \n  (Select 1 , 2 ,3 on keyboard)`, 200, 110,);
+    fill(255, 0, 0);
+    text(`You have 1 minute !`, 200, 160,);
     pop();
     //Draw the rectangle options for gardening
     push();
@@ -255,8 +259,6 @@ function displayControls() {
  * This function displays the timer that runs during the simulation
  */
 function displayTimer() {
-    //Initialize minute
-    minuteVar = minute();
     push();
     // Draw the clock background
     noStroke();
@@ -311,7 +313,7 @@ function setupClock() {
  * This function checks if the user has clicked on 1 
  */
 function addStar() {
-    if (key == '1') {
+    if (key === '1') {
         decoratedTree.star = true;
     }
 }
@@ -334,8 +336,8 @@ function checkForStar() {
  * Checks if the user has clicked on 2
  */
 function addToys() {
-    if (key == '2') {
-        decoratedTree.toy = true;
+    if (key === '2') {
+        decoratedTree.toys = true;
     }
 }
 /**
@@ -344,13 +346,12 @@ function addToys() {
  * If the user has selected toys,display the toys
  */
 function checkForToys() {
-    if (decoratedTree.toy) {
+    if (decoratedTree.toys) {
         if (n === undefined) {
             n = floor(random(3));
         }
         decorateToys();
     }
-    decoratedTree.toys = true;
 }
 /**
  * addGifts()
@@ -358,8 +359,8 @@ function checkForToys() {
  * Checks if the user has clicked 3
  */
 function addGifts() {
-    if (key == '3') {
-        decoratedTree.gift = true;
+    if (key === '3') {
+        decoratedTree.gifts = true;
     }
 }
 /**
@@ -368,7 +369,7 @@ function addGifts() {
  * Checks if the user has selcted gifts,display the gifts
  */
 function checkForGifts() {
-    if (decoratedTree.gift) {
+    if (decoratedTree.gifts) {
         if (n === undefined) {
             n = floor(0);
         }
@@ -430,7 +431,7 @@ function gameOver() {
     fill(200, 100, 100);
     textFont(bubblegumFont);
     textAlign(CENTER, CENTER);
-    text(" Game Over , you didn't decorate the Christams tree before the timer ran out ! ", width / 2, height / 2);
+    text(" Game Over !\n You didn't decorate the Christams tree before the timer ran out ! ", width / 2, height / 2);
     pop();
 }
 /**
@@ -455,9 +456,9 @@ function gameWon() {
  * This function checks if the player time has expired (after 1 minute), and if the player was able to decorate the christmas tree before 1 minute
  */
 function checkForTime() {
-    if (timeOver() && !(decoratedTree.star && decoratedTree.toys && decoratedTree.gifts)) {
+    if (millis() - time >= 60000 && !(decoratedTree.star && decoratedTree.toys && decoratedTree.gifts)) {
         state = "gameOver";
-    } else if (timeOver() && (decoratedTree.star && decoratedTree.toys && decoratedTree.gifts)) {
+    } else if (millis() - time >= 60000 && (decoratedTree.star && decoratedTree.toys && decoratedTree.gifts)) {
         state = "gameWon";
     }
 }
@@ -469,7 +470,6 @@ function checkForTime() {
  */
 function timeOver() {
     if (minute() !== minuteVar) {
-        console.log("aa");
         return true;
     } else {
         return false;
