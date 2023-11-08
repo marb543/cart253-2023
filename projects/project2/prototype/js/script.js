@@ -39,7 +39,12 @@ let secondsRadius;
 let minutesRadius;
 let hoursRadius;
 let clockDiameter;
+//Keeps track of number of Chirstmas toys
 let n;
+//Keeps track if the Christmas tree was decorated or not 
+let decoratedTree = false;
+//Create a variable to keep track of the current minute
+let minuteVar;
 //Create a variable which stores a Christmas Tree variable
 let christmasTree = {
     x: 340,
@@ -96,8 +101,10 @@ function preload() {
  * Setup canvas and tcalls the setupObjects function
 */
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(1200, 600);
     setupClock();
+    console.log(width);
+    console.log(height);
 }
 /**
  * createTreeToy()
@@ -119,6 +126,7 @@ function createTreeToy(x, y, image, name) {
  * Creates an array of Christmas Tree Toys
  */
 function fillChristmasTreeToys(toyType) {
+    treeDecorations = []; // Clear the existing decorations
     for (let i = 0; i < 6; i++) {
         let newChristmasToy = createTreeToy(random(0, width), random(0, height), treeToys[toyType]);
         treeDecorations.push(newChristmasToy);
@@ -158,6 +166,7 @@ function simulation() {
     //Display Timer
     displayTimer();
     checkUserChoice();
+    checkForTime();
 }
 /**
  *  displayTree()
@@ -166,7 +175,7 @@ function simulation() {
  */
 function displayTree() {
     push();
-    image(christmasTree.img, width / 2 - 150, 10, 300, 600);
+    image(christmasTree.img, width / 2 - 140, height / 3, height / 2, width / 3);
     drawingContext.shadowOffsetX = 2;
     drawingContext.shadowOffsetY = -2;
     drawingContext.shadowBlur = 8;
@@ -190,7 +199,7 @@ function displayControls() {
     //Create rectangle behind the text
     fill(71, 44, 175);
     // Draw a rectangle 
-    rect(50, 50, 300, 400, 10);
+    rect(50, 50, width / 4, height - 150, 10);
     //Set color
     stroke(0);
     fill(255, 255, 255);
@@ -205,12 +214,24 @@ function displayControls() {
     drawingContext.shadowOffsetY = -2;
     drawingContext.shadowBlur = 8;
     drawingContext.shadowColor = 'black';
-    fill(204, 102, 255);
-    rect(ChristmasTreeChoices.star.x, ChristmasTreeChoices.star.y, ChristmasTreeChoices.star.w, ChristmasTreeChoices.star.h, 30);
-    fill(204, 0, 0);
-    rect(ChristmasTreeChoices.toys.x, ChristmasTreeChoices.toys.y, ChristmasTreeChoices.toys.w, ChristmasTreeChoices.toys.h, 30);
+
+    let rectWidth = ChristmasTreeChoices.star.w; // Set the width for each rectangle
+    let rectHeight = ChristmasTreeChoices.star.h; // Set the height for the rectangles
+    let rectY = height - 70; // Set the Y-coordinate for the rectangles
+
+
+    fill(204, 0, 0); // Red
+    rect(width / 4 - rectWidth / 2, rectY, rectWidth, rectHeight, 30);
+    fill(255);
+
+    // Draw the second rectangle (toys)
     fill(51, 204, 204);
-    rect(ChristmasTreeChoices.gift.x, ChristmasTreeChoices.gift.y, ChristmasTreeChoices.gift.w, ChristmasTreeChoices.gift.h, 30);
+    rect(width / 2 - rectWidth / 2, rectY, rectWidth, rectHeight, 30);
+    fill(255);
+    // Draw the third rectangle (gift)
+    fill(204, 102, 255); // Purple
+    rect(width / 4 * 3 - rectWidth / 2, rectY, rectWidth, rectHeight, 30);
+    fill(255);
     pop();
     //Draw the text options for gardening
     push();
@@ -219,9 +240,9 @@ function displayControls() {
     stroke(0);
     fill(255);
     textFont(bubblegumFont);
-    text(`1. Star `, width / 2 - 250, 550);
-    text(`2. Tree Toys `, width / 2 - 60, 550);
-    text(`3. Gifts `, width / 2 + 150, 550);
+    text(`1. Star `, width / 4 - 25, rectY + 30);
+    text(`2. Tree Toys `, width / 2 - 35, rectY + 30);
+    text(`3. Gifts `, width / 4 * 3 - 25, rectY + 30);
     pop();
 }
 /**
@@ -230,6 +251,8 @@ function displayControls() {
  * This function displays the timer that runs during the simulation
  */
 function displayTimer() {
+    //Initialize minute
+    minuteVar = minute();
     push();
     //Add shadows to shapes 
     drawingContext.shadowOffsetX = 2;
@@ -323,7 +346,7 @@ function decorateStar(n) {
     drawingContext.shadowOffsetY = -2;
     drawingContext.shadowBlur = 8;
     drawingContext.shadowColor = 'black';
-    image(treeStars[n], width / 2 - 36, 18, 70, 70);
+    image(treeStars[n], width / 2 - 60, height / 3 - 50, 150, 150);
 }
 /**
  * decorateStar()
@@ -399,6 +422,32 @@ function gameWon() {
     textAlign(CENTER, CENTER);
     text(" You decorated the Christames tree Before the timer ran out !", width / 2, height / 2);
     pop();
+}
+/**
+ * checkForTime()
+ * 
+ * This function checks if the player time has expired (after 1 minute), and if the player was able to decorate the christmas tree before 1 minute
+ */
+function checkForTime() {
+    if (timeOver() && !decoratedTree) {
+        state = "gameOver";
+    } else if (timeOver() && decoratedTree) {
+        state = "gameWon";
+    }
+}
+/**
+ * timeOver()
+ * 
+ * This function checks if it has been 1 minute since the player started decorating the tree.
+ * Returns a boolean value.
+ */
+function timeOver() {
+    if (minute() !== minuteVar) {
+        console.log("aa");
+        return true;
+    } else {
+        return false;
+    }
 }
 /**
  * mousePressed()
