@@ -14,6 +14,8 @@
  * Christmas Tree Toys/Presents : https://stock.adobe.com/ca_fr/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&order=relevance&safe_search=1&k=Christmas+tree+decorations+cartoon&limit=100&search_page=1&search_type=usertyped&acp=&aco=Christmas+tree+decorations+cartoon&get_facets=0&asset_id=379224188
  * 
  * I modified the code example from this page where I created a clock in JavaScript: https://p5js.org/examples/input-clock.html
+ * 
+ * The font used for this exercise is from Google fonts : https://fonts.google.com/specimen/Bubblegum+Sans?query=bubb
  */
 
 "use strict";
@@ -229,7 +231,6 @@ function displayControls() {
     let rectWidth = ChristmasTreeChoices.star.w; // Set the width for each rectangle
     let rectHeight = ChristmasTreeChoices.star.h; // Set the height for the rectangles
     let rectY = height - 70; // Set the Y-coordinate for the rectangles
-
 
     fill(204, 0, 0); // Red
     rect(width / 4 - rectWidth / 2, rectY, rectWidth, rectHeight, 30);
