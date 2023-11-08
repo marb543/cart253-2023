@@ -176,8 +176,11 @@ function simulation() {
     displayTimer();
     //checkUserChoice();
     checkForStar();
+    addStar();
     checkForGifts();
+    addGifts();
     checkForToys();
+    addToys();
     checkForTime();
 }
 /**
@@ -318,19 +321,28 @@ function setupClock() {
     cx = 200;
     cy = 300;
 }
+function addStar() {
+    if (key == '1') {
+        decoratedTree.star = true;
+    }
+}
 function checkForStar() {
-    if (true) {
+    if (decoratedTree.star) {
         if (n === undefined) {
             n = floor(random(2));
         }
-        decorateStar(n);
-        decoratedTree.star = true;
+        decorateStar(0);
     }
 
 
 }
+function addToys() {
+    if (key == '2') {
+        decoratedTree.toy = true;
+    }
+}
 function checkForToys() {
-    if (true) {
+    if (decoratedTree.toy) {
         if (n === undefined) {
             n = floor(random(3));
         }
@@ -338,14 +350,18 @@ function checkForToys() {
     }
     decoratedTree.toys = true;
 }
-function checkForGifts() {
-    if (true) {
-        if (n === undefined) {
-            n = floor(random(3));
-        }
-        decorateGifts(n);
+function addGifts() {
+    if (key == '3') {
+        decoratedTree.gift = true;
     }
-    decoratedTree.gifts = true;
+}
+function checkForGifts() {
+    if (decoratedTree.gift) {
+        if (n === undefined) {
+            n = floor(0);
+        }
+        decorateGifts(0);
+    }
 }
 /**
  * decorateStar()
@@ -445,6 +461,7 @@ function checkForTime() {
         state = "gameOver";
     } else if (timeOver() && (decoratedTree.star && decoratedTree.toys && decoratedTree.gifts)) {
         state = "gameWon";
+        console.log("game won");
     }
 }
 /**
