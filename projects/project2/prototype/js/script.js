@@ -37,7 +37,10 @@ let secondsRadius;
 let minutesRadius;
 let hoursRadius;
 let clockDiameter;
-let n;
+//Create a variable to keep track of random values of n
+let starRand = 0;
+let toyRand = 0;
+let giftRand = 0;
 //Keeps track if the Christmas tree was decorated or not 
 let decoratedTree = {
     star: false,
@@ -107,7 +110,7 @@ function setup() {
     //Call the setupClock function
     setupClock();
     //Create an array of Christmas tree toys
-    fillChristmasTreeToys(2);
+    fillChristmasTreeToys(toyRand);
     //Setup time
     time = millis();
 }
@@ -324,10 +327,7 @@ function addStar() {
  */
 function checkForStar() {
     if (decoratedTree.star) {
-        if (n === undefined) {
-            n = floor(random(2));
-        }
-        decorateStar(0);
+        decorateStar(starRand);
     }
 }
 /**
@@ -346,10 +346,8 @@ function addToys() {
  * If the user has selected toys,display the toys
  */
 function checkForToys() {
+
     if (decoratedTree.toys) {
-        if (n === undefined) {
-            n = floor(random(3));
-        }
         decorateToys();
     }
 }
@@ -370,10 +368,7 @@ function addGifts() {
  */
 function checkForGifts() {
     if (decoratedTree.gifts) {
-        if (n === undefined) {
-            n = floor(0);
-        }
-        decorateGifts(0);
+        decorateGifts(giftRand);
     }
 }
 /**
@@ -483,5 +478,25 @@ function timeOver() {
 function mousePressed() {
     if (state == `title`) {
         state = `simulation`;
+    }
+}
+/**
+ * keyPressed()
+ * 
+ * This function makes sure that everytime a new key is pressed a new random value is set
+ */
+function keyPressed() {
+    if (key === '1') {
+        starRand = floor(random(2));
+        decoratedTree.star = false;
+    }
+    else if (key === '2') {
+        toyRand = floor(random(3));
+        decoratedTree.toys = false;
+    }
+    else if (key === '3') {
+        giftRand = floor(random(3));
+        decoratedTree.gifts = false;
+
     }
 }
