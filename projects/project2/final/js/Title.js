@@ -11,14 +11,14 @@ class Title extends State {
     // constructor()
     // Acts as the setup() of the state, called when the
     // state is created. Sets the title of the program.
-    constructor() {
+    constructor(backgroundImage) {
         // We should always call the superclass constructor
         // even if it doesn't do anything right now. It might
         // later!
         super();
 
         // Set our property determining the title of the simulation
-        this.titleString = "Life: A Metaphor";
+        this.backgroundImage = backgroundImage;
     }
 
     // draw()
@@ -44,9 +44,10 @@ class Title extends State {
     displayTitle() {
         push();
         fill(255);
-        text(this.titleString, width / 2, height / 2);
+        image(this.backgroundImage, 0, 0)
         pop();
     }
+
 
     // keyPressed()
     // Called by the main script when a key is pressed! Switches to the Animation state

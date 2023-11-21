@@ -504,16 +504,35 @@
 
 // A variable to store the currently active state object (starts empty)
 let currentState;
+let mainMenuImage;
+
+function preload() {
+    // room = loadImage(`./assets/images/background.jpeg`);
+    // christmasTree.img = loadImage(`./assets/images/ChristmasTree.png`);
+    // bubblegumFont = loadFont(`./assets/fonts/BubblegumSans-Regular.ttf`);
+    // //Preload images for tree stars
+    // treeStars[0] = loadImage(`./assets/images/treeStarBlue.png`);
+    // treeStars[1] = loadImage(`./assets/images/treeStarRed.png`);
+    // //Preload images for gift types
+    // treeGifts[0] = loadImage(`./assets/images/giftSet1.png`);
+    // treeGifts[1] = loadImage(`./assets/images/giftSet2.png`);
+    // treeGifts[2] = loadImage(`./assets/images/giftSet3.png`);
+    // //Preload images for tree types
+    // treeToys[0] = loadImage(`./assets/images/christmasToyFlower.png`);
+    // treeToys[1] = loadImage(`./assets/images/christmasToyRed.png`);
+    // treeToys[2] = loadImage(`./assets/images/christmasToyYellow.png`);
+    mainMenuImage = loadImage(`./assets/images/title.png`);
+}
 
 // setup()
 // Create the canvas, start our program in the title state, set default text style
 function setup() {
-    createCanvas(500, 500);
+    createCanvas(900, 600);
 
     // We can set the current state by creating a NEW object from the class
     // representing that state! This will call its constructor() which will work
     // like the `setup()` for that state.
-    currentState = new Title();
+    currentState = new Title(mainMenuImage);
 
     // Text settings
     textSize(32);
