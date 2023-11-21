@@ -505,6 +505,7 @@
 // A variable to store the currently active state object (starts empty)
 let currentState;
 let mainMenuImage;
+let typewriter;
 
 function preload() {
     // room = loadImage(`./assets/images/background.jpeg`);
@@ -533,7 +534,6 @@ function setup() {
     // representing that state! This will call its constructor() which will work
     // like the `setup()` for that state.
     currentState = new Title(mainMenuImage);
-
     // Text settings
     textSize(32);
     textAlign(CENTER, CENTER);
@@ -546,6 +546,7 @@ function draw() {
     // If the current state is Animation this will call the Animation class draw()
     // if the current state is Ending this will call the Ending class draw()
     currentState.draw();
+
 }
 
 // keyPressed()
