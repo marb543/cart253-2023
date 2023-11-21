@@ -26,7 +26,6 @@ class Typewriter {
     // The main method. Displays the message at the specified position using
     // a typewriter effect
     typewrite(message, x, y) {
-        console.log("Inside type");
         // First reset the typewriter for safety
         this.reset();
         // Set the text we're going to display
@@ -62,7 +61,7 @@ class Typewriter {
         fill(255);
         textFont(`Courier`);
         textSize(18);
-        textAlign(LEFT, BOTTOM);
+        textAlign(LEFT, TOP);
         text(this.displayText, this.x, this.y);
         pop();
     }

@@ -11,14 +11,15 @@ class Title extends State {
     // constructor()
     // Acts as the setup() of the state, called when the
     // state is created. Sets the title of the program.
-    constructor(backgroundImage) {
+    constructor(imagesArray) {
         // We should always call the superclass constructor
         // even if it doesn't do anything right now. It might
         // later!
         super();
-
+        this.imagesArray = imagesArray;
         // Set our property determining the title of the simulation
-        this.backgroundImage = backgroundImage;
+        this.backgroundImage = imagesArray[0];
+        //this.myImage = myImage;
     }
 
     // draw()
@@ -68,6 +69,6 @@ class Title extends State {
         // NOTE that creating a new Animation object like this automatically calls its
         // constructor(), which therefore acts like setup(), called once when the state
         // starts.
-        currentState = new Introduction();
+        currentState = new Introduction(imagesArray);
     }
 }

@@ -506,6 +506,7 @@
 let currentState;
 let mainMenuImage;
 let typewriter;
+let imagesArray = [];
 
 function preload() {
     // room = loadImage(`./assets/images/background.jpeg`);
@@ -522,7 +523,9 @@ function preload() {
     // treeToys[0] = loadImage(`./assets/images/christmasToyFlower.png`);
     // treeToys[1] = loadImage(`./assets/images/christmasToyRed.png`);
     // treeToys[2] = loadImage(`./assets/images/christmasToyYellow.png`);
-    mainMenuImage = loadImage(`./assets/images/title.png`);
+    imagesArray.push(loadImage(`./assets/images/title.png`));
+    imagesArray.push(loadImage(`./assets/images/northPole.png`));
+    // mainMenuImage = loadImage(`./assets/images/title.png`);
 }
 
 // setup()
@@ -533,7 +536,7 @@ function setup() {
     // We can set the current state by creating a NEW object from the class
     // representing that state! This will call its constructor() which will work
     // like the `setup()` for that state.
-    currentState = new Title(mainMenuImage);
+    currentState = new Title(imagesArray);
     // Text settings
     textSize(32);
     textAlign(CENTER, CENTER);
