@@ -262,11 +262,12 @@ class DecorateTree extends State {
     // Method to check if the player has run out of time
     checkForTime() {
         const elapsedTime = millis() - this.time;
-        if (elapsedTime >= 60000) {
+        if (elapsedTime >= 5000) {
             if (this.decoratedTree.star && this.decoratedTree.toys && this.decoratedTree.gifts) {
-                this.state = 'gameWon';
+                //this.state = 'gameWon';
+                currentState = new CollectPresents(imagesArray, fontsArray);
             } else {
-                this.state = 'gameOver';
+                //this.state = 'gameOver';
             }
         }
     }
