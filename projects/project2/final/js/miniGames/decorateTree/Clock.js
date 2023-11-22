@@ -1,8 +1,6 @@
 // Clock
 // This class creates a clock object
-
 class Clock {
-
     // constructor()
     // Sets the basic properties
     constructor() {
@@ -19,12 +17,12 @@ class Clock {
     //This method sets up all the variables necessary to making a clock work
     setupClock() {
         let radius = 110;
-        secondsRadius = radius * 0.71;
-        minutesRadius = radius * 0.6;
-        hoursRadius = radius * 0.5;
-        clockDiameter = radius * 1.7;
-        cx = 200;
-        cy = 300;
+        this.secondsRadius = radius * 0.71;
+        this.minutesRadius = radius * 0.6;
+        this.hoursRadius = radius * 0.5;
+        this.clockDiameter = radius * 1.7;
+        this.cx = 200;
+        this.cy = 300;
     }
     //displayTimer()
     //This function displays the timer that runs during the simulation
@@ -33,9 +31,9 @@ class Clock {
         // Draw the clock background
         noStroke();
         fill(255);
-        ellipse(cx, cy, clockDiameter + 25, clockDiameter + 25);
+        ellipse(this.cx, this.cy, this.clockDiameter + 25, this.clockDiameter + 25);
         fill(113, 53, 113);
-        ellipse(cx, cy, clockDiameter, clockDiameter);
+        ellipse(this.cx, this.cy, this.clockDiameter, this.clockDiameter);
 
         // Angles for sin() and cos() start at 3 o'clock;
         // subtract HALF_PI to make them start at the top
@@ -46,18 +44,18 @@ class Clock {
         // Draw the hands of the clock
         stroke(255);
         strokeWeight(1);
-        line(cx, cy, cx + cos(s) * secondsRadius, cy + sin(s) * secondsRadius);
+        line(this.cx, this.cy, this.cx + cos(s) * this.secondsRadius, this.cy + sin(s) * this.secondsRadius);
         strokeWeight(2);
-        line(cx, cy, cx + cos(m) * minutesRadius, cy + sin(m) * minutesRadius);
+        line(this.cx, this.cy, this.cx + cos(m) * this.minutesRadius, cy + sin(m) * this.minutesRadius);
         strokeWeight(4);
-        line(cx, cy, cx + cos(h) * hoursRadius, cy + sin(h) * hoursRadius);
+        line(this.cx, this.cy, this.cx + cos(h) * this.hoursRadius, this.cy + sin(h) * this.hoursRadius);
         // Draw the minute ticks
         strokeWeight(2);
         beginShape(POINTS);
         for (let a = 0; a < 360; a += 6) {
             let angle = radians(a);
-            let x = cx + cos(angle) * secondsRadius;
-            let y = cy + sin(angle) * secondsRadius;
+            let x = this.cx + cos(angle) * this.secondsRadius;
+            let y = this.cy + sin(angle) * this.secondsRadius;
             vertex(x, y);
         }
         endShape();

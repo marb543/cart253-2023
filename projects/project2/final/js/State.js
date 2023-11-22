@@ -17,4 +17,7 @@ class State {
     keyPressed() {
 
     }
+    mousePressed() {
+
+    }
 }
