@@ -46,7 +46,7 @@ class Clock {
         strokeWeight(1);
         line(this.cx, this.cy, this.cx + cos(s) * this.secondsRadius, this.cy + sin(s) * this.secondsRadius);
         strokeWeight(2);
-        line(this.cx, this.cy, this.cx + cos(m) * this.minutesRadius, cy + sin(m) * this.minutesRadius);
+        line(this.cx, this.cy, this.cx + cos(m) * this.minutesRadius, this.cy + sin(m) * this.minutesRadius);
         strokeWeight(4);
         line(this.cx, this.cy, this.cx + cos(h) * this.hoursRadius, this.cy + sin(h) * this.hoursRadius);
         // Draw the minute ticks

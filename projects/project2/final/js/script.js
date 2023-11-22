@@ -534,27 +534,26 @@ function preload() {
     // treeToys[0] = loadImage(`./assets/images/christmasToyFlower.png`);
     // treeToys[1] = loadImage(`./assets/images/christmasToyRed.png`);
     // treeToys[2] = loadImage(`./assets/images/christmasToyYellow.png`);
-    fontsArray.push(loadFont(`./assets/fonts/BubblegumSans-Regular.ttf`))
-    imagesArray.push(loadImage(`./assets/images/title.png`));
-    imagesArray.push(loadImage(`./assets/images/northPole.png`));
-    imagesArray.push(loadImage(`./assets/images/background.jpeg`));
-    imagesArray.push(loadImage(`./assets/images/ChristmasTree.png`));
+    fontsArray.push(loadFont(`./assets/fonts/BubblegumSans-Regular.ttf`)) //0
+    imagesArray.push(loadImage(`./assets/images/title.png`)); //1
+    imagesArray.push(loadImage(`./assets/images/northPole.png`)); //2
+    imagesArray.push(loadImage(`./assets/images/background.jpeg`)); //3
+    imagesArray.push(loadImage(`./assets/images/ChristmasTree.png`)); //4
     //Preload images for tree stars
-    treeStars[0] = loadImage(`./assets/images/treeStarBlue.png`);
+    treeStars[0] = loadImage(`./assets/images/treeStarBlue.png`); //5
     treeStars[1] = loadImage(`./assets/images/treeStarRed.png`);
+    imagesArray.push(treeStars);
     //Preload images for gift types
     treeGifts[0] = loadImage(`./assets/images/giftSet1.png`);
     treeGifts[1] = loadImage(`./assets/images/giftSet2.png`);
     treeGifts[2] = loadImage(`./assets/images/giftSet3.png`);
+    imagesArray.push(treeToys);
     //Preload images for tree types
     treeToys[0] = loadImage(`./assets/images/christmasToyFlower.png`);
     treeToys[1] = loadImage(`./assets/images/christmasToyRed.png`);
     treeToys[2] = loadImage(`./assets/images/christmasToyYellow.png`);
     //Add all images array to main image array
-    imagesArray.push(treeStars);
     imagesArray.push(treeGifts);
-    imagesArray.push(treeToys);
-
 }
 
 // setup()
