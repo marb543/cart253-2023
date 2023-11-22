@@ -66,7 +66,7 @@ class Introduction extends State {
             mouseX < this.northPoleBtn.x + this.northPoleBtn.w &&
             mouseY > this.northPoleBtn.y &&
             mouseY < this.northPoleBtn.y + this.northPoleBtn.h) {
-            currentState = new Ending();
+            currentState = new DecorateTree(imagesArray);
         }
     }
     // NO keyPressed() needed down here, it is handled by the State version
