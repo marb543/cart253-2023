@@ -16,18 +16,18 @@ class CollectPresents extends State {
         this.numBoxes = 5;
         createCanvas(1200, 600);
         //Create a paddle object
-        this.paddle = new Paddle(300, 20);
+        this.paddle = new Paddle(300, 20, imagesArray[10]);
         //Loop through balls, boxes
         for (let i = 0; i < this.numBalls; i++) {
             let x = random(0, width);
             let y = random(-400, -100);
-            let ball = new ChristmasToy(x, y, imagesArray[10]);
+            let ball = new ChristmasToy(x, y, imagesArray[9]);
             this.balls.push(ball);
         }
         for (let i = 0; i < this.numBoxes; i++) {
             let x = random(0, width);
             let y = random(-400, -100);
-            let box = new Present(x, y, imagesArray[9]);
+            let box = new Present(x, y, imagesArray[8]);
             this.boxes.push(box);
         }
 

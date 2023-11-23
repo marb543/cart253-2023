@@ -46,8 +46,7 @@ class Present {
         push();
         fill(0, 153, 255);
         stroke(0);
-        //image(this.img, this.x, this.y, 100, 200)
-        square(this.x, this.y, this.size);
+        image(this.img, this.x, this.y, 100, 200)
         pop();
     }
 

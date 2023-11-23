@@ -1,10 +1,11 @@
 class Paddle {
 
-    constructor(w, h) {
+    constructor(w, h, image) {
         this.width = w;
         this.height = h;
         this.x = 0;
-        this.y = height - this.height / 2;
+        this.y = height - 100;
+        this.img = image;
     }
 
     display() {
@@ -12,7 +13,8 @@ class Paddle {
         fill(255);
         noStroke();
         rectMode(CENTER);
-        rect(this.x, this.y, this.width, this.height);
+        image(this.img, this.x, this.y, 250, 100);
+        //rect(this.x, this.y, this.width, this.height);
         pop();
     }
 

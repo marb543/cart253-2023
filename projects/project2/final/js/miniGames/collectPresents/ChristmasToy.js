@@ -51,8 +51,7 @@ class ChristmasToy {
         push();
         fill(255, 50, 50);
         stroke(0);
-        image(this.img, this.x, this.y, 100, 100)
-        //ellipse(this.x, this.y, this.size);
+        image(this.img, this.x, this.y, 100, 100);
         pop();
     }
 

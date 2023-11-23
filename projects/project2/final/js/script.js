@@ -66,6 +66,7 @@ function preload() {
     imagesArray.push(loadImage(`./assets/images/santasWorkshop.jpeg`)); //8
     imagesArray.push(loadImage(`./assets/images/present.png`)); //9
     imagesArray.push(loadImage(`./assets/images/christmasToy.png`)); //10
+    imagesArray.push(loadImage(`./assets/images/sleigh.png`));
 }
 
 // setup()
@@ -82,7 +83,6 @@ function setup() {
 // Simply call the draw method of the current state
 function draw() {
     currentState.draw();
-
 }
 
 // keyPressed()
