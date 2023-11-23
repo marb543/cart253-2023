@@ -4,6 +4,7 @@ class CollectPresents extends State {
     // velocity.
     constructor(imagesArray, fontsArray) {
         super();
+        this.santasWorkshop = imagesArray[7];
         //this.state = "menu";
         this.font = fontsArray[0];
         this.gravityForce = 0.0025;
@@ -20,20 +21,20 @@ class CollectPresents extends State {
         for (let i = 0; i < this.numBalls; i++) {
             let x = random(0, width);
             let y = random(-400, -100);
-            let ball = new Ball(x, y);
+            let ball = new ChristmasToy(x, y, imagesArray[10]);
             this.balls.push(ball);
         }
         for (let i = 0; i < this.numBoxes; i++) {
             let x = random(0, width);
             let y = random(-400, -100);
-            let box = new Box(x, y);
+            let box = new Present(x, y, imagesArray[9]);
             this.boxes.push(box);
         }
 
     }
     draw() {
         super.draw();
-        background(0);
+        background(this.santasWorkshop);
         // switch (this.state) {
         //     // case ("menu"):
         //     //     displayMainMenu();

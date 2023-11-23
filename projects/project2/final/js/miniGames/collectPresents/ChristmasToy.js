@@ -1,27 +1,33 @@
-class Box {
-    constructor(x, y) {
+class ChristmasToy {
+
+    constructor(x, y, image) {
         this.x = x;
         this.y = y;
         this.vx = 0;
         this.vy = 0;
         this.ax = 0;
         this.ay = 0;
-        this.maxSpeed = 30;
-        this.size = 80;
+        this.maxSpeed = 10;
+        this.size = 40;
         this.active = true;
         this.touchedPaddle = false;
         this.points = 0;
+        this.img = image;
     }
+
     gravity(force) {
         this.ay = this.ay + force;
     }
     move() {
         this.vx = this.vx + this.ax;
         this.vy = this.vy + this.ay;
+
         this.vx = constrain(this.vx, -this.maxSpeed, this.maxSpeed);
         this.vy = constrain(this.vy, -this.maxSpeed, this.maxSpeed);
+
         this.x = this.x + this.vx;
         this.y = this.y + this.vy;
+
         if (this.y - this.size / 2 > height) {
             this.active = false;
         }
@@ -38,14 +44,15 @@ class Box {
             this.ay = 0;
             //Touched paddle
             this.touchedPaddle = true;
-            this.points++;
+            this.points--;
         }
     }
     display() {
         push();
-        fill(0, 153, 255);
+        fill(255, 50, 50);
         stroke(0);
-        square(this.x, this.y, this.size);
+        image(this.img, this.x, this.y, 100, 100)
+        //ellipse(this.x, this.y, this.size);
         pop();
     }
 
