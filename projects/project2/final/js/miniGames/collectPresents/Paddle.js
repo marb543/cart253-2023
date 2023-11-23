@@ -4,7 +4,7 @@ class Paddle {
         this.width = w;
         this.height = h;
         this.x = 0;
-        this.y = height - 100;
+        this.y = height - 150;
         this.img = image;
     }
 
@@ -13,7 +13,7 @@ class Paddle {
         fill(255);
         noStroke();
         rectMode(CENTER);
-        image(this.img, this.x, this.y, 250, 100);
+        image(this.img, this.x, this.y, 350, 150);
         //rect(this.x, this.y, this.width, this.height);
         pop();
     }

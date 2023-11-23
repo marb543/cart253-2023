@@ -69,6 +69,6 @@ class Title extends State {
         // NOTE that creating a new Animation object like this automatically calls its
         // constructor(), which therefore acts like setup(), called once when the state
         // starts.
-        currentState = new Introduction(imagesArray, fontsArray);
+        currentState = new Introduction(imagesArray, fontsArray, soundsArray);
     }
 }

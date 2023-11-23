@@ -220,19 +220,6 @@ class DecorateTree extends State {
         image(this.treeGifts[n], width / 2 + 260, height - 240, 100, 120);
     }
 
-    // // Method to display the title text
-    // title() {
-    //     push();
-    //     textSize(50);
-    //     strokeWeight(4);
-    //     stroke(250);
-    //     fill(200, 100, 100);
-    //     textFont(this.bubblegumFont);
-    //     textAlign(CENTER, CENTER);
-    //     text("Decorate the Christmas Tree before the timer runs out!", width / 2, height / 2);
-    //     pop();
-    // }
-
     // Method to display the game over text
     gameOver() {
         push();
@@ -265,9 +252,9 @@ class DecorateTree extends State {
         if (elapsedTime >= 5000) {
             if (this.decoratedTree.star && this.decoratedTree.toys && this.decoratedTree.gifts) {
                 //this.state = 'gameWon';
-                currentState = new CollectPresents(imagesArray, fontsArray);
+                currentState = new StartCollectPresents(imagesArray, fontsArray, soundsArray);
             } else {
-                //this.state = 'gameOver';
+                currentState = new GameOver(imagesArray, fontsArray, soundsArray);
             }
         }
     }

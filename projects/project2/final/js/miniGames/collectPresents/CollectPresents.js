@@ -2,10 +2,9 @@ class CollectPresents extends State {
     // Acts as the setup() of the state, called when the
     // state is created. Creates a circle object and sets its
     // velocity.
-    constructor(imagesArray, fontsArray) {
+    constructor(imagesArray, fontsArray, soundsArray) {
         super();
         this.santasWorkshop = imagesArray[7];
-        //this.state = "menu";
         this.font = fontsArray[0];
         this.gravityForce = 0.0025;
         this.paddle;
@@ -35,25 +34,11 @@ class CollectPresents extends State {
     draw() {
         super.draw();
         background(this.santasWorkshop);
-        // switch (this.state) {
-        //     // case ("menu"):
-        //     //     displayMainMenu();
-        //     //     waitForMenuSelection();
-        //     //     break;
-        //     case ("game"):
-        //         runGame();
-        //         increasePoints();
-        //         displayPointsCount();
-        //         checkIfGameOver();
-        //         break;
-        //     // case ("game-over"):
-        //     //     displayEndMsg();
-        //     //     break;
-        // }
         this.runGame();
         this.increasePoints();
         this.displayPointsCount();
         this.checkIfGameOver();
+        this.checkIfGameWon();
     }
     /**
      * movePaddle()
@@ -66,38 +51,6 @@ class CollectPresents extends State {
         if (keyIsDown(RIGHT_ARROW)) {
             this.paddle.shiftRight();
         }
-    }
-    /**
-     * displayMainMenu()
-     * This function displays the main menu text.
-     */
-    displayMainMenu() {
-        push();
-        // Sets text size, strokeWeight, stroke
-        textSize(100);
-        strokeWeight(4);
-        stroke(34, 78, 5);
-        // Set color
-        fill(130, 210, 76);
-        textFont(this.font);
-        textAlign(CENTER, CENTER);
-        text(`    Juggle  \n    Simulator`, width / 2 - 80, 250);
-        textSize(30);
-        fill(255);
-        push();
-        // Sets text size, strokeWeight, stroke
-        textSize(40);
-        strokeWeight(4);
-        stroke(34, 78, 5);
-        // Set color
-        fill(130, 210, 76);
-        textFont(this.font);
-        textAlign(CENTER, CENTER);
-        text(`Press 1 To Play`, width / 2 - 80, 550);
-        text(`Use LEFT and RIGHT arrows to catch shapes`, width / 2 - 80, 650);
-        textSize(30);
-        fill(255);
-        pop();
     }
     /**
      * displayPointsCount()
@@ -114,30 +67,32 @@ class CollectPresents extends State {
         textFont(this.font);
         textAlign(CENTER, CENTER);
         text(`Points: ${this.pointCount}`, width / 2, 150);
+        fill(130, 0, 76);
+        rect(40, 120, 120, 40);
         textSize(30);
         fill(255);
         pop();
     }
-    /**
-     * displayEndMsg()
-     * This function displays the text for the end message.
-     */
-    displayEndMsg() {
-        push();
-        // Sets text size, strokeWeight, stroke
-        textSize(100);
-        strokeWeight(4);
-        stroke(34, 78, 5);
-        // Set color
-        fill(130, 210, 76);
-        textFont(this.font);
-        textAlign(CENTER, CENTER);
-        text(`GAME OVER`, width / 2, 250);
-        text(`You scored ${this.pointCount} points`, width / 2, 450);
-        textSize(30);
-        fill(255);
-        pop();
-    }
+    // /**
+    //  * displayEndMsg()
+    //  * This function displays the text for the end message.
+    //  */
+    // displayEndMsg() {
+    //     push();
+    //     // Sets text size, strokeWeight, stroke
+    //     textSize(100);
+    //     strokeWeight(4);
+    //     stroke(34, 78, 5);
+    //     // Set color
+    //     fill(130, 210, 76);
+    //     textFont(this.font);
+    //     textAlign(CENTER, CENTER);
+    //     text(`GAME OVER`, width / 2, 250);
+    //     text(`You scored ${this.pointCount} points`, width / 2, 450);
+    //     textSize(30);
+    //     fill(255);
+    //     pop();
+    // }
     /**
      * runGame()
      * This function makes the main game move by moving the this.paddle , moving the balls , and moving the box.
@@ -165,15 +120,7 @@ class CollectPresents extends State {
             }
         }
     }
-    /**
-     * waitForMenuSelection()
-     * This function checks if the user selected 1 on the keyboard to start the game
-     */
-    waitForMenuSelection() {
-        if (keyIsDown(49)) {
-            this.state = "game";
-        }
-    }
+
     /**
      * increasePoints()
      * This function increases the points, and updates the pointCount
@@ -192,9 +139,7 @@ class CollectPresents extends State {
                 totalPoints += this.boxes[i].points;
             }
         }
-
         this.pointCount = totalPoints;
-
     }
     /**
      * checkIfGameOver()
@@ -202,7 +147,18 @@ class CollectPresents extends State {
      */
     checkIfGameOver() {
         if (this.balls.every(ball => !ball.active) && this.boxes.every(box => !box.active)) {
-            this.state = "game-over";
+            if (this.pointCount <= 0) {
+                currentState = new GameOver(imagesArray, fontsArray, soundsArray);
+            }
+        }
+    }
+    //checkIfGameWon()
+    // This function checks if the user has won the game or not
+    checkIfGameWon() {
+        if (this.balls.every(ball => !ball.active) && this.boxes.every(box => !box.active)) {
+            if (this.pointCount > 0) {
+                currentState = new Ending(imagesArray, fontsArray, soundsArray);
+            }
         }
     }
 

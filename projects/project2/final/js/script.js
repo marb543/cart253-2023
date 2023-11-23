@@ -73,7 +73,7 @@ function preload() {
 // Create the canvas, start our program in the title state, set default text style
 function setup() {
     createCanvas(900, 600);
-    currentState = new Title(imagesArray);
+    currentState = new Title(imagesArray, fontsArray, soundsArray);
     // Text settings
     textSize(32);
     textAlign(CENTER, CENTER);

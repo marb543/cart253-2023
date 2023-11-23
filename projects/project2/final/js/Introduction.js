@@ -6,7 +6,7 @@ class Introduction extends State {
     // Acts as the setup() of the state, called when the
     // state is created. Creates a circle object and sets its
     // velocity.
-    constructor(imagesArray) {
+    constructor(imagesArray, fontsArray, soundsArray) {
         super();
         this.northPoleBtn = {
             x: 700,
@@ -67,7 +67,7 @@ class Introduction extends State {
             mouseY > this.northPoleBtn.y &&
             mouseY < this.northPoleBtn.y + this.northPoleBtn.h) {
             //currentState = new DecorateTree(imagesArray, fontsArray);
-            currentState = new CollectPresents(imagesArray, fontsArray);
+            currentState = new CollectPresents(imagesArray, fontsArray, soundsArray);
         }
     }
     // NO keyPressed() needed down here, it is handled by the State version
