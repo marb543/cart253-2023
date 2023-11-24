@@ -7,13 +7,13 @@ class GameOver extends State {
     // velocity.
     constructor(imagesArray, fontsArray, soundsArray) {
         super();
-        this.GameOverString = "Oh no ! You weren't able to get evrything ready for Christmas on time. \n The gnomes took over Santa's workshop !"
+        this.coverImg = imagesArray[12];
     }
     // draw()
     // Called every frame in the main script. Handles what the title
     // state needs to do each frame. It moves and displays the circle
     // and checks if it has reached the right hand side.
     draw() {
-
+        background(this.coverImg);
     }
 }

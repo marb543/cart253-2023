@@ -1,7 +1,7 @@
 // DecorateTree class represents the state of the game where the player decorates a Christmas tree
 class DecorateTree extends State {
     // Constructor initializes properties and sets up the initial state
-    constructor(imagesArray, fontsArray) {
+    constructor(imagesArray, fontsArray, soundsArray) {
         // Call the constructor of the parent class (State)
         super();
         // Load necessary assets and set initial state

@@ -66,7 +66,11 @@ function preload() {
     imagesArray.push(loadImage(`./assets/images/santasWorkshop.jpeg`)); //8
     imagesArray.push(loadImage(`./assets/images/present.png`)); //9
     imagesArray.push(loadImage(`./assets/images/christmasToy.png`)); //10
-    imagesArray.push(loadImage(`./assets/images/sleigh.png`));
+    imagesArray.push(loadImage(`./assets/images/sleigh.png`));//
+    //Add GameWon image
+    imagesArray.push(loadImage(`./assets/images/GameWon.png`));//
+    //Add GameLost image
+    imagesArray.push(loadImage(`./assets/images/GameLost.png`));//
 }
 
 // setup()

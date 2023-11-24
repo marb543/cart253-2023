@@ -59,17 +59,16 @@ class CollectPresents extends State {
     displayPointsCount() {
         push();
         // Sets text size, strokeWeight, stroke
-        textSize(100);
+        textSize(50);
         strokeWeight(4);
         stroke(34, 78, 5);
         // Set color
+        fill(130, 0, 76);
+        rect(500, 20, 200, 70, 10, 10);
         fill(130, 210, 76);
         textFont(this.font);
         textAlign(CENTER, CENTER);
-        text(`Points: ${this.pointCount}`, width / 2, 150);
-        fill(130, 0, 76);
-        rect(40, 120, 120, 40);
-        textSize(30);
+        text(`Points: ${this.pointCount}`, width / 2, 50);
         fill(255);
         pop();
     }

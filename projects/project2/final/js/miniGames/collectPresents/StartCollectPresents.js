@@ -2,9 +2,11 @@
 class StartCollectPresents extends State {
     constructor(imagesArray, fontsArray, soundsArray) {
         super();
+        this.font = fontsArray[0];
+        createCanvas(1200, 600);
     }
     draw() {
-        this.backgroundImg = imagesArray[10];
+        this.backgroundImg = imagesArray[7];
         background(this.backgroundImg);
         this.displayInstructions();
     }
@@ -14,30 +16,26 @@ class StartCollectPresents extends State {
    */
     displayInstructions() {
         push();
-        // Sets text size, strokeWeight, stroke
-        textSize(100);
-        strokeWeight(4);
-        stroke(34, 78, 5);
-        // Set color
-        fill(130, 210, 76);
+        textSize(45);
+        strokeWeight(3);
+        stroke(200, 100, 100);
+        fill(64, 110, 237);
+        rect(200, 200, 800, 200, 10, 10)
+        fill(250);
         textFont(this.font);
         textAlign(CENTER, CENTER);
-        text(`    Juggle  \n    Simulator`, width / 2 - 80, 250);
-        textSize(30);
-        fill(255);
+        text("Catch Christmas presents in Santa's sleigh ! \n Collect at least 5 presents.", width / 2, height / 2);
+        pop();
         push();
-        // Sets text size, strokeWeight, stroke
-        textSize(40);
-        strokeWeight(4);
-        stroke(34, 78, 5);
-        // Set color
-        fill(130, 210, 76);
-        textFont(this.font);
-        textAlign(CENTER, CENTER);
-        text(`Press 1 To Play`, width / 2 - 80, 550);
-        text(`Use LEFT and RIGHT arrows to catch shapes`, width / 2 - 80, 650);
-        textSize(30);
+        noStroke(0);
+        fill(64, 110, 237);
+        rect(0, height - 50, width, 50)
         fill(255);
+        textSize(25);
+        textFont('Courier New');
+        textAlign(CENTER, CENTER);
+        text("Press key to start game...", width / 2, height - 30);
+        text("Use LEFT and RIGHT arrows to catch shapes", width / 2 - 80, 650);
         pop();
     }
     //keyPressed()
