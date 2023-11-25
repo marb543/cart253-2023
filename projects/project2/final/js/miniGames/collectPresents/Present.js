@@ -1,4 +1,9 @@
+//Present
+//Creates a Present object which the player has to catch in Santa's sleigh in order 
+// to score points
 class Present {
+    //constructor()
+    //Creates,and sets the basic properies of the object 
     constructor(x, y, image) {
         this.x = x;
         this.y = y;
@@ -13,9 +18,13 @@ class Present {
         this.points = 0;
         this.img = image;
     }
+    //gravity()
+    //Assigns the gravity of the object 
     gravity(force) {
         this.ay = this.ay + force;
     }
+    //move()
+    //Decides the movement pattern of the Present object
     move() {
         this.vx = this.vx + this.ax;
         this.vy = this.vy + this.ay;
@@ -27,6 +36,8 @@ class Present {
             this.active = false;
         }
     }
+    //bounce()
+    //Creates the bounce effect for the present object 
     bounce(paddle) {
         if (this.x > paddle.x - paddle.width / 2 &&
             this.x < paddle.x + paddle.width / 2 &&
@@ -42,6 +53,8 @@ class Present {
             this.points++;
         }
     }
+    //display()
+    //Displays each present object
     display() {
         push();
         fill(0, 153, 255);

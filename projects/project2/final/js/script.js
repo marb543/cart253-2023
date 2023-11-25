@@ -1,11 +1,13 @@
 /**
- * Project 2 : A Christmas Nightmare
+ * Project 2 : Gnomes on the Loose
  * Maria Barba
  * 
- * This is a Christmas-themed game for my second project. In this prototype
- * the player can decorate a Christmas tree point-click style. The goal of this mini-game is to decorate 
- * the Christams tree as quickly as possible before the left-hand timer runs out. If the timer runs out
- * before the player decorates the game, the player wins, otherwise the player loses.
+ * This is a Christmas-themed game for my second project. The player has the task of helping Santa prepare everything for Christmas
+ * since Santa's gnomes rebelled against him. There are three mini-games included within my game. The first game are the players having 
+ * to decorate a Christmas tree before the timer runs out, the second mini-game is the player having to catch Christmas presents in the 
+ * sleigh ,and avoid catching Christmas decorations. For the second mini-game the player must have a positive number of points in order to 
+ * win the game. For the third mini-game the player has to prepare Santa's reindeers for Christmas. If the player loses one of the mini-games, he
+ * has lost the game. If the player was able to successfully complete all three mini-games , he wins the game. 
  * 
  * Images from Adobe Stock :
  * ------------------------
@@ -17,7 +19,7 @@
  * Gnome : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=santa%27s+gnomes&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=santa%27s+gnomes&get_facets=0&asset_id=471663338
  * Winter Background :
  * Christmas Presents (collectPresents) : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+christmas+present&order=relevance&safe_search=1&search_page=1&search_type=usertyped&acp=&aco=cartoon+christmas+present&get_facets=0&asset_id=386507410
- * Christmas Toys (collectPresents)
+ * Christmas Toys (collectPresents) :
  * I modified the code example from this page where I created a clock in JavaScript: https://p5js.org/examples/input-clock.html
  * 
  * The font used for this exercise is from Google fonts : https://fonts.google.com/specimen/Bubblegum+Sans?query=bubb
@@ -42,14 +44,16 @@ let treeToys = [];
 //Create an array to store options for types of gifts
 let treeGifts = [];
 
+//preload()
+//This function preloads the images, sounds , and fonts of the game
 function preload() {
-    fontsArray.push(loadFont(`./assets/fonts/BubblegumSans-Regular.ttf`)) //0
-    imagesArray.push(loadImage(`./assets/images/title.png`)); //1
-    imagesArray.push(loadImage(`./assets/images/northPole.png`)); //2
-    imagesArray.push(loadImage(`./assets/images/background.jpeg`)); //3
-    imagesArray.push(loadImage(`./assets/images/ChristmasTree.png`)); //4
+    fontsArray.push(loadFont(`./assets/fonts/BubblegumSans-Regular.ttf`))
+    imagesArray.push(loadImage(`./assets/images/title.png`));
+    imagesArray.push(loadImage(`./assets/images/northPole.png`));
+    imagesArray.push(loadImage(`./assets/images/background.jpeg`));
+    imagesArray.push(loadImage(`./assets/images/ChristmasTree.png`));
     //Preload images for tree stars
-    treeStars[0] = loadImage(`./assets/images/treeStarBlue.png`); //5
+    treeStars[0] = loadImage(`./assets/images/treeStarBlue.png`);
     treeStars[1] = loadImage(`./assets/images/treeStarRed.png`);
     imagesArray.push(treeStars);
     //Preload images for gift types
@@ -67,30 +71,29 @@ function preload() {
     imagesArray.push(loadImage(`./assets/images/present.png`)); //9
     imagesArray.push(loadImage(`./assets/images/christmasToy.png`)); //10
     imagesArray.push(loadImage(`./assets/images/sleigh.png`));//
-    //Add GameWon image
-    imagesArray.push(loadImage(`./assets/images/GameWon.png`));//
-    //Add GameLost image
-    imagesArray.push(loadImage(`./assets/images/GameLost.png`));//
+    //Add image for when the player wins the game
+    imagesArray.push(loadImage(`./assets/images/GameWon.png`));
+    //Add image for when the player loses the game
+    imagesArray.push(loadImage(`./assets/images/GameLost.png`));
 }
-
 // setup()
 // Create the canvas, start our program in the title state, set default text style
 function setup() {
     createCanvas(900, 600);
+    //Set the current state to the title state
     currentState = new Title(imagesArray, fontsArray, soundsArray);
-    // Text settings
+    // Set the text size to be 32
     textSize(32);
+    //Set the text alignment
     textAlign(CENTER, CENTER);
 }
-
 // draw()
 // Simply call the draw method of the current state
 function draw() {
     currentState.draw();
 }
-
 // keyPressed()
-// 
+// Apply the effect of the keyPressed function for the keyPressed game
 function keyPressed() {
     currentState.keyPressed();
 }

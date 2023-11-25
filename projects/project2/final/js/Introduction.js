@@ -2,12 +2,12 @@
 // Handles the information given to the player at the start of the game  
 // It explains the players a backstory of the game, and how to win the game
 class Introduction extends State {
-
     // Acts as the setup() of the state, called when the
     // state is created. Creates a circle object and sets its
     // velocity.
     constructor(imagesArray, fontsArray, soundsArray) {
         super();
+        //Create a northPoleBtn object
         this.northPoleBtn = {
             x: 700,
             y: 475,
@@ -17,21 +17,19 @@ class Introduction extends State {
         }
         //Create a new typewriter object
         this.typewriter = new Typewriter();
+        //Call the introduction object 
         this.writeIntroduction();
     }
     // draw()
-    // Called every frame in the main script. Handles what the title
-    // state needs to do each frame. It moves and displays the circle
-    // and checks if it has reached the right hand side.
+    // Called every frame in the main script. 
     draw() {
-        // Always call the super() version of the method if there is one
-        // just in case it does something important.
         super.draw();
+        //Sets the background color to black
         background(0);
         // Call the state's methods to make the animation work
         this.typewriter.display();
-        this.displayGnomes();
-        this.verifyClick();
+        //Verifies if the user has selected the "North Pole" button
+        this.verifyUserSelect();
     }
     //writeIntroduction()
     //Display the introduction text the user sees at the beginning of the game which explains
@@ -48,27 +46,23 @@ class Introduction extends State {
         ready for Christmas on time?\n
         Be wary of gnomes roaming around Santa's workshop ...`, 10, 30);
     }
-    //displayGnomes()
+    //displayNorthPoleBtn()
     //Display image of North pole sign on the screen. 
-    //When a user clicks on the image
-    //the next state of the game should be displayed 
-    displayGnomes() {
+    displayNorthPoleBtn() {
         push();
         image(this.northPoleBtn.image, this.northPoleBtn.x, this.northPoleBtn.y, this.northPoleBtn.w, this.northPoleBtn.h);
         pop();
-
     }
-    // verifyClicked()
+    // verifyUserSelect()
     // Checks if the user has clicked the north pole button image
     //If the user has clicked this image, set the next state of the game
-    verifyClick() {
+    //the next state of the game should be displayed 
+    verifyUserSelect() {
         if (mouseX > this.northPoleBtn.x &&
             mouseX < this.northPoleBtn.x + this.northPoleBtn.w &&
             mouseY > this.northPoleBtn.y &&
             mouseY < this.northPoleBtn.y + this.northPoleBtn.h) {
             currentState = new StartDecorateTree(imagesArray, fontsArray, soundsArray);
-            //currentState = new CollectPresents(imagesArray, fontsArray, soundsArray);
         }
     }
-    // NO keyPressed() needed down here, it is handled by the State version
 }

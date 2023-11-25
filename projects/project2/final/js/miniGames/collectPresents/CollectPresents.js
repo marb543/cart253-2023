@@ -1,7 +1,11 @@
+//CollectPresnts
+//Creates the CollectPresents state object
+//This is the stae of the collectPresnts mini-game. Throughout this mini-game 
+//the player must collect presents, and avoid christmas toys
 class CollectPresents extends State {
+    // constructor()
     // Acts as the setup() of the state, called when the
-    // state is created. Creates a circle object and sets its
-    // velocity.
+    // state is created.
     constructor(imagesArray, fontsArray, soundsArray) {
         super();
         this.santasWorkshop = imagesArray[7];
@@ -13,37 +17,45 @@ class CollectPresents extends State {
         this.pointCount;
         this.numBalls = 10;
         this.numBoxes = 5;
+        //Create the canvas
         createCanvas(1200, 600);
         //Create a paddle object
         this.paddle = new Paddle(300, 20, imagesArray[10]);
-        //Loop through balls, boxes
+        //Loop through christmas presents
         for (let i = 0; i < this.numBalls; i++) {
             let x = random(0, width);
             let y = random(-400, -100);
             let ball = new ChristmasToy(x, y, imagesArray[9]);
             this.balls.push(ball);
         }
+        //Loop through Christmas presents 
         for (let i = 0; i < this.numBoxes; i++) {
             let x = random(0, width);
             let y = random(-400, -100);
             let box = new Present(x, y, imagesArray[8]);
             this.boxes.push(box);
         }
-
     }
+    //draw()
+    // Called every frame in the main script.
     draw() {
         super.draw();
+        //Set the backround image
         background(this.santasWorkshop);
+        //Run the game 
         this.runGame();
+        //Increase the points
         this.increasePoints();
+        //Display the points count
         this.displayPointsCount();
+        //Check if the player has finished the game (there are no more christmas toys or presents to catch)
         this.checkIfGameOver();
+        //Check if the player has won the game (The points count is positive)
         this.checkIfGameWon();
     }
-    /**
-     * movePaddle()
-     * This function checks if the player pressed the right or left arrow.
-     */
+    // movePaddle()
+    // This function checks if the player pressed the right or left arrow.
+    // And moves the paddle object accordingly
     movePaddle() {
         if (keyIsDown(LEFT_ARROW)) {
             this.paddle.shiftLeft();
@@ -52,10 +64,9 @@ class CollectPresents extends State {
             this.paddle.shiftRight();
         }
     }
-    /**
-     * displayPointsCount()
-     * This function displays the text with the points count.
-     */
+
+    // displayPointsCount()
+    // This function displays the text with the points count.
     displayPointsCount() {
         push();
         // Sets text size, strokeWeight, stroke
@@ -72,34 +83,14 @@ class CollectPresents extends State {
         fill(255);
         pop();
     }
-    // /**
-    //  * displayEndMsg()
-    //  * This function displays the text for the end message.
-    //  */
-    // displayEndMsg() {
-    //     push();
-    //     // Sets text size, strokeWeight, stroke
-    //     textSize(100);
-    //     strokeWeight(4);
-    //     stroke(34, 78, 5);
-    //     // Set color
-    //     fill(130, 210, 76);
-    //     textFont(this.font);
-    //     textAlign(CENTER, CENTER);
-    //     text(`GAME OVER`, width / 2, 250);
-    //     text(`You scored ${this.pointCount} points`, width / 2, 450);
-    //     textSize(30);
-    //     fill(255);
-    //     pop();
-    // }
-    /**
-     * runGame()
-     * This function makes the main game move by moving the this.paddle , moving the balls , and moving the box.
-     */
+    //runGame()
+    // This function makes the main game move by moving the this.paddle , moving the balls , and moving the box
     runGame() {
+        //Move the paddle object
         this.movePaddle();
+        //Display the paddle object
         this.paddle.display();
-
+        //Loop through christmas toys, and move them, add gravity, and bounce
         for (let i = 0; i < this.balls.length; i++) {
             let ball = this.balls[i];
             if (ball.active) {
@@ -109,6 +100,7 @@ class CollectPresents extends State {
                 ball.display();
             }
         }
+        //Loop through the christmas presents, and move them, add gravity, and bounce
         for (let i = 0; i < this.boxes.length; i++) {
             let box = this.boxes[i];
             if (box.active) {
@@ -119,11 +111,8 @@ class CollectPresents extends State {
             }
         }
     }
-
-    /**
-     * increasePoints()
-     * This function increases the points, and updates the pointCount
-     */
+    // increasePoints()
+    // This function increases the points, and updates the pointCount
     increasePoints() {
         let totalPoints = 0;
 

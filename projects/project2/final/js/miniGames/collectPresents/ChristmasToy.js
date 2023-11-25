@@ -1,5 +1,9 @@
+//ChristmasToy
+//Creates a ChristmasToy object which the player must avoid catching in Santa's sleigh so that he
+//will not lose any points that he has earned from catching presents
 class ChristmasToy {
-
+    //constructor()
+    //Sets the basin properties, and value of the object 
     constructor(x, y, image) {
         this.x = x;
         this.y = y;
@@ -14,24 +18,26 @@ class ChristmasToy {
         this.points = 0;
         this.img = image;
     }
-
+    //gravity()
+    //Sets the gravity of the object
     gravity(force) {
         this.ay = this.ay + force;
     }
+    //move()
+    //Sets the gravity of the object
     move() {
         this.vx = this.vx + this.ax;
         this.vy = this.vy + this.ay;
-
         this.vx = constrain(this.vx, -this.maxSpeed, this.maxSpeed);
         this.vy = constrain(this.vy, -this.maxSpeed, this.maxSpeed);
-
         this.x = this.x + this.vx;
         this.y = this.y + this.vy;
-
         if (this.y - this.size / 2 > height) {
             this.active = false;
         }
     }
+    //bounce()
+    //Assigns the bounce effect of the ChristmasToy
     bounce(paddle) {
         if (this.x > paddle.x - paddle.width / 2 &&
             this.x < paddle.x + paddle.width / 2 &&
@@ -47,6 +53,8 @@ class ChristmasToy {
             this.points--;
         }
     }
+    //dsiplay()
+    //Displays the Christmas toy 
     display() {
         push();
         fill(255, 50, 50);

@@ -1,19 +1,29 @@
 //StartCollectPresents
+//This state is called when the player begins the collect presents mini-game.
+//It explains to the player how to use the controls of the game, and how to win the 
+//mini-games 
 class StartCollectPresents extends State {
+    //constructor()
+    //Sets the basic properties of the object
     constructor(imagesArray, fontsArray, soundsArray) {
         super();
+        //Set the font of the class
         this.font = fontsArray[0];
+        //Create a canvas of the appropriate size
         createCanvas(1200, 600);
     }
+    //draw()
+    //Draw method is called every frame
     draw() {
+        //Set the background image
         this.backgroundImg = imagesArray[7];
+        //Set the bacjround of the class
         background(this.backgroundImg);
+        //Display the instructions for the collect presents mini-game
         this.displayInstructions();
     }
-    /**
-   * displayMainMenu()
-   * This function displays the main menu text.
-   */
+    //displayInstructions()
+    //Display the main menu text 
     displayInstructions() {
         push();
         textSize(45);
@@ -39,9 +49,10 @@ class StartCollectPresents extends State {
         pop();
     }
     //keyPressed()
-    //
+    //Handles the user key press 
     keyPressed() {
         super.keyPressed();
+        //Calls the CollectPresents state
         currentState = new CollectPresents(imagesArray, fontsArray, soundsArray);
     }
 

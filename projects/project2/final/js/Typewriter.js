@@ -1,3 +1,4 @@
+//Example from the following exrecise provided by Pippin Parr : https://github.com/pippinbarr/cart253/tree/main/examples/text/typewriter-effect
 // Typewriter
 // A class for typewriting text. Uses an interval to incrementally
 // add characters to a displayed text

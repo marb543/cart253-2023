@@ -1,8 +1,9 @@
 // Clock
-// This class creates a clock object
+// This class creates a clock object.
+// Example code taken from : https://p5js.org/examples/input-clock.html
 class Clock {
     // constructor()
-    // Sets the basic properties
+    // Creates the basic properties of the clock object
     constructor() {
         //Create variables to store the values of the clock
         this.cx;
@@ -12,7 +13,6 @@ class Clock {
         this.hoursRadius;
         this.clockDiameter;
     }
-
     // setupClock()
     //This method sets up all the variables necessary to making a clock work
     setupClock() {
@@ -34,13 +34,11 @@ class Clock {
         ellipse(this.cx, this.cy, this.clockDiameter + 25, this.clockDiameter + 25);
         fill(113, 53, 113);
         ellipse(this.cx, this.cy, this.clockDiameter, this.clockDiameter);
-
         // Angles for sin() and cos() start at 3 o'clock;
         // subtract HALF_PI to make them start at the top
         let s = map(second(), 0, 60, 0, TWO_PI) - HALF_PI;
         let m = map(minute() + norm(second(), 0, 60), 0, 60, 0, TWO_PI) - HALF_PI;
         let h = map(hour() + norm(minute(), 0, 60), 0, 24, 0, TWO_PI * 2) - HALF_PI;
-
         // Draw the hands of the clock
         stroke(255);
         strokeWeight(1);
