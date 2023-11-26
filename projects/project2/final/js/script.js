@@ -3,10 +3,11 @@
  * Maria Barba
  * 
  * This is a Christmas-themed game for my second project. The player has the task of helping Santa prepare everything for Christmas
- * since Santa's gnomes rebelled against him. There are three mini-games included within my game. The first game are the players having 
- * to decorate a Christmas tree before the timer runs out, the second mini-game is the player having to catch Christmas presents in the 
- * sleigh ,and avoid catching Christmas decorations. For the second mini-game the player must have a positive number of points in order to 
- * win the game. If the player loses one of the mini-games, he has lost the game. If the player was able to successfully complete all  mini-games , he wins the game. 
+ * since Santa's gnomes rebelled against him. There are three mini-games included in my game. The first game is the players having 
+ * to decorate a Christmas tree before the timer runs out, and the second mini-game is the player having to catch Christmas presents in the 
+ * sleigh and avoid catching Christmas decorations. For the second mini-game, the player must have a positive number of points in order to 
+ * win the game. If the player loses one of the mini-games, he has lost the game. If the player is able to successfully complete all mini-games,
+ * he wins the game. 
  * 
  * Images from Adobe Stock :
  * ------------------------

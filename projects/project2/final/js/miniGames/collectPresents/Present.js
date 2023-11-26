@@ -2,6 +2,7 @@
 //Creates a Present object which the player has to catch in Santa's sleigh in order 
 // to score points
 //Class used from the following example by Pippin Barr : https://pippinbarr.com/cart253/topics/object-oriented-programming/object-oriented-programming-activity.html
+//Modified for class exercise by Maria Barba : https://github.com/marb543/cart253-2023/tree/main/exercises/juggle-garden
 class Present {
     //constructor()
     //Creates,and sets the basic properies of the object 

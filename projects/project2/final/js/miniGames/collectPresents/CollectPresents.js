@@ -2,6 +2,7 @@
 //Creates the CollectPresents state object
 //This is the stae of the collectPresnts mini-game. Throughout this mini-game 
 //the player must collect presents, and avoid christmas toys
+//Modified for class exercise by Maria Barba : https://github.com/marb543/cart253-2023/tree/main/exercises/juggle-garden
 class CollectPresents extends State {
     // constructor()
     // Acts as the setup() of the state, called when the

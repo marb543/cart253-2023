@@ -1,6 +1,7 @@
 //Paddle
 //Creates the Paddle object which is responsible for catching the Christmas toys , and Christmas decorations
 //Class used from the following example by Pippin Barr : https://pippinbarr.com/cart253/topics/object-oriented-programming/object-oriented-programming-activity.html
+//Modified for class exercise by Maria Barba : https://github.com/marb543/cart253-2023/tree/main/exercises/juggle-garden
 class Paddle {
     //constructor()
     //Sets the basic properties and values of the object
