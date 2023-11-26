@@ -1,16 +1,17 @@
 //Paddle
-//Creates the Paddle object which is responsible for 
+//Creates the Paddle object which is responsible for catching the Christmas toys , and Christmas decorations
+//Class used from the following example by Pippin Barr : https://pippinbarr.com/cart253/topics/object-oriented-programming/object-oriented-programming-activity.html
 class Paddle {
     //constructor()
-    //Sets the basin properties, and values of the object
+    //Sets the basic properties and values of the object
     constructor(w, h, image) {
         this.width = w;
         this.height = h;
-        this.x = 0;
+        this.x = width / 2; // Start at the center of the canvas
         this.y = height - 150;
         this.img = image;
     }
-    //dsiplay()
+    //display()
     //Displays the paddle object which is Santa's sleigh
     display() {
         push();
@@ -21,14 +22,13 @@ class Paddle {
         pop();
     }
     //shiftLeft()
-    //Constrain the left of the paddle
+    //Constrains the left movement of the paddle
     shiftLeft() {
-        this.x = constrain((this.x - 10), this.width / 2, width - this.width / 2);
+        this.x = constrain(this.x - 10, 0, width - this.height);
     }
     //shiftRight()
-    //Constrain the right of the paddle
+    //Constrains the right movement of the paddle
     shiftRight() {
-        this.x = constrain((this.x + 10), this.width / 2, width - this.width / 2);
+        this.x = constrain(this.x + 10, this.width / 2, width - this.width);
     }
-
 }

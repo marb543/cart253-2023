@@ -9,6 +9,10 @@ class Ending extends State {
         super();
         //Set the cover image to be the game over message text 
         this.coverImg = imagesArray[11]
+        //Stop main melody from playing
+        soundsArray[0].stop();
+        //Start playing the game over sound
+        soundsArray[2].loop();
     }
     // draw()
     // Called every frame in the main script. Handles what the ending

@@ -1,6 +1,6 @@
 // Title
 // The following code uses a code example provided 
-// by Pippin Parr : https://github.com/pippinbarr/cart253/tree/main/examples/structure/oop-states-inheritance
+// by Pippin Barr : https://github.com/pippinbarr/cart253/tree/main/examples/structure/oop-states-inheritance
 // A state class for the main title page of the program
 // Displays the title on the screen and switches to
 // Introduction on a key press.
@@ -15,6 +15,8 @@ class Title extends State {
         this.imagesArray = imagesArray;
         // Set our property determining the title of the simulation
         this.backgroundImage = imagesArray[0];
+        //Play sound
+        soundsArray[0].loop();
     }
 
     // draw()

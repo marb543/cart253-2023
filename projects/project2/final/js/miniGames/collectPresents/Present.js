@@ -1,6 +1,7 @@
 //Present
 //Creates a Present object which the player has to catch in Santa's sleigh in order 
 // to score points
+//Class used from the following example by Pippin Barr : https://pippinbarr.com/cart253/topics/object-oriented-programming/object-oriented-programming-activity.html
 class Present {
     //constructor()
     //Creates,and sets the basic properies of the object 

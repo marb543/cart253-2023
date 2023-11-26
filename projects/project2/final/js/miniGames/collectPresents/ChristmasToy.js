@@ -1,6 +1,7 @@
 //ChristmasToy
 //Creates a ChristmasToy object which the player must avoid catching in Santa's sleigh so that he
 //will not lose any points that he has earned from catching presents
+//Class used from the following example by Pippin Barr : https://pippinbarr.com/cart253/topics/object-oriented-programming/object-oriented-programming-activity.html
 class ChristmasToy {
     //constructor()
     //Sets the basin properties, and value of the object 

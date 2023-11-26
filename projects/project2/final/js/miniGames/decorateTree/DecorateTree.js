@@ -150,7 +150,7 @@ class DecorateTree extends State {
         textAlign(CENTER, CENTER);
         text(`Select the choice of toys you  \n  want to decorate the tree with !  \n  (Select 1 , 2 ,3 on keyboard)`, 200, 110,);
         fill(255, 0, 0);
-        text(`You have 1 minute !`, 200, 160,);
+        text(`You have 10 seconds !`, 200, 160,);
         pop();
         //Draw the rectangle options for gardening
         push();
@@ -248,7 +248,7 @@ class DecorateTree extends State {
     //before the timer ran out of time or not
     checkForTime() {
         const elapsedTime = millis() - this.time;
-        if (elapsedTime >= 5000) {
+        if (elapsedTime >= 10000) {
             if (this.decoratedTree.star && this.decoratedTree.toys && this.decoratedTree.gifts) {
                 //If the player has run out of time, and he has decorated the Christmas tree, then set
                 //the current state to be StartCollectPresents

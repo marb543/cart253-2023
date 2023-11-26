@@ -26,6 +26,8 @@ class Introduction extends State {
         super.draw();
         //Sets the background color to black
         background(0);
+        //Display the north pole button
+        this.displayNorthPoleBtn();
         // Call the state's methods to make the animation work
         this.typewriter.display();
         //Verifies if the user has selected the "North Pole" button
@@ -37,9 +39,7 @@ class Introduction extends State {
     writeIntroduction() {
         this.typewriter.typewrite(`        For thousands of years, gnomes have been diligent workers at \n
         Santa's workshop every day from sunrise to sunset they dutifully \n
-        executed their work, built kid's toys, cleaned the workshop,  \n
-        decorated Christmas trees, organized presents  for delivery looked \n
-        after Santa's reindeer's... \n
+        executed their work... \n
         Until one day, the gnomes had enough of working under Santa's tyranny! \n 
         Suddenly every gnome in Santa's workshop decided to stop working, and \n
         instead wreak havoc on the North Pole! Can you help Santa get everything \n
@@ -51,6 +51,13 @@ class Introduction extends State {
     displayNorthPoleBtn() {
         push();
         image(this.northPoleBtn.image, this.northPoleBtn.x, this.northPoleBtn.y, this.northPoleBtn.w, this.northPoleBtn.h);
+        pop();
+        push();
+        fill(255);
+        textFont(`Courier`);
+        textSize(18);
+        textAlign(LEFT, TOP);
+        text(`Select to continue`, this.northPoleBtn.x - 10, this.northPoleBtn.y - 25);
         pop();
     }
     // verifyUserSelect()

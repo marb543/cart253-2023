@@ -15,8 +15,8 @@ class CollectPresents extends State {
         this.balls = [];
         this.boxes = [];
         this.pointCount;
-        this.numBalls = 10;
-        this.numBoxes = 5;
+        this.numBalls = 5;
+        this.numBoxes = 10;
         //Create the canvas
         createCanvas(1200, 600);
         //Create a paddle object
@@ -115,27 +115,25 @@ class CollectPresents extends State {
     // This function increases the points, and updates the pointCount
     increasePoints() {
         let totalPoints = 0;
-
+        //Loop through christmas toys, presents, and increase points
         for (let i = 0; i < this.balls.length; i++) {
             if (this.balls[i].touchedPaddle) {
                 totalPoints += this.balls[i].points;
             }
         }
-
         for (let i = 0; i < this.boxes.length; i++) {
             if (this.boxes[i].touchedPaddle) {
                 totalPoints += this.boxes[i].points;
             }
         }
+        //Icrease the point count
         this.pointCount = totalPoints;
     }
-    /**
-     * checkIfGameOver()
-     * This function checks if the game is over.
-     */
+    // checkIfGameOver()
+    // This function checks if the game is over.
     checkIfGameOver() {
         if (this.balls.every(ball => !ball.active) && this.boxes.every(box => !box.active)) {
-            if (this.pointCount <= 0) {
+            if (this.pointCount < 5) {
                 currentState = new GameOver(imagesArray, fontsArray, soundsArray);
             }
         }
@@ -144,7 +142,7 @@ class CollectPresents extends State {
     // This function checks if the user has won the game or not
     checkIfGameWon() {
         if (this.balls.every(ball => !ball.active) && this.boxes.every(box => !box.active)) {
-            if (this.pointCount > 0) {
+            if (this.pointCount >= 5) {
                 currentState = new Ending(imagesArray, fontsArray, soundsArray);
             }
         }

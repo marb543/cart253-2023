@@ -1,4 +1,4 @@
-//Example from the following exrecise provided by Pippin Parr : https://github.com/pippinbarr/cart253/tree/main/examples/text/typewriter-effect
+//Example from the following exrecise provided by Pippin Barr : https://github.com/pippinbarr/cart253/tree/main/examples/text/typewriter-effect
 // Typewriter
 // A class for typewriting text. Uses an interval to incrementally
 // add characters to a displayed text
@@ -15,7 +15,7 @@ class Typewriter {
         // The index of the next character to add to the displayed text
         this.nextChar = 0;
         // How often to add a character (milliseconds)
-        this.speed = 50;
+        this.speed = 70;
         // The interval used to display the characters so we can cancel it
         this.interval = undefined;
         // The position to display the text at

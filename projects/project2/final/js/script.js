@@ -6,8 +6,7 @@
  * since Santa's gnomes rebelled against him. There are three mini-games included within my game. The first game are the players having 
  * to decorate a Christmas tree before the timer runs out, the second mini-game is the player having to catch Christmas presents in the 
  * sleigh ,and avoid catching Christmas decorations. For the second mini-game the player must have a positive number of points in order to 
- * win the game. For the third mini-game the player has to prepare Santa's reindeers for Christmas. If the player loses one of the mini-games, he
- * has lost the game. If the player was able to successfully complete all three mini-games , he wins the game. 
+ * win the game. If the player loses one of the mini-games, he has lost the game. If the player was able to successfully complete all  mini-games , he wins the game. 
  * 
  * Images from Adobe Stock :
  * ------------------------
@@ -17,12 +16,26 @@
  * Santa's Workshop : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+christmas+santa%27s+workshop&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+christmas+santa%27s+workshop&get_facets=0&asset_id=466656192
  * North Pole sign : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+christmas+tree+decorations&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+christmas+tree+decorations&get_facets=0&asset_id=460149268
  * Gnome : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=santa%27s+gnomes&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=santa%27s+gnomes&get_facets=0&asset_id=471663338
- * Winter Background :
  * Christmas Presents (collectPresents) : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+christmas+present&order=relevance&safe_search=1&search_page=1&search_type=usertyped&acp=&aco=cartoon+christmas+present&get_facets=0&asset_id=386507410
- * Christmas Toys (collectPresents) :
- * I modified the code example from this page where I created a clock in JavaScript: https://p5js.org/examples/input-clock.html
+ * Christmas Toys (collectPresents) : https://stock.adobe.com/ca/search?filters%5Bcontent_type%3Aphoto%5D=1&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=1&filters%5Bcontent_type%3Avideo%5D=1&filters%5Bcontent_type%3Atemplate%5D=1&filters%5Bcontent_type%3A3d%5D=1&filters%5Bfetch_excluded_assets%5D=1&filters%5Binclude_stock_enterprise%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=cartoon+christmas+tree+decorations&order=relevance&safe_search=1&limit=100&search_page=1&search_type=usertyped&acp=&aco=cartoon+christmas+tree+decorations&get_facets=0&asset_id=632596176
  * 
+ * Fonts from Adobe Fonts :
+ * ------------------------
  * The font used for this exercise is from Google fonts : https://fonts.google.com/specimen/Bubblegum+Sans?query=bubb
+ * 
+ * Sounds from Pixabay :
+ * ---------------------
+ *  Main music : https://pixabay.com/sound-effects/preview-o-little-town-of-bethlehem-christmas-special-featuring-kingsley-galaspark-31874/
+ *  Santa claus laughing : https://pixabay.com/sound-effects/santa-claus-laughing-63389/
+ *  Sad game over music : https://pixabay.com/sound-effects/10-seconds-loop-2-97528/
+ * 
+ * Code examples :
+ * --------------
+ * Modified code to make a p5 JavaScript clock : https://p5js.org/examples/input-clock.html
+ * OOP states with inheritance by Pippin Barr : https://github.com/pippinbarr/cart253/tree/main/examples/structure/oop-states-inheritance
+ * OOP class activity by Pippin Barr : https://pippinbarr.com/cart253/topics/object-oriented-programming/object-oriented-programming-activity.html
+ * Typewriter example by Pippin Barr : https://github.com/pippinbarr/cart253/tree/main/examples/text/typewriter-effect
+ * 
  */
 
 "use strict";
@@ -47,7 +60,13 @@ let treeGifts = [];
 //preload()
 //This function preloads the images, sounds , and fonts of the game
 function preload() {
+    //Add fonts
     fontsArray.push(loadFont(`./assets/fonts/BubblegumSans-Regular.ttf`))
+    //Add sounds
+    soundsArray.push(loadSound(`./assets/sounds/preview-o-little-town-of-bethlehem-christmas-special-featuring-kingsley-galaspark-31874.mp3`))
+    soundsArray.push(loadSound(`./assets/sounds/10-seconds-loop-2-97528.mp3`))
+    soundsArray.push(loadSound(`./assets/sounds/santa-claus-laughing-63389.mp3`))
+    //Add images
     imagesArray.push(loadImage(`./assets/images/title.png`));
     imagesArray.push(loadImage(`./assets/images/northPole.png`));
     imagesArray.push(loadImage(`./assets/images/background.jpeg`));

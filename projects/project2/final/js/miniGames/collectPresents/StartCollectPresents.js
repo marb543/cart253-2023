@@ -26,7 +26,7 @@ class StartCollectPresents extends State {
     //Display the main menu text 
     displayInstructions() {
         push();
-        textSize(45);
+        textSize(30);
         strokeWeight(3);
         stroke(200, 100, 100);
         fill(64, 110, 237);
@@ -34,7 +34,7 @@ class StartCollectPresents extends State {
         fill(250);
         textFont(this.font);
         textAlign(CENTER, CENTER);
-        text("Catch Christmas presents in Santa's sleigh ! \n Collect at least 5 presents.", width / 2, height / 2);
+        text("Catch Christmas presents in Santa's sleigh ! \n Collect at least 5 presents, and avoid Christmas decorations. \n (Use LEFT and RIGHT arrows to catch)", width / 2, height / 2);
         pop();
         push();
         noStroke(0);
@@ -45,7 +45,6 @@ class StartCollectPresents extends State {
         textFont('Courier New');
         textAlign(CENTER, CENTER);
         text("Press key to start game...", width / 2, height - 30);
-        text("Use LEFT and RIGHT arrows to catch shapes", width / 2 - 80, 650);
         pop();
     }
     //keyPressed()

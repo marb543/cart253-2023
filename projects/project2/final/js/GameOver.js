@@ -8,6 +8,10 @@ class GameOver extends State {
         super();
         //Set the cover image of the GameOver class
         this.coverImg = imagesArray[12];
+        //Stop main melody from playing
+        soundsArray[0].stop();
+        //Start playing the game over sound
+        soundsArray[1].loop();
     }
     // draw()
     // Called every frame in the main script.
