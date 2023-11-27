@@ -15,8 +15,7 @@ class Title extends State {
         this.imagesArray = imagesArray;
         // Set our property determining the title of the simulation
         this.backgroundImage = imagesArray[0];
-        //Play sound
-        soundsArray[0].loop();
+
     }
 
     // draw()
@@ -39,6 +38,8 @@ class Title extends State {
     // Called by the main script when a key is pressed! Switches to the Animation state
     keyPressed() {
         super.keyPressed();
+        //Play sound
+        soundsArray[0].loop();
         // Switch to the introduction state
         currentState = new Introduction(imagesArray, fontsArray, soundsArray);
     }

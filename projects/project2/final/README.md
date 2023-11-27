@@ -20,11 +20,11 @@
  ends when there are no more Christmas toys or presents on the screen. If the player has scored 5 or more points, he wins the game, otherwise, he loses the game.
 
 ## Artist's statement :
-In composing my second project for this course, I conceived a Christmas-themed game centered around the captivating narrative of Santa's gnomes staging a rebellion, prompting the player's heroic mission to save Christmas. The core objective involves successfully navigating through a series of mini-games, each representing critical tasks that the mischievous gnomes have neglected.
+In composing my second project for this course, I conceived a Christmas-themed game centered around the captivating narrative of Santa's gnomes staging a rebellion, prompting the player's heroic mission to save Christmas. The objective of my game involves successfully completing a series of mini-games, each representing critical tasks that the mischievous gnomes have neglected.
 
-To immerse players in the enchanting world of my game, I meticulously designed an "Introduction" state to vividly tell the storyline. My artistic vision aimed to evoke a magical Christmas atmosphere, instilling a sense of being present at the North Pole and actively assisting Santa Klaus. The desired user experience hinges on creating a festive atmosphere, seamlessly blending holiday-themed music and imagery.
+To immerse players in the enchanting world of my game, I designed an "Introduction" state to tell the player the main game storyline. The artistic vision for my project is to evoke a magical Christmas atmosphere, instilling a sense of being present at the North Pole and actively assisting Santa Klaus. The desiredFor the desired user experience of my game , I want to create a festive atmosphere, seamlessly blending holiday-themed music and imagery.
 
-Technically, I employed Adobe Photoshop to craft three distinct cover images—Title, Game Over, and Game Won—aligning with the thematic elements of my game. The interactive components of the game revolve around engaging Christmas activities, such as adorning a Christmas tree and collecting presents in Santa's sleigh. By intertwining narrative depth, visual aesthetics, and interactive elements, I endeavored to transport players into a joyous Christmas realm.
+Technically, I employed Adobe Photoshop to craft three distinct cover images—Title, Game Over, and Game Won. Each one of my covers is designed to align with the thematic elements of my game. The interactive components of my game revolve around engaging Christmas activities, such as adorning a Christmas tree and collecting presents in Santa's sleigh. By intertwining narrative depth, visual aesthetics, and interactive elements, I endeavored to transport players into a joyous Christmas realm.
 
 ## Attribution : 
 
